@@ -2,7 +2,7 @@ version: '2'
 
 services:
   db:
-    container_name: "ck-db"
+    container_name: "ckdb"
     build: ./mariadb
     ports:
       - "3306:3306"
