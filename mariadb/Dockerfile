@@ -3,7 +3,6 @@ LABEL Vendor="Alpine"
 MAINTAINER Raja. S <rajasoun@icloud.com>
 
 RUN set -x \
-    RUN \
         # Install MariaDB
         apk add --no-cache --update mariadb-common mariadb mariadb-client \
         # Cleanup
