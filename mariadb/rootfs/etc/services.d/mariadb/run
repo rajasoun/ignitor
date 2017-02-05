@@ -1,10 +1,3 @@
-#!/bin/execlineb -P
+#!/usr/bin/with-contenv sh
 
-foreground {
-  s6-svwait -u /var/run/s6/services/syslog
-}
-
-exec -c
-fdmove -c 2 1
-
-/usr/bin/mysqld_safe  --socket=/var/lib/mysql/mysql.sock --user=daspanel --console --port=3306 --syslog
+exec /usr/bin/mysqld_safe --user=dev --console --port=3306
