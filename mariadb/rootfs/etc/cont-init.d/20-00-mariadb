@@ -26,48 +26,48 @@
 [[ -z "${MARIADB_READ_BUFFER}" ]] && export MARIADB_READ_BUFFER="2M"
 [[ -z "${MARIADB_WRITE_BUFFER}" ]] && export MARIADB_WRITE_BUFFER="2M"
 
-# Setup MySql root password == daspanel master password if not set using env variable
+# Setup MySql root password == dev master password if not set using env variable
 if [ -z "$MARIADB_ROOT_PASSWORD" ]; then
-  MARIADB_ROOT_PASSWORD="$DASPANEL_MASTER_PASSWORD"
-fi 
-
-if [ ! -d "/opt/daspanel/data/$DASPANEL_GUUID/mysql" ]; then
-	mkdir -p /opt/daspanel/data/$DASPANEL_GUUID/mysql
+  MARIADB_ROOT_PASSWORD="$MASTER_PASSWORD"
 fi
-chown -R daspanel:daspanel /opt/daspanel/data/$DASPANEL_GUUID/mysql
+
+if [ ! -d "/opt/dev/data/$GUUID/mysql" ]; then
+	mkdir -p /opt/dev/data/$GUUID/mysql
+fi
+chown -R dev:dev /opt/dev/data/$GUUID/mysql
 
 if [ -d "/var/lib/mysql" ]; then
     rm -Rf /var/lib/mysql
 fi
-ln -sf /opt/daspanel/data/$DASPANEL_GUUID/mysql /var/lib/mysql
-chown -R daspanel:daspanel /var/lib/mysql
+ln -sf /opt/dev/data/$GUUID/mysql /var/lib/mysql
+chown -R dev:dev /var/lib/mysql
 
 if [ ! -d "/var/run/mysqld" ]; then
     mkdir -p /var/run/mysqld
 fi
-chown -R daspanel:daspanel /var/run/mysqld
+chown -R dev:dev /var/run/mysqld
 
 if [ ! -d "/var/log/mysql" ]; then
     mkdir -p /var/log/mysql
 fi
-chown -R daspanel:daspanel /var/log/mysql
+chown -R dev:dev /var/log/mysql
 
 /usr/bin/templater -d -p mariadb \
   -o /etc/mysql/my.cnf \
-  /opt/daspanel/conf-templates/etc/mysql/my.cnf.tmpl
+  /opt/dev/conf-templates/etc/mysql/my.cnf.tmpl
 
-if [ -f /opt/daspanel/data/$DASPANEL_GUUID/containers/mysql.configured ]; then
+if [ -f /opt/dev/data/$GUUID/containers/mysql.configured ]; then
   exit 0
 fi
 
 # do some compatible variables with mysql
 if [ -z "$MARIADB_RANDOM_ROOT_PASSWORD" ]; then
-  MARIADB_RANDOM_ROOT_PASSWORD="$MYSQL_RANDOM_ROOT_PASSWORD" 
+  MARIADB_RANDOM_ROOT_PASSWORD="$MYSQL_RANDOM_ROOT_PASSWORD"
 fi
 
 if [ -z "$MARIADB_ROOT_PASSWORD" ]; then
   MARIADB_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
-fi 
+fi
 
 if [ -z "$MARIADB_ALLOW_EMPTY_PASSWORD" ]; then
   MARIADB_ALLOW_EMPTY_PASSWORD="$MYSQL_ALLOW_EMPTY_PASSWORD"
@@ -86,12 +86,12 @@ if [ -z "$MARIADB_PASSWORD" ]; then
 fi
 
 if [ -z "$MARIADB_REMOTE_ROOT" ]; then
-  MARIADB_REMOTE_ROOT="$MYSQL_REMOTE_ROOT" 
+  MARIADB_REMOTE_ROOT="$MYSQL_REMOTE_ROOT"
 fi
 
 # Force random passwortd creation
 #if [ -z "$MARIADB_RANDOM_ROOT_PASSWORD" ]; then
-#  MARIADB_RANDOM_ROOT_PASSWORD="yes" 
+#  MARIADB_RANDOM_ROOT_PASSWORD="yes"
 #fi
 
 # determine root password
@@ -107,7 +107,7 @@ else
   else
       ROOT_PASSWORD=`date +%s | sha256sum | base64 | head -c 16 ; echo`
       echo "set MySql root password to random password $ROOT_PASSWORD"
-  fi   
+  fi
 fi
 
 if [ -z "$ROOT_PASSWORD" ]; then
@@ -121,13 +121,13 @@ fi
 
 if [ ! -d /var/lib/mysql/mysql ]; then
   # initialize database if not found
-  /usr/bin/mysql_install_db --datadir=/var/lib/mysql --user=daspanel 2> /dev/null
+  /usr/bin/mysql_install_db --datadir=/var/lib/mysql --user=dev 2> /dev/null
 
   # start database for config
   /usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --datadir=/var/lib/mysql/  &
 
   # wait for it to start
-  echo -n "wait for db to start"     
+  echo -n "wait for db to start"
 
   c=1
   while [[ $c -le 10 ]]
@@ -135,7 +135,7 @@ if [ ! -d /var/lib/mysql/mysql ]; then
     echo 'SELECT 1' | /usr/bin/mysql &> /dev/null
 #    echo "R=$?"
     if [ $? -eq 0 ]; then
-      break 
+      break
     fi
     echo "."
     sleep 1
@@ -150,22 +150,22 @@ if [ ! -d /var/lib/mysql/mysql ]; then
 
   # remove some stuff
 
-  echo "DROP DATABASE IF EXISTS test;" | /usr/bin/mysql 
+  echo "DROP DATABASE IF EXISTS test;" | /usr/bin/mysql
   echo "DELETE FROM mysql.user WHERE user='';" | /usr/bin/mysql
 
-  if [ ! -z $MARIADB_DATABASE ]; then                                                                                                
-     echo "Creating database $MARIADB_DATABASE"                                                                                      
-     echo "CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE ;" | /usr/bin/mysql                                        
-  fi     
+  if [ ! -z $MARIADB_DATABASE ]; then
+     echo "Creating database $MARIADB_DATABASE"
+     echo "CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE ;" | /usr/bin/mysql
+  fi
 
   if [ ! -z $MARIADB_USER ]; then
      echo "Creating user $MARIADB_USER"
      echo "CREATE USER '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PASSWORD' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
      echo "CREATE USER '$MARIADB_USER'@'localhost' IDENTIFIED BY '$MARIADB_PASSWORD' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
-     if [ ! -z $MARIADB_DATABASE ]; then 
+     if [ ! -z $MARIADB_DATABASE ]; then
        echo "Grating access for $MARIADB_USER to $MARIADB_DATABASE"
-       echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'%' ;FLUSH PRIVILEGES;" | /usr/bin/mysql 
-       echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'localhost' ;FLUSH PRIVILEGES;" | /usr/bin/mysql 
+       echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'%' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
+       echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'localhost' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
      fi
   fi
 
@@ -178,7 +178,7 @@ if [ ! -d /var/lib/mysql/mysql ]; then
   if [ ! -z "$ROOT_PASSWORD" ]; then
      echo "UPDATE mysql.user SET Password=PASSWORD('$ROOT_PASSWORD') WHERE User='root';FLUSH PRIVILEGES;" | /usr/bin/mysql
      echo "root password updated"
-  fi 
+  fi
 
 fi
 
@@ -187,20 +187,20 @@ fi
 /usr/bin/mysqladmin shutdown -p"$ROOT_PASSWORD"
 
 # mark configured
-echo "daspanel-mariadb: Mark mariadb as configured"
+echo "dev-mariadb: Mark mariadb as configured"
 
 # Save details about configuration for late use
-if [ ! -d "/opt/daspanel/data/$DASPANEL_GUUID/containers" ]; then
-	mkdir -p /opt/daspanel/data/$DASPANEL_GUUID/containers
+if [ ! -d "/opt/dev/data/$GUUID/containers" ]; then
+	mkdir -p /opt/dev/data/$GUUID/containers
 fi
 
-touch /opt/daspanel/data/$DASPANEL_GUUID/containers/mysql.configured
-{ 
-    echo ""; 
-    echo ""; 
+touch /opt/dev/data/$GUUID/containers/mysql.configured
+{
+    echo "";
+    echo "";
     echo "MySql Root Password:";
     echo "   $ROOT_PASSWORD";
-    echo ""; 
+    echo "";
     echo "MySql Additional User:";
     echo "   $MARIADB_USER";
     echo "";
@@ -211,13 +211,13 @@ touch /opt/daspanel/data/$DASPANEL_GUUID/containers/mysql.configured
         echo "Root User Remote Access:";
         echo "   Yes";
     fi
-    echo ""; 
-    echo ""; 
-} > /opt/daspanel/data/$DASPANEL_GUUID/containers/mysql.configured
+    echo "";
+    echo "";
+} > /opt/dev/data/$GUUID/containers/mysql.configured
 
-# secure daspanel
-chown -R daspanel:daspanel /opt/daspanel/data
-chown -R daspanel:daspanel /opt/daspanel/log
+# secure dev
+chown -R dev:dev /opt/dev/data
+chown -R dev:dev /opt/dev/log
 
 
 
