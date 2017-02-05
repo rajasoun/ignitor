@@ -11,8 +11,8 @@ clean: delete-images
 
 
 .release:
-	@echo "release=0.0.0" > .release
-	@echo "tag=$(NAME)-0.0.0" >> .release
+	@echo "release=0.1.0" > .release
+	@echo "tag=$(NAME)-0.0.1" >> .release
 	@echo INFO: .release created
 	@cat .release
 
