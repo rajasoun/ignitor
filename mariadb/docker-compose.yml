@@ -1,25 +1,25 @@
 version: '2'
 services:
-    daspanel-mariadb:
+    mariadb:
         build:
             context: .
             dockerfile: Dockerfile
-        image: daspanel/mariadb
+        image: rajasoun/mariadb
         volumes:
-            - daspanel-data:/opt/daspanel/data
+            - dev-data:/opt/dev/data
         networks:
             - backend
         ports:
             - "3306:3306"
         env_file:
-            - daspanel.env
+            - dev.env
             - smtp.env
 volumes:
-    daspanel-data:
+    dev-data:
         external:
-            name: daspanel-data
+            name: dev-data
 
-networks:  
+networks:
   frontend:
     driver: bridge
   backend:
