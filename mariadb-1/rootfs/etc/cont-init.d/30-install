@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-apk add mariadb mariadb-client
-
-# cleanup
-rm -fr /tmp/* /var/lib/apt/lists/*  /var/tmp/*
