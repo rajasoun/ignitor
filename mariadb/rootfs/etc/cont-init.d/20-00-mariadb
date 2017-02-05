@@ -1,6 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-set -x
 # https://raw.githubusercontent.com/nimmis/docker-alpine-mariadb/master/root/etc/run_always/db_init
 # https://github.com/dockhippie/mariadb/blob/master/rootfs/etc/s6/mariadb/setup
 
