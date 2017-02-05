@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv sh
+
+apk update
+apk --no-cache add --update iojs py-pip build-base python-dev py-boto
+pip install awscli ansible
+
+pip install python-keyczar boto hvac
+pip install --upgrade pip python-keyczar setuptools
+rm -rf /var/cache/apk/*
+rm -rf /tmp/*
+
+mkdir /etc/ansible/ /ansible
+echo "[localhost]" > /etc/ansible/hosts
+echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+mkdir -p /opt/ansible/
+
+mkdir -p /ansible/playbooks
