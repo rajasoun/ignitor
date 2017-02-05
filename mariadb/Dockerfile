@@ -1,4 +1,4 @@
-FROM rajasoun/base
+FROM rajasoun/base:0.0.0-2609211
 LABEL Vendor="Alpine"
 MAINTAINER Raja. S <rajasoun@icloud.com>
 
