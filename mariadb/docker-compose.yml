@@ -13,15 +13,13 @@ services:
             - "3306:3306"
         env_file:
             - dev.env
-            - smtp.env
+
 volumes:
     dev-data:
         external:
             name: dev-data
 
 networks:
-  frontend:
-    driver: bridge
   backend:
     driver: bridge
 
