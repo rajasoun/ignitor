@@ -8,11 +8,11 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 
 RUN set -ex \
-  && apk add --no-cache py-pip build-base python-dev libffi-dev openssl-dev \
+    && apk add --no-cache py-pip build-base python-dev libffi-dev openssl-dev \
     && pip install --upgrade pip \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	&& pip install ansible \
-	&& mkdir /ansible \
+	&& mkdir -p /ansible \
 	&& apk del build-base py-pip libffi-dev openssl-dev
 
 WORKDIR /ansible/playbooks
