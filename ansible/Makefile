@@ -30,12 +30,7 @@ create:
 								-v $(container_name):/config $(image_name):$(VERSION)
 
 run:
-	#docker start $(container_name)
-	docker run --rm -it \
-			-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
-			-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
-			-v $(pwd):/ansible/playbooks \
-			rajasoun/ansible:0.0.0-8b61da3 
+	docker run --rm -it -v $$(pwd):/ansible/playbooks  rajasoun/ansible:0.0.0-8b61da3 test/playbook.yml
 
 inspect:
 	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(container_name)
