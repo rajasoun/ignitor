@@ -7,11 +7,12 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 
-RUN  \
-    # Install MariaDB
-    apk add --no-cache --update py-pip build-base python-dev py-boto \
-    && rm -rf /var/cache/apk/**/ \
-    && pip install ansible
+RUN set -ex \
+  && apk add --no-cache py-pip build-base python-dev libffi-dev openssl-dev \
+    && pip install --upgrade pip
+	&& pip install ansible \
+	&& mkdir /ansible \
+	&& apk del build-base py-pip libffi-dev openssl-dev
 
 WORKDIR /ansible/playbooks
 
