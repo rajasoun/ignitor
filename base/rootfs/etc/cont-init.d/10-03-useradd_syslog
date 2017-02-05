@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+addgroup -g 500 -S syslog
+adduser -h /var/log/syslog -g syslog -s /sbin/nologin -G syslog -S -u 500 syslog

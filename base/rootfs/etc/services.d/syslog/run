@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+
+exec -c
+fdmove -c 2 1
+
+/sbin/syslogd -n -O -

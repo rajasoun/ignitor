@@ -1,0 +1,28 @@
+*.md
+*.rst
+*~
+*.sh
+*.in
+LICENSE
+Makefile
+make-project-settings.mk
+.make-release-support
+.release
+change.log
+bin/
+templates/
+docs/
+mkdocs.yml
+
+# mkdocs
+mkdocs.yml
+site_mkdocs/
+
+# testes
+test/
+
+# App source code
+src/
+
+# App data dir
+data/

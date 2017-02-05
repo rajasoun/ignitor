@@ -1,0 +1,32 @@
+#!/usr/bin/with-contenv sh
+
+# make folders if required
+mkdir -p \
+	"$DATADIR" \
+	/config/log/mysql
+
+# purge and re-create /var/lib/mysql with appropriate ownership
+rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld
+chown -R db:db /var/lib/mysql /var/run/mysqld
+# ensure that /var/run/mysqld (used for socket and lock files) is writable
+# regardless of the UID our mysqld instance ends up having at runtime
+chmod 777 /var/run/mysqld
+
+# comment out a few problematic configuration values
+# don't reverse lookup hostnames, they are usually another container
+sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
+	&& echo 'skip-host-cache\nskip-name-resolve' | awk '{ print } $1 == "[mysqld]" && c == 0 { c = 1; system("cat") }' /etc/mysql/my.cnf > /tmp/my.cnf \
+	&& mv /tmp/my.cnf /etc/mysql/my.cnf
+
+echo 'Initializing database'
+		/usr/bin/mysql_install_db --datadir="$DATADIR" --user=db --rpm
+		/usr/bin/mysqladmin -u root -h "$(hostname)" password "${MYSQL_PASSWORD}"
+echo 'Database initialized'
+
+# # configure my.cnf and mysqld_safe
+# sed -i 's/key_buffer\b/key_buffer_size/g' /etc/mysql/my.cnf
+# sed -ri 's/^(bind-address|skip-networking)/;\1/' /etc/mysql/my.cnf
+# sed -i s#/var/log/mysql#/config/log/mysql#g /etc/mysql/my.cnf
+# sed -i -e 's/\(user.*=\).*/\1 db/g' /etc/mysql/my.cnf
+# sed -i -e "s#\(datadir.*=\).*#\1 $DATADIR#g" /etc/mysql/my.cnf
+# sed -i "s/user='mysql'/user='db'/g" /usr/bin/mysqld_safe

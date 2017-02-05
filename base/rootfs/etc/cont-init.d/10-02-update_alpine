@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+
+apk update
+apk upgrade
+rm -rf /var/cache/apk/*
+rm -rf /tmp/*
