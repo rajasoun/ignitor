@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv sh
 
+set -x
 # https://raw.githubusercontent.com/nimmis/docker-alpine-mariadb/master/root/etc/run_always/db_init
 # https://github.com/dockhippie/mariadb/blob/master/rootfs/etc/s6/mariadb/setup
 
@@ -124,10 +125,11 @@ if [ ! -d /var/lib/mysql/mysql ]; then
   /usr/bin/mysql_install_db --datadir=/var/lib/mysql --user=dev 2> /dev/null
 
   # start database for config
-  /usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --datadir=/var/lib/mysql/  &
+  #/usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --socket=/var/lib/mysql/mysql.sock --datadir=/var/lib/mysql/  --user=dev &
+  /usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --datadir=/var/lib/mysql/  --user=dev &
 
   # wait for it to start
-  echo -n "wait for db to start"
+  echo -n "Wait For db to start"
 
   c=1
   while [[ $c -le 10 ]]
