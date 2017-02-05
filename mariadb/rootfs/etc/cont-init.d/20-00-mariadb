@@ -52,7 +52,7 @@ if [ ! -d "/var/log/mysql" ]; then
 fi
 chown -R dev:dev /var/log/mysql
 
-/usr/bin/templater -d -p mariadb \
+/etc/usr/bin/templater -d -p mariadb \
   -o /etc/mysql/my.cnf \
   /opt/dev/conf-templates/etc/mysql/my.cnf.tmpl
 
