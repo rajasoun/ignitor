@@ -1,0 +1,20 @@
+{{if eq .partial false}}# Changelog - {{$.vars.github_user}} / {{$.vars.github_project}}
+{{end}}
+{{- range $e := .changelog.Versions}}
+{{- $tagRange := call $.getTagRange $e.GetName}}
+### {{$e.GetName}}
+__Changes__
+{{range $change := $e.Changes}}
+{{call $.printMultilines $change "- "}}
+{{- end}}
+{{if gt ($e.Contributors | len) 0}}
+__Contributors__
+{{range $contributor := $e.Contributors}}
+- {{$contributor.Name}}
+{{- end}}
+{{end}}
+Released by {{$e.Author.Name}}, {{$e.Date.Format "Mon 02 Jan 2006"}} -
+[see the diff](https://github.com/{{$.vars.github_user}}/{{$.vars.github_project}}/compare/{{$tagRange.Begin}}...{{$tagRange.End}}#diff)
+______________
+{{end}}
+
