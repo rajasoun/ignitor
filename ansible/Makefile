@@ -1,6 +1,6 @@
 
-image_name = rajasoun/base
-container_name = OS
+image_name = rajasoun/ansible
+container_name = OPS
 
 RELEASE := scripts/make-release.sh
 VERSION=$(shell . $(RELEASE) ; getVersion)
