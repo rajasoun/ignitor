@@ -26,7 +26,7 @@ build: .release
 	docker build --rm -t $(image_name):$(VERSION) .
 
 create:
-	docker create --name=$(container_name) \
+	docker create --name=$(container_name) -p 3306:3306 \
 								-v $(container_name):/config $(image_name):$(VERSION)
 
 run:
