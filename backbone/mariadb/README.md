@@ -1,4 +1,3 @@
-
 # MariaDB
 
 MariaDB running inside Docker container using Alpine Linux with S6 Overlay init system.
