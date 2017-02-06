@@ -77,3 +77,4 @@ site_mkdocs/
 
 .idea/
 .idea
+devbox.docker
