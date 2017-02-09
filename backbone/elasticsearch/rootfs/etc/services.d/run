@@ -3,6 +3,4 @@
 exec -c
 fdmove -c 2 1
 
-#/sbin/syslogd -n -O -
-#/usr/share/elasticsearch/bin/elasticsearch
-xec s6-setuidgid elasticsearch  /usr/share/elasticsearch/bin/elasticsearch
+exec s6-setuidgid elasticsearch  /usr/share/elasticsearch/bin/elasticsearch
