@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv /bin/ash
+exec s6-setuidgid elasticsearch /opt/containerpilot/containerpilot /usr/share/elasticsearch/bin/elasticsearch

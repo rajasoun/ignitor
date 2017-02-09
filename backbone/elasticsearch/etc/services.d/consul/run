@@ -1,0 +1,38 @@
+#!/usr/bin/with-contenv /bin/ash
+log() {
+	printf "%s\n" "$@"|awk -F· '{print strftime("%FT%T%z",systime()),"["$1"] consul:",$2}'
+}
+logi() {
+	log "INFO·$@"
+}
+loge() {
+	log "ERR·$@"
+}
+###################################################################################################
+# ACL Datacenter configuration
+if [ -z "$CONSUL_ACL_DC" ]; then
+	logi "ACL Datacenter not defined, defaulting to $CONSUL_DC_NAME"
+	CONSUL_ACL_DC=$CONSUL_DC_NAME
+fi
+CONSUL_ACL_DC=$(echo "$CONSUL_ACL_DC" | tr 'A-Z' 'a-z')
+REPLACEMENT_ACL_DATACENTER="s/\"acl_datacenter\": .*/\"acl_datacenter\": \"${CONSUL_ACL_DC}\",/"
+
+s6-setuidgid consul sed -i "$REPLACEMENT_ACL_DATACENTER" /etc/consul/consul.json
+
+# Wait for Consul cluster availability before starting the Consul agent
+until (curl -E /etc/tls/client_certificate.crt -fsL --connect-timeout 1 "https://${CONSUL_DNS_NAME}:8501/v1/status/leader" &> /dev/null); do
+	sleep 2
+done
+if [ -e /data/raft/raft.db ]; then
+	logi "Starting up Consul agent"
+	unset CONSUL_ENCRYPT_TOKEN
+	exec s6-setuidgid consul /bin/consul agent -config-dir=/etc/consul/ -datacenter="$CONSUL_DC_NAME" -rejoin -retry-join="$CONSUL_DNS_NAME"
+else
+	logi "Starting up Consul agent for the first time, using CONSUL_ENCRYPT_TOKEN & BOOTSTRAP_HOST environment variables"
+	if [ "$CONSUL_ENCRYPT_TOKEN" ]; then
+		exec s6-setuidgid consul /bin/consul agent -config-dir=/etc/consul/ -datacenter="$CONSUL_DC_NAME" -retry-join="$CONSUL_DNS_NAME" -encrypt="$CONSUL_ENCRYPT_TOKEN"
+	else
+		loge "CONSUL_ENCRYPT_TOKEN not set, aborting"
+		exit 1
+	fi
+fi

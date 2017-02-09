@@ -1,0 +1,25 @@
+{
+  "consul": "{{ .CONSUL_HTTP_ADDR }}",
+  "logging": {
+    "level": "INFO",
+    "format": "default",
+    "output": "stdout"
+  },
+  "preStart": "/usr/local/bin/prestart.sh",
+  "services": [
+    {
+      "name": "{{ .ES_SERVICE_NAME }}",
+      "port": 9300,
+      "health": "/usr/local/bin/health.sh",
+      "poll": 10,
+      "ttl": 30
+    }
+  ],
+  "backends": [
+    {
+      "name": "elasticsearch-master",
+      "poll": 30,
+      "onChange": "/usr/local/bin/reconfigure_cluster.sh"
+    }
+  ]
+}
