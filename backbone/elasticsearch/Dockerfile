@@ -1,4 +1,4 @@
-FROM elasticsearch:alpine
+FROM rajasoun/java:0.1
 
 # Alpine packages
 RUN	apk -f -q --progress --no-cache upgrade &&\
@@ -7,7 +7,10 @@ RUN	apk -f -q --progress --no-cache upgrade &&\
 		curl \
 		dnsmasq \
 		jq \
-		tzdata 
+		openssl \
+		tzdata
+
+RUN adduser -D -u 1000 -h /usr/share/elasticsearch elasticsearch
 
 ENV CONTAINERPILOT_VERSION=2.6.0 \
 	CONTAINERPILOT=file:///etc/containerpilot/containerpilot.json \
@@ -16,15 +19,15 @@ ENV CONTAINERPILOT_VERSION=2.6.0 \
 
 # Copy internal CA certificate bundle.
 COPY ca.pem /etc/ssl/private/
-# Client certificate to talk to Consul 
-# From man curl 
+# Client certificate to talk to Consul
+# From man curl
 # -E, --cert # <certificate[:password]> (SSL) Tells curl to use the specified
 # client certificate file when getting a file with HTTPS, FTPS or another SSL-
-# based protocol. The certificate must be in PKCS#12 format if using Secure 
-# Transport, or PEM format if using any other engine. If the optional 
-# password isn't specified, it will be queried for on the terminal. 
-# Note that this option assumes a "certificate" file that is the private key 
-# and the private certificate concatenated! See --cert and --key to specify 
+# based protocol. The certificate must be in PKCS#12 format if using Secure
+# Transport, or PEM format if using any other engine. If the optional
+# password isn't specified, it will be queried for on the terminal.
+# Note that this option assumes a "certificate" file that is the private key
+# and the private certificate concatenated! See --cert and --key to specify
 # them independently.
 COPY client_certificate.* /etc/tls/
 # Add our configuration files and scripts
