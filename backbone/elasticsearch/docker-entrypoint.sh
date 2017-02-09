@@ -18,8 +18,8 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 		chown -R elasticsearch:elasticsearch "$path"
 	done
 	
-	set -- gosu elasticsearch "$@"
-	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+	set -- su-exec elasticsearch "$@"
+	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
 # As argument is not related to elasticsearch,
