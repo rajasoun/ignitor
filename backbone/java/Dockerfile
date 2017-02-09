@@ -77,6 +77,7 @@ RUN set -ex && \
            /tmp/* /var/cache/apk/* && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
+
 # Init
 ENTRYPOINT ["/init"]
 CMD []
