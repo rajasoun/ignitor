@@ -1,32 +1,18 @@
 
 image_name = rajasoun/mariadb
-container_name = DB
+container_name = db
 
-RELEASE := scripts/make-release.sh
-VERSION=$(shell . $(RELEASE) ; getVersion)
+VERSION=0.1
 
 
 default: build create
 clean: delete-images
 
-
-.release:
-	@echo "release=0.0.0" > .release
-	@echo "tag=$(NAME)-0.0.0" >> .release
-	@echo INFO: .release created
-	@cat .release
-
-
-release: check-status  build create
-
-check-status:
-	@. $(RELEASE) ; ! hasChanges || (echo "ERROR: There are still outstanding changes" >&2 && exit 1) ;
-
-build: .release
+build:
 	docker build --rm -t $(image_name):$(VERSION) .
 
 create:
-	docker create --name=$(container_name) -p 3306:3306 \
+	docker create --name=$(container_name) \
 								-v $(container_name):/config $(image_name):$(VERSION)
 
 run:
@@ -50,7 +36,7 @@ delete: stop
 
 delete-images: delete
 		docker images  --no-trunc | grep '<none>' | awk '{ print $$3 }' | xargs  docker rmi -f
-		docker images  --no-trunc | grep '$(image_name)' | awk '{ print $$3 }' | xargs  docker rmi -f
+		docker images  --no-trunc | grep '$(image_name)'  | awk '{ print $$3 }' | xargs  docker rmi -f
 
 reset: delete-images
 		docker images -q | xargs docker rmi -f

@@ -1,6 +1,14 @@
 version: '2'
 
 services:
+  base:
+    container_name: "base"
+    build: ./base
+
+  ansible:
+    container_name: "control_center"
+    build: ./ansible
+
   db:
     container_name: "ckdb"
     build: ./mariadb

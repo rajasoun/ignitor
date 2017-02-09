@@ -2,27 +2,13 @@
 image_name = rajasoun/base
 container_name = OS
 
-RELEASE := scripts/make-release.sh
-VERSION=$(shell . $(RELEASE) ; getVersion)
+VERSION=0.1
 
 
 default: build create
 clean: delete-images
 
-
-.release:
-	@echo "release=0.1.0" > .release
-	@echo "tag=$(NAME)-0.0.1" >> .release
-	@echo INFO: .release created
-	@cat .release
-
-
-release: check-status  build create
-
-check-status:
-	@. $(RELEASE) ; ! hasChanges || (echo "ERROR: There are still outstanding changes" >&2 && exit 1) ;
-
-build: .release
+build:
 	docker build --rm -t $(image_name):$(VERSION) .
 
 create:

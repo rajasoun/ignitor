@@ -1,28 +1,14 @@
 
 image_name = rajasoun/ansible
-container_name = OPS
+container_name = ansible
 
-RELEASE := scripts/make-release.sh
-VERSION=$(shell . $(RELEASE) ; getVersion)
+VERSION=0.1
 
 
 default: build create
 clean: delete-images
 
-
-.release:
-	@echo "release=0.1.0" > .release
-	@echo "tag=$(NAME)-0.0.1" >> .release
-	@echo INFO: .release created
-	@cat .release
-
-
-release: check-status  build create
-
-check-status:
-	@. $(RELEASE) ; ! hasChanges || (echo "ERROR: There are still outstanding changes" >&2 && exit 1) ;
-
-build: .release
+build:
 	docker build --rm -t $(image_name):$(VERSION) .
 
 create:
@@ -30,7 +16,7 @@ create:
 								-v $(container_name):/config $(image_name):$(VERSION)
 
 run:
-	docker run --rm -it -v $$(pwd):/ansible/playbooks  rajasoun/ansible:0.0.0-8b61da3 test/playbook.yml
+	docker start $(container_name)
 
 inspect:
 	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(container_name)
