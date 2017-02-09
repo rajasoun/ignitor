@@ -1,6 +1,5 @@
-#!/bin/execlineb -P
+#!/usr/bin/with-contenv sh
 
-exec -c
-fdmove -c 2 1
+# exec s6-setuidgid elasticsearch  /usr/share/elasticsearch/bin/elasticsearch
+exec /usr/share/elasticsearch/bin/elasticsearch
 
-exec s6-setuidgid elasticsearch  /usr/share/elasticsearch/bin/elasticsearch
