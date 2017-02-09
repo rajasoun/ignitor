@@ -1,6 +1,6 @@
 
-image_name = rajasoun/java
-container_name = java
+image_name = rajasoun/elasticsearch
+container_name = elasticsearch
 
 VERSION=0.1
 
