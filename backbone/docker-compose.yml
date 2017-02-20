@@ -28,7 +28,7 @@ services:
     container_name: "ckmongo"
     build: ./mongodb
     ports:
-    - "27017:27017"
+      - "27017:27017"
 
 #  portainer:
 #     container_name: "portainer"
