@@ -8,19 +8,27 @@ services:
   java:
     container_name: "java"
     build: ./java
+    depends_on:
+      - "base"
 
   ansible:
     container_name: "control_center"
     build: ./ansible
+    depends_on:
+      - "base"
 
   es:
     build: ./elasticsearch
     ports:
-    - "9200:9200"
-    - "9300:9300"
+      - "9200:9200"
+      - "9300:9300"
+    depends_on:
+      - "java"
 
   db:
     container_name: "ckdb"
     build: ./mariadb
     ports:
       - "3306:3306"
+    depends_on:
+      - "base"
