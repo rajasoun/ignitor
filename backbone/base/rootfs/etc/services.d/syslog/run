@@ -1,6 +1,2 @@
-#!/bin/execlineb -P
-
-exec -c
-fdmove -c 2 1
-
-/sbin/syslogd -n -O -
+#!/usr/bin/env sh
+exec syslogd -n -D -O /dev/stdout
