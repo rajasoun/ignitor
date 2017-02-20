@@ -1,6 +1,6 @@
 
-image_name = rajasoun/mongodb
-container_name = mongodb
+image_name = rajasoun/worker
+container_name = worker
 
 VERSION=0.1
 
