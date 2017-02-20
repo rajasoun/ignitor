@@ -15,7 +15,8 @@ RUN set -ex \
     && apk add --no-cache mongodb mongodb-tools \
     && mkdir -p ${DB_PATH} \
     && chown mongodb:mongodb ${DB_PATH} \
-    && rm /usr/bin/mongosniff /usr/bin/mongoperf \
+    && rm -fr /usr/bin/mongosniff \
+    && rm -fr /usr/bin/mongoperf \
     && rm -rf /var/cache/apk/* /src
 
 # Inject files in container file system
