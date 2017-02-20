@@ -9,6 +9,12 @@ services:
     container_name: "control_center"
     build: ./ansible
 
+  es:
+    build: ./elasticsearch
+    ports:
+    - "9200:9200"
+    - "9300:9300"
+
   db:
     container_name: "ckdb"
     build: ./mariadb
