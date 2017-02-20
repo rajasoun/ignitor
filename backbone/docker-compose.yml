@@ -1,14 +1,14 @@
 version: '2'
 
 services:
-  base:
-    container_name: "base"
-    build: ./base
-
-
-  java:
-    container_name: "java"
-    build: ./java
+#  base:
+#    container_name: "base"
+#    build: ./base
+#
+#
+#  java:
+#    container_name: "java"
+#    build: ./java
 
   es:
     build: ./elasticsearch
