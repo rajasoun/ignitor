@@ -9,6 +9,6 @@ set -e
 
 echo "Job Data Seed started: $(date)"
 
-mongo --quiet --host $MONGO_HOST:$MONGO_PORT --db $MONGO_DB_NAME  < /tmp/mongodb/seed.js
+mongo --host $MONGO_HOST:$MONGO_PORT  < /tmp/mongodb/data/seed.js
 
 echo "Job Data Seed finished: $(date)"
