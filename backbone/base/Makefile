@@ -1,6 +1,6 @@
 
 image_name = rajasoun/base
-container_name = OS
+container_name = ckos
 
 VERSION=0.1
 

@@ -11,14 +11,17 @@ LABEL distro="alpine" distro_version="3.5" architecture="x86_64"
 
 
 RUN set -x \
-    # This folder is in $PATH by default but isn't created by default
-    && mkdir -p /usr/local/sbin \
-    # Install minimal packages
-    && apk add --update --no-cache ca-certificates curl  \
-    # Install s6 overlay
-    && curl -L -s https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz \
-      | tar xvzf - -C / \
-    && apk del --no-cache curl \
+    && apk add --no-cache ca-certificates gnupg wget \
+    && wget https://keybase.io/justcontainers/key.asc --no-check-certificate -O /tmp/s6-overlay-key.asc \
+    && wget https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz --no-check-certificate -O /tmp/s6-overlay-amd64.tar.gz \
+    && wget https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz.sig --no-check-certificate -O /tmp/s6-overlay-amd64.tar.gz.sig \
+    && gpg --import /tmp/s6-overlay-key.asc \
+    && gpg --verify /tmp/s6-overlay-amd64.tar.gz.sig /tmp/s6-overlay-amd64.tar.gz \
+    && tar xvfz /tmp/s6-overlay-amd64.tar.gz -C / \
+    && rm -f /tmp/s6-overlay-key.asc \
+    && rm -f /tmp/s6-overlay-amd64.tar.gz \
+    && rm -f /tmp/s6-overlay-amd64.tar.gz.sig \
+    && apk del --no-cache wget gnupg \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
