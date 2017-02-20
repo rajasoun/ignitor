@@ -1,6 +1,7 @@
 version: '2'
 
 services:
+
 #  base:
 #    container_name: "base"
 #    build: ./base
@@ -15,7 +16,6 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
-
 
   db:
     container_name: "ckdb"
