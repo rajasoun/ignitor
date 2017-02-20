@@ -12,6 +12,7 @@ services:
 #    build: ./java
 
   es:
+    container_name: "ckes"
     build: ./elasticsearch
     ports:
       - "9200:9200"
