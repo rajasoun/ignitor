@@ -13,3 +13,4 @@ RUN set -x \
 
 # Init
 ENTRYPOINT ["/init"]
+CMD []
