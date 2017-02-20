@@ -5,6 +5,10 @@ services:
     container_name: "base"
     build: ./base
 
+  java:
+    container_name: "java"
+    build: ./java
+
   ansible:
     container_name: "control_center"
     build: ./ansible
