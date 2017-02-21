@@ -7,9 +7,9 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN set -x \
-    && apk add --update nginx \
-    rm -rf /var/cache/apk/* && \
-    chown -R nginx:www-data /var/lib/nginx
+    && apk add --no-cache nginx \
+    && chown -R nginx:www-data /var/lib/nginx \
+    && rm -rf /var/cache/apk/*
 
 # Expose the ports for nginx
 EXPOSE 80 443
