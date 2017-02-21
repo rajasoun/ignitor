@@ -11,6 +11,15 @@ services:
 #    container_name: "java"
 #    build: ./java
 
+  nginx:
+    container_name: "ckweb"
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
+
   es:
     container_name: "ckes"
     build: ./elasticsearch
