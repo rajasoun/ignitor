@@ -7,7 +7,7 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN set -x \
-    && apk add --no-cache --virtual .deps ruby \
+    && apk add --no-cache --virtual .deps ruby curl \
     && apk add --no-cache --virtual .build-deps ruby-rake ruby-libs ruby-dev musl-dev gcc make \
     && gem install --no-ri --no-rdoc bson_ext:'~>1.9.0' genghisapp:'~>2.3.0' \
     && apk del .build-deps
