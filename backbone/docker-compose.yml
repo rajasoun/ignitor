@@ -36,9 +36,10 @@ services:
       - "27017:27017"
 
   genghis:
-    image: dockervan/genghis
+    container_name: "devtools"
+    build: ./devtools
     links:
-      - ckmongo:b2b
+      - mongo:db
     ports:
       - "5678:5678"
 
