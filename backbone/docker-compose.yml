@@ -18,7 +18,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ../knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
+      - ../../knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
 
   es:
     container_name: "ckes"
