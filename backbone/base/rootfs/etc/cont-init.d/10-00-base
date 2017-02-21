@@ -35,3 +35,5 @@ chown -R $user:$user /opt/$user/data
 chown -R $user:$user /opt/$user/log
 
 chmod +x /etc/usr/bin/host-ip
+chmod +x /etc/usr/bin/gateway-ip
+

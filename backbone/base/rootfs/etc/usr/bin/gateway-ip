@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv sh
+
+#
+# This script will determine the Gateway IP of the Host container.
+#
+# Return format should be a single IP address.
+#
+
+# Default to using the value of the $HOSTNAME ENV variable.
+route -n |awk '/UG/ { print $2 }'
+
