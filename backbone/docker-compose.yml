@@ -35,6 +35,13 @@ services:
     ports:
       - "27017:27017"
 
+  genghis:
+    image: dockervan/genghis
+    links:
+      - ckmongo:b2b
+    ports:
+      - "5678:5678"
+
 #  portainer:
 #     container_name: "portainer"
 #     image: portainer/portainer
