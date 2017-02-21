@@ -154,6 +154,7 @@ if [ ! -d /var/lib/mysql/mysql ]; then
   echo "DROP DATABASE IF EXISTS test;" | /usr/bin/mysql
   echo "DELETE FROM mysql.user WHERE user='';" | /usr/bin/mysql
 
+
   if [ ! -z $MARIADB_DATABASE ]; then
      echo "Creating database $MARIADB_DATABASE"
      echo "CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE ;" | /usr/bin/mysql
@@ -220,8 +221,3 @@ touch /opt/dev/data/$GUUID/containers/mysql.configured
 chown -R dev:dev /opt/dev/data
 chown -R dev:dev /opt/dev/log
 
-echo "create database b2b;"  | /usr/bin/mysql
-echo "CREATE USER 'ckuser'@'localhost' IDENTIFIED BY 'Cisco@1234';" | /usr/bin/mysql
-echo "GRANT ALL PRIVILEGES ON * . * TO 'ckuser'@'localhost';" | /usr/bin/mysql
-echo "CREATE USER 'ckuser'@'%' IDENTIFIED BY 'Cisco@1234';" | /usr/bin/mysql
-echo "GRANT ALL PRIVILEGES ON * . * TO 'ckuser'@'%';" | /usr/bin/mysql
