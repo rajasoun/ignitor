@@ -23,6 +23,11 @@ services:
     build: ./mariadb
     ports:
       - "3306:3306"
+    environment:
+      - MASTER_PASSWORD=password@1234
+      - MARIADB_DATABASE=b2b
+      - MARIADB_USER=ckuser
+      - MARIADB_PASSWORD=Cisco@1234
 
   mongo:
     container_name: "ckmongo"
