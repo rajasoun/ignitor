@@ -43,6 +43,28 @@ services:
     ports:
       - "5678:5678"
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - '8080:80'
+
+  datastore:
+    image: busybox
+    volumes:
+      - /var/lib/mysql
+  php:
+    build: php
+    ports:
+      - '80:80'
+    links:
+      - db
+    volumes:
+      - ./php/www:/srv/www
 #  portainer:
 #     container_name: "portainer"
 #     image: portainer/portainer
