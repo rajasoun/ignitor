@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-dockerhost=/etc/usr/bin/gateway-ip
+dockerhost=`/etc/usr/bin/gateway-ip`
 echo "$dockerhost dockerhost" >> /etc/hosts
 echo "Docker Gateway Updated ..."
 cat /etc/hosts
