@@ -53,18 +53,7 @@ services:
     ports:
       - '8080:80'
 
-  datastore:
-    image: busybox
-    volumes:
-      - /var/lib/mysql
-  php:
-    build: php
-    ports:
-      - '80:80'
-    links:
-      - db
-    volumes:
-      - ./php/www:/srv/www
+
 #  portainer:
 #     container_name: "portainer"
 #     image: portainer/portainer
