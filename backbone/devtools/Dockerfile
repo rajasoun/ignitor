@@ -7,12 +7,17 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN set -x \
-    && apk add --no-cache --virtual .deps ruby curl \
+    && apk add --no-cache --virtual .deps ruby curl openssh \
     && apk add --no-cache --virtual .build-deps ruby-rake ruby-libs ruby-dev musl-dev gcc make \
     && gem install --no-ri --no-rdoc bson_ext:'~>1.9.0' genghisapp:'~>2.3.0' \
-    && apk del .build-deps
+    && mkdir -p ~root/.ssh && chmod 700 ~root/.ssh/ \
+    && echo -e "Port 22\n" >> /etc/ssh/sshd_config \
+    && cp -a /etc/ssh /etc/ssh.cache \
+    && apk del .build-deps \
+    && rm -rf /var/cache/apk/*
 
 
+EXPOSE 22
 EXPOSE 5678
 
 # Inject files in container file system
