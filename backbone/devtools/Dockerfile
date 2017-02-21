@@ -6,14 +6,18 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 # Stop container initialization if error occurs in cont-init.d fix-attrs.d script's
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-RUN apk add --no-cache --virtual .deps ruby \
+RUN set -x \
+    && apk add --no-cache --virtual .deps ruby \
     && apk add --no-cache --virtual .build-deps ruby-rake ruby-libs ruby-dev musl-dev gcc make \
     && gem install --no-ri --no-rdoc bson_ext:'~>1.9.0' genghisapp:'~>2.3.0' \
     && apk del .build-deps
 
+
 EXPOSE 5678
+
+# Inject files in container file system
+COPY rootfs /
 
 # Init
 ENTRYPOINT ["/init"]
-
-CMD /usr/bin/genghisapp --no-launch --foreground --no-update-check --servers mongo:27017
+CMD []
