@@ -16,4 +16,4 @@ EXPOSE 5678
 # Init
 ENTRYPOINT ["/init"]
 
-CMD /usr/bin/genghisapp --no-launch --foreground --no-update-check --servers $(cat servers)
+CMD /usr/bin/genghisapp --no-launch --foreground --no-update-check --servers mongo:27017
