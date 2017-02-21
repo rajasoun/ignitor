@@ -220,5 +220,8 @@ touch /opt/dev/data/$GUUID/containers/mysql.configured
 chown -R dev:dev /opt/dev/data
 chown -R dev:dev /opt/dev/log
 
-
-
+echo "create database b2b;"  | /usr/bin/mysql
+echo "CREATE USER 'ckuser'@'localhost' IDENTIFIED BY 'Cisco@1234';" | /usr/bin/mysql
+echo "GRANT ALL PRIVILEGES ON * . * TO 'ckuser'@'localhost';" | /usr/bin/mysql
+echo "CREATE USER 'ckuser'@'%' IDENTIFIED BY 'Cisco@1234';" | /usr/bin/mysql
+echo "GRANT ALL PRIVILEGES ON * . * TO 'ckuser'@'%';" | /usr/bin/mysql
