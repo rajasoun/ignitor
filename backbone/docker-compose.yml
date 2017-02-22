@@ -69,11 +69,11 @@ services:
     working_dir: /app
     volumes:
        - /home/rajasoun/Workspace/ck/platform/authorization:/app
-    #command: java -cp authorization-server/target/server-jar-with-dependencies.jar com.cisco.ccl.b2b.authorization.server.JettyServer 8006 authorization-web/target/authorization.war
+    command: run.sh
     ports:
        - "8006:8006"
     links:
-       - mongo
+       - ckdb
        - db
 
 
