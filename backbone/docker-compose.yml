@@ -63,17 +63,17 @@ services:
     ports:
       - '8080:80'
 
-#  authservice:
-#    image: rajasoun/java:0.1
-#    container_name: "authservice"
-#    working_dir: /app
-#    volumes:
-#       - /home/rajasoun/Workspace/ck/platform/authorization:/app
-#    command: ./run.sh
-#    ports:
-#       - "8006:8006"
-#    links:
-#       - db:ckdb
+  authservice:
+    image: rajasoun/java:0.1
+    container_name: "authservice"
+    working_dir: /app
+    volumes:
+       - /home/rajasoun/Workspace/ck/platform/authorization:/app
+    command: ./run.sh
+    ports:
+       - "8006:8006"
+    links:
+       - db:ckdb
 
 
 #  portainer:
