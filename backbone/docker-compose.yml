@@ -64,11 +64,11 @@ services:
     ports:
        - "8006:8006"
 
-  portainer:
-     container_name: "portainer"
-     image: portainer/portainer
-     ports:
-       - "9001:9001"
-     volumes:
-       - /var/run/docker.sock:/var/run/docker.sock
+#  portainer:
+#     container_name: "portainer"
+#     image: portainer/portainer
+#     ports:
+#       - "9001:9001"
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
 
