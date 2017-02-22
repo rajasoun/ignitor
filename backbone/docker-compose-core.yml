@@ -50,10 +50,13 @@ services:
         - db
 
   zookeeper:
+    container_name: "zookeeper"
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
+
   kafka:
+    container_name: "kafka"
     image: wurstmeister/kafka
     ports:
       - "9092"
