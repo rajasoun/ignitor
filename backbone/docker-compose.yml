@@ -9,7 +9,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ../../knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
+      - ~/Workspace/ck/platform/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
 
   es:
     container_name: "ckes"
@@ -59,7 +59,7 @@ services:
     container_name: "authservice"
     working_dir: /app
     volumes:
-       - /home/rajasoun/Workspace/ck/platform/authorization:/app
+       - ~/Workspace/ck/platform/authorization:/app
     command: ./run.sh
     ports:
        - "8006:8006"
