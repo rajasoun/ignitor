@@ -69,10 +69,10 @@ services:
         - db
 
   start_dependencies:
-    image: dadarek/wait-for-dependencies
+    build: ./wait-for-it
     depends_on:
       - db
-    command: db:3306
+    command: db:3306 ckdb:3306
 
 #  portainer:
 #     container_name: "portainer"
