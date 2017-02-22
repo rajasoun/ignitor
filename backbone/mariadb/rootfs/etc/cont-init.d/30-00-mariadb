@@ -166,6 +166,8 @@ if [ ! -d /var/lib/mysql/mysql ]; then
      echo "CREATE USER '$MARIADB_USER'@'localhost' IDENTIFIED BY '$MARIADB_PASSWORD' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
      if [ ! -z $MARIADB_DATABASE ]; then
        echo "Grating access for $MARIADB_USER to $MARIADB_DATABASE"
+       echo "GRANT ALL ON *.* TO '$MARIADB_USER'@'%' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
+       echo "GRANT ALL ON *.* TO '$MARIADB_USER'@'localhost' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
        echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'%' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
        echo "GRANT ALL ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'localhost' ;FLUSH PRIVILEGES;" | /usr/bin/mysql
      fi
