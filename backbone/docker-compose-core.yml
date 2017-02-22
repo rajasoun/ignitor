@@ -27,7 +27,7 @@ services:
       - "27017:27017"
 
   authservice:
-    image: rajasoun/java:0.1
+    image: openjdk:8
     container_name: "authservice"
     working_dir: /app
     volumes:
