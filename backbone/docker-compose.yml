@@ -69,7 +69,7 @@ services:
     working_dir: /app
     volumes:
        - /home/rajasoun/Workspace/ck/platform/authorization:/app
-    command: ./run.sh
+    #command: ./run.sh
     ports:
        - "8006:8006"
     links:
