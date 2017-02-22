@@ -73,8 +73,7 @@ services:
     ports:
        - "8006:8006"
     links:
-       - ckdb
-       - db
+       - db:ckdb
 
 
 #  portainer:
