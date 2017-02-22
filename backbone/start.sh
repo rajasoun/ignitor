@@ -5,4 +5,5 @@ cd java && make && cd ..
 docker-compose build
 docker-compose run --rm start_dependencies
 docker-compose up -d
+python fcci/app.py &
 
