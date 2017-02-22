@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+
+  es:
+    container_name: "ckes"
+    image: elasticsearch:2.4
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  db:
+    container_name: "ckdb"
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password@1234
+      - MYSQL_DATABASE=b2b
+      - MYSQL_USER=ckuser
+      - MYSQL_PASSWORD=Cisco@1234
+
+  mongo:
+    container_name: "ckmongo"
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  authservice:
+    image: rajasoun/java:0.1
+    container_name: "authservice"
+    working_dir: /app
+    volumes:
+       - ~/Workspace/ck/platform/authorization:/app
+    command: ./run.sh
+    ports:
+       - "8006:8006"
+    links:
+      - db
+    depends_on:
+        - db
+
+  start_dependencies:
+    build: ./wait-for-it
+    depends_on:
+      - db
+    command: db:3306 ckdb:3306
+

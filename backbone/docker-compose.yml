@@ -18,38 +18,20 @@ services:
       - "9200:9200"
       - "9300:9300"
 
-#  db:
-#    container_name: "ckdb"
-#    build: ./mariadb
-#    ports:
-#      - "3306:3306"
-#    environment:
-#      - MASTER_PASSWORD=password@1234
-#      - MARIADB_DATABASE=b2b
-#      - MARIADB_USER=ckuser
-#      - MARIADB_PASSWORD=Cisco@1234
-
-#  mongo:
-#    container_name: "ckmongo"
-#    build: ./mongodb
-#    ports:
-#      - "27017:27017"
-
   db:
     container_name: "ckdb"
-    image: mysql:latest
+    build: ./mariadb
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=password@1234
-      - MYSQL_DATABASE=b2b
-      - MYSQL_USER=ckuser
-      - MYSQL_PASSWORD=Cisco@1234
-
+      - MASTER_PASSWORD=password@1234
+      - MARIADB_DATABASE=b2b
+      - MARIADB_USER=ckuser
+      - MARIADB_PASSWORD=Cisco@1234
 
   mongo:
     container_name: "ckmongo"
-    image: mongo
+    build: ./mongodb
     ports:
       - "27017:27017"
 
