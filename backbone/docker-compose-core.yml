@@ -53,8 +53,8 @@ services:
     container_name: "kafka"
     image: spotify/kafka
     ports:
-      - "9092:9092"
       - "2181:2181"
+      - "9092:9092"
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
