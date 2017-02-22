@@ -2,6 +2,15 @@ version: '2'
 
 services:
 
+
+  start_dependencies:
+    build: ./wait-for-it
+    depends_on:
+      - db
+      - es
+      - mongo
+    command: db:3306 es:9200 mongo:27017
+
   es:
     container_name: "ckes"
     image: elasticsearch:2.4
@@ -39,10 +48,4 @@ services:
       - db
     depends_on:
         - db
-
-  start_dependencies:
-    build: ./wait-for-it
-    depends_on:
-      - db
-    command: db:3306 ckdb:3306
 
