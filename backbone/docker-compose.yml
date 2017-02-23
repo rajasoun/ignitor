@@ -132,7 +132,7 @@ services:
       KAFKA_ADVERTISED_PORT: 9092
 
   swift:
-     container_name: "swift"
+     container_name: "ckswift"
      image: "morrisjobke/docker-swift-onlyone"
      ports:
         - "12345:8080"
