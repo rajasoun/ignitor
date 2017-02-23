@@ -68,7 +68,7 @@ services:
     working_dir: /app
     environment:
         CLASSPATH: /etc/b2b/properties
-    command: "/etc/b2b/scripts/start.sh kc-server com.cisco.ccl.b2b.kc.server.JettyServer 8002 kc-web/target/knowledgecenter.war knowledgecenter"
+    command: "/etc/b2b/scripts/start.sh kc 8002 knowledgecenter"
     links:
       - mongo
     depends_on:
