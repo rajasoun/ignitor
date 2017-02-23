@@ -64,7 +64,7 @@ services:
        - "8002:8002"
     volumes:
        - ~/Workspace/ck/platform/knowledgecenter:/app
-       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/etc/b2b/properties
+       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties/kc:/etc/b2b/properties
        - ~/Workspace/ck/devbox-docker/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
     environment:
