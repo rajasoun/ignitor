@@ -88,7 +88,7 @@ services:
     working_dir: /app
     environment:
         CLASSPATH: /etc/b2b/properties
-    command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
+    command: "/etc/b2b/scripts/start.sh userpi 8005 userpi"
     links:
       - mongo
     depends_on:
@@ -106,9 +106,9 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
 
-#  swift:
-#     container_name: "swift"
-#     image: "morrisjobke/docker-swift-onlyone"
-#     ports:
-#        - "12345:8080"
+  swift:
+     container_name: "swift"
+     image: "morrisjobke/docker-swift-onlyone"
+     ports:
+        - "12345:8080"
 

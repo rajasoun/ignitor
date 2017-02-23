@@ -131,11 +131,11 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
 
-#  swift:
-##     container_name: "swift"
-##     image: "morrisjobke/docker-swift-onlyone"
-##     ports:
-##        - "12345:8080"
+  swift:
+     container_name: "swift"
+     image: "morrisjobke/docker-swift-onlyone"
+     ports:
+        - "12345:8080"
 
 #  portainer:
 #     container_name: "portainer"
