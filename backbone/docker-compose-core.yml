@@ -115,7 +115,7 @@ services:
       - /srv
 
   swift:
-     container_name: "SWIFT_DATA"
+     container_name: "swift"
      image: "serverascode/swift-onlyone"
      ports:
         - "8080"
