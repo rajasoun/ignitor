@@ -3,6 +3,7 @@ version: '2'
 services:
 
   start_dependencies:
+    container_name: "wait-for-it"
     build: ./wait-for-it
     depends_on:
       - db
@@ -22,14 +23,14 @@ services:
     image: mysql:latest
     ports:
       - "3306:3306"
+    volumes:
+      - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
+      - /ck/data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password@1234
       - MYSQL_DATABASE=b2b
       - MYSQL_USER=ckuser
       - MYSQL_PASSWORD=Cisco@1234
-    volumes:
-      - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
-      - /ck/data/mysql:/var/lib/mysql
 
   mongo:
     container_name: "ckmongo"
@@ -38,21 +39,21 @@ services:
       - "27017:27017"
 
   authservice:
+    container_name: "authservice"
     #image: openjdk:8
     image: anapsix/alpine-java:latest
-    container_name: "authservice"
-    working_dir: /app
-    volumes:
-       - ~/Workspace/ck/platform/authorization:/app
-    command: ./run.sh
     ports:
        - "8006:8006"
+    volumes:
+       - ~/Workspace/ck/platform/authorization:/app
+    working_dir: /app
+    command: ./run.sh
+    environment:
+        - jdbc.url=jdbc:mysql://ckdb:3306/b2b
     links:
       - db
     depends_on:
-        - db
-    environment:
-        - jdbc.url=jdbc:mysql://ckdb:3306/b2b
+      - db
 
   kafka:
     container_name: "kafka"
@@ -60,8 +61,8 @@ services:
     ports:
       - "2181:2181"
       - "9092:9092"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock

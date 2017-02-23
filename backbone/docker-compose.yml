@@ -2,6 +2,15 @@ version: '2'
 
 services:
 
+  start_dependencies:
+    container_name: "wait-for-it"
+    build: ./wait-for-it
+    depends_on:
+      - db
+      - es
+      - mongo
+    command: db:3306 es:9200 mongo:27017
+
   nginx:
     container_name: "ckweb"
     build: ./nginx
@@ -38,41 +47,38 @@ services:
   genghis:
     container_name: "devtools"
     build: ./devtools
-    links:
-      - mongo:db
     ports:
       - "5678:5678"
+    links:
+      - mongo
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
     container_name: "phpmyadmin"
-    links:
-      - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-    ports:
-      - '8080:80'
+    links:
+      - db
+
 
   authservice:
     image: rajasoun/java:0.1
     container_name: "authservice"
-    working_dir: /app
-    volumes:
-       - ~/Workspace/ck/platform/authorization:/app
-    command: ./run.sh
     ports:
        - "8006:8006"
+    volumes:
+       - ~/Workspace/ck/platform/authorization:/app
+    working_dir: /app
+    command: ./run.sh
+    environment:
+        - jdbc.url=jdbc:mysql://ckdb:3306/b2b
     links:
       - db
     depends_on:
-        - db
-
-  start_dependencies:
-    build: ./wait-for-it
-    depends_on:
       - db
-    command: db:3306 ckdb:3306
 
 #  portainer:
 #     container_name: "portainer"
