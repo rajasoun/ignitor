@@ -85,7 +85,8 @@ services:
   knowledgecenter:
     container_name: "knowledgecenter"
     #image: openjdk:8
-    image: anapsix/alpine-java:latest
+    #image: anapsix/alpine-java:latest
+    image: rajasoun/java:0.1
     ports:
        - "8002:8002"
     volumes:
@@ -104,7 +105,8 @@ services:
   userpi:
     container_name: "userpi"
     #image: openjdk:8
-    image: anapsix/alpine-java:latest
+    #image: anapsix/alpine-java:latest
+    image: rajasoun/java:0.1
     ports:
        - "8005:8005"
     volumes:
