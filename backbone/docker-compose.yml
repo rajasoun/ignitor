@@ -134,19 +134,11 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
 
-  swift_volume:
-    container_name: "SWIFT_DATA"
-    image: "busybox"
-    volumes:
-      - /srv
-
   swift:
-     container_name: "SWIFT_DATA"
-     image: "serverascode/swift-onlyone"
+     container_name: "swift"
+     image: "morrisjobke/docker-swift-onlyone"
      ports:
-        - "8080"
-     volumes_from:
-        - SWIFT_DATA
+        - "12345:8080"
 
 #  portainer:
 #     container_name: "portainer"
