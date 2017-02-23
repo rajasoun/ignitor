@@ -9,7 +9,8 @@ services:
       - db
       - es
       - mongo
-    command: db:3306 es:9200 mongo:27017
+      - swift
+    command: db:3306 es:9200 mongo:27017 swift:8080
 
   nginx:
     container_name: "ckweb"
