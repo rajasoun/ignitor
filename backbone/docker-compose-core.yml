@@ -29,6 +29,7 @@ services:
       - MYSQL_PASSWORD=Cisco@1234
     volumes:
       - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
+      - /ck/data:/var/lib/mysql
 
   mongo:
     container_name: "ckmongo"
