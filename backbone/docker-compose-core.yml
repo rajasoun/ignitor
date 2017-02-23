@@ -112,5 +112,5 @@ services:
      container_name: "ckswift"
      image: "morrisjobke/docker-swift-onlyone"
      ports:
-        - "12345:8080"
+        - "8080"
 
