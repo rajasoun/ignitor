@@ -65,9 +65,9 @@ services:
        - ~/Workspace/ck/platform/knowledgecenter:/app
        - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/override-properties
     working_dir: /app
-    command: ./run.sh
-    environment:
-        - classpath=/override-properties/db-override.properties:$classpath
+    command: java -cp /override-properties/db-override.properties:kc-server/target/server-jar-with-dependencies.jar com.cisco.ccl.b2b.kc.server.JettyServer 8002 kc-web/target/knowledgecenter.war knowledgecenter
+#    environment:
+#        - classpath=/override-properties/db-override.properties
     links:
       - mongo
     depends_on:
