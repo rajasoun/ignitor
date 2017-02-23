@@ -89,10 +89,11 @@ services:
     volumes:
        - ~/Workspace/ck/platform/knowledgecenter:/app
        - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/etc/b2b/properties
+       - ~/Workspace/ck/devbox-docker/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
     environment:
         CLASSPATH: /etc/b2b/properties
-    command: ./run.sh
+    command: "./etc/b2b/scripts/start.sh kc-server com.cisco.ccl.b2b.kc.server.JettyServer 8002 kc-web/target/knowledgecenter.war knowledgecenter"
     links:
       - mongo
     depends_on:
