@@ -1,3 +1,2 @@
 GRANT ALL ON *.* TO 'ckuser'@'%' ;FLUSH PRIVILEGES;
-GRANT ALL ON b2b.* TO 'ckuser'@'%' ;FLUSH PRIVILEGES;
 
