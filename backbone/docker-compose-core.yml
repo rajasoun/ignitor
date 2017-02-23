@@ -118,7 +118,7 @@ services:
      container_name: "swift"
      image: "serverascode/swift-onlyone"
      ports:
-        - "8080"
+        - "8080:8080"
      volumes_from:
         - swift_volume
 
