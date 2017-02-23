@@ -71,8 +71,9 @@ services:
        - "8006:8006"
     volumes:
        - ~/Workspace/ck/platform/authorization:/app
+       - ~/Workspace/ck/devbox-docker/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
-    command: ./run.sh
+    command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
     environment:
         - jdbc.url=jdbc:mysql://ckdb:3306/b2b
     links:
