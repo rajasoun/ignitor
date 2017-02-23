@@ -75,6 +75,27 @@ services:
     depends_on:
       - mongo
 
+  userpi:
+    container_name: "userpi"
+    #image: openjdk:8
+    image: anapsix/alpine-java:latest
+    ports:
+       - "8005:8005"
+    volumes:
+       - ~/Workspace/ck/platform/knowledgecenter:/app
+       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties/userpi:/etc/b2b/properties
+       - ~/Workspace/ck/devbox-docker/backbone/workers/scripts:/etc/b2b/scripts
+    working_dir: /app
+    environment:
+        CLASSPATH: /etc/b2b/properties
+    command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
+    links:
+      - mongo
+      - swift
+    depends_on:
+      - mongo
+      - swift
+
   kafka:
     container_name: "kafka"
     image: spotify/kafka
@@ -86,3 +107,18 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
       KAFKA_ADVERTISED_PORT: 9092
+
+  swift_volume:
+    container_name: "SWIFT_DATA"
+    image: "busybox"
+    volumes:
+      - /srv
+
+  swift:
+     container_name: "SWIFT_DATA"
+     image: "serverascode/swift-onlyone"
+     ports:
+        - "8080"
+     volumes_from:
+        - SWIFT_DATA
+
