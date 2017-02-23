@@ -63,7 +63,7 @@ services:
        - "8002:8002"
     volumes:
        - ~/Workspace/ck/platform/knowledgecenter:/app
-       - ~Workspace/ck/devbox-docker/backbone/workers/override-properties:/override-properties
+       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/override-properties
     working_dir: /app
     command: ./run.sh
     environment:
