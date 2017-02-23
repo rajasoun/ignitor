@@ -80,6 +80,21 @@ services:
     depends_on:
       - db
 
+  knowledgecenter:
+    container_name: "knowledgecenter"
+    #image: openjdk:8
+    image: anapsix/alpine-java:latest
+    ports:
+       - "8002:8002"
+    volumes:
+       - ~/Workspace/ck/platform/knowledgecenter:/app
+    working_dir: /app
+    command: ./run.sh
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
 #  portainer:
 #     container_name: "portainer"
 #     image: portainer/portainer
