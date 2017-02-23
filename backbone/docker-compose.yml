@@ -91,8 +91,8 @@ services:
        - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/etc/b2b/properties
     working_dir: /app
     environment:
-        CLASSPATH: /etc/b2b/properties
-    command: ./run.sh
+        CLASSPATH: /etc/b2b/properties:$CLASSPATH
+    command: "java -cp $CLASSPATH:kc-server/target/server-jar-with-dependencies.jar com.cisco.ccl.b2b.kc.server.JettyServer 8002 kc-web/target/knowledgecenter.war knowledgecenter"
     links:
       - mongo
     depends_on:
