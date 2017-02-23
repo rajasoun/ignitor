@@ -9,8 +9,7 @@ services:
       - db
       - es
       - mongo
-      - swift
-    command: db:3306 es:9200 mongo:27017 swift:12345
+    command: db:3306 es:9200 mongo:27017
 
   nginx:
     container_name: "ckweb"
@@ -117,10 +116,8 @@ services:
     command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
     links:
       - mongo
-      - swift
     depends_on:
       - mongo
-      - swift
 
   kafka:
     container_name: "kafka"
