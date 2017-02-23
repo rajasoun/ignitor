@@ -116,8 +116,10 @@ services:
     command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
     links:
       - mongo
+      - swift
     depends_on:
       - mongo
+      - swift
 
   kafka:
     container_name: "kafka"
