@@ -2,11 +2,10 @@
 
 #FIX: http://stackoverflow.com/questions/29415311/mongodb-connection-auth-works-on-shell-but-not-with-external-tools
 
-docker exec -it ckmongo  sh -c 'mongo  <<EOF
-use admin
-db.system.users.remove({})    <== removing all users
-db.system.version.remove({}) <== removing current version
-db.system.version.insert({ "_id" : "authSchema", "currentVersion" : 3 })
+docker exec -it ckmongo  sh -c 'mongo admin <<EOF
+db.admin.system.users.remove({})    <== removing all users
+db.admin.system.version.remove({}) <== removing current version
+db.admin.system.version.insert({ "_id" : "authSchema", "currentVersion" : 3 })
 '
 
 docker exec -it ckmongo  sh -c 'mongo b2b <<EOF
