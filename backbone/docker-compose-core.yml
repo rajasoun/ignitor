@@ -120,5 +120,5 @@ services:
      ports:
         - "8080"
      volumes_from:
-        - SWIFT_DATA
+        - swift_volume
 
