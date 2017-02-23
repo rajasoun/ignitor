@@ -65,7 +65,7 @@ services:
        - ~/Workspace/ck/platform/knowledgecenter:/app
        - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/override-properties
     working_dir: /app
-    command: "export CLASSPATH=$CLASSPATH:/override-properties/db-override.properties && ./run.sh"
+    command: ./run.sh
     links:
       - mongo
     depends_on:
