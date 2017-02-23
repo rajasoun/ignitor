@@ -63,7 +63,10 @@ services:
        - "8002:8002"
     volumes:
        - ~/Workspace/ck/platform/knowledgecenter:/app
+       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties:/etc/b2b/properties
     working_dir: /app
+    environment:
+        CLASSPATH: /etc/b2b/properties
     command: ./run.sh
     links:
       - mongo
