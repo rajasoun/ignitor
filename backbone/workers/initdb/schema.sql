@@ -1,10 +1,4 @@
-GRANT ALL ON *.* TO 'ckuser'@'%' ;FLUSH PRIVILEGES;
-GRANT ALL ON *.* TO 'ckuser'@'localhost' ;FLUSH PRIVILEGES;
-GRANT ALL ON b2b.* TO 'ckuser'@'%' ;FLUSH PRIVILEGES;
-GRANT ALL ON b2b.* TO 'ckuser'@'localhost' ;FLUSH PRIVILEGES;
-
-
-  create table subject(_id varchar(100), name varchar(200), tenant_id varchar(100),
+create table subject(_id varchar(100), name varchar(200), tenant_id varchar(100),
     app_id varchar(20), type varchar(20), status varchar(10), created_by_id varchar(100),
     created_by_app_id varchar(100),created_by_tenant_id varchar(100),
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
