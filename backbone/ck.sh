@@ -24,6 +24,8 @@ case "$option" in
         echo -n "Starting $DESC: "
         docker-compose -f $composer down
         docker volume ls -qf dangling=true | xargs -r docker volume rm
+        docker_gc_vol="~/Workspace/ck/devbox-docker/backbone/workers/docker-gc/etc/"
+        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $docker_gc_vol:/etc:ro spotify/docker-gc
         pid=`ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill`
         echo $pid
         sleep 2
