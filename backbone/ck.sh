@@ -4,7 +4,7 @@ composer=$1
 option=$2
 DESC="CK "
 
-test -x $composer || exit 0
+
 set -e
 
 case "$1" in
@@ -21,6 +21,7 @@ case "$1" in
         /usr/bin/python  fcci/app.py &
     ;;
     stop)
+        echo -n "Starting $DESC: "
         docker-compose -f $composer down
         docker volume ls -qf dangling=true | xargs -r docker volume rm
         pid=`ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill`
