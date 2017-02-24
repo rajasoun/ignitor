@@ -17,7 +17,7 @@ case "$option" in
         sh -c "workers/mongoseed.sh"
         sh -c "workers/mysqlseed.sh"
         docker-compose -f $composer  up -d
-        /usr/bin/python  fcci/app.py &
+        docker run -it --rm --name  fcci -v "$PWD/workers/fcci":/usr/src/myapp -w /usr/src/myapp python app.py
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
         docker volume ls -qf dangling=true | xargs -r docker volume rm
         sh -c "workers/setupdev.sh"
@@ -26,9 +26,6 @@ case "$option" in
         echo -n "Starting $DESC: "
         docker-compose -f $composer down
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-        ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill
-        sleep 2
-        echo "fcci/app.py killed."
         docker volume ls -qf dangling=true | xargs -r docker volume rm
     ;;
     *)
