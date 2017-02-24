@@ -12,7 +12,7 @@ RUN set -x \
     && apk add --no-cache py-pip build-base python-dev libffi-dev  \
     && pip install --upgrade pip \
     && pip install python-swiftclient \
-    && apk del .build-deps \
+    && apk del .build-deps
 
 # Inject files in container file system
 COPY rootfs /
