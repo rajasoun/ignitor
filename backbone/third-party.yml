@@ -55,22 +55,22 @@ services:
 
     logspout:
       extends:
-        file: composer/common/clk-logspout.yml
+        file: composer/common/elk-logspout.yml
         service: logspout
 
     logstash:
       extends:
-        file: composer/common/clk-logspout.yml
+        file: composer/common/elk-logspout.yml
         service: logstash
 
     kibana:
       extends:
-        file: composer/common/clk-logspout.yml
+        file: composer/common/elk-logspout.yml
         service: kibana
 
     elasticsearch:
       extends:
-        file: composer/common/clk-logspout.yml
+        file: composer/common/elk-logspout.yml
         service: elasticsearch
 
 
