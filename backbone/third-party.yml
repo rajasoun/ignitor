@@ -22,23 +22,16 @@ services:
        extends:
          file: composer/third-party/ck-services.yml
          service: authservice
-         links:
-          - db
 
     knowledgecenter:
        extends:
          file: composer/third-party/ck-services.yml
          service: knowledgecenter
-         links:
-           - mongo
 
     userpi:
        extends:
          file: composer/third-party/ck-services.yml
          service: userpi
-         links:
-           - mongo
-           - swift
 
 
 
