@@ -3,6 +3,7 @@ version: '2'
 services:
 
     logspout:
+      container_name: "logspout"
       image: gliderlabs/logspout:v3
       command: 'syslog://logstash:5000'
       links:
@@ -11,6 +12,7 @@ services:
         - '/var/run/docker.sock:/tmp/docker.sock'
 
     logstash:
+      container_name: "logstash"
       image: ludekvesely/logstash-json
       environment:
         - LOGSPOUT=ignore
@@ -20,6 +22,7 @@ services:
         - elasticsearch
 
     kibana:
+      container_name: "kibana"
       image: kibana
       environment:
         - LOGSPOUT=ignore
@@ -29,6 +32,7 @@ services:
         - '5601:5601'
 
     elasticsearch:
+      container_name: "elasticsearch"
       image: elasticsearch
       environment:
         - LOGSPOUT=ignore
