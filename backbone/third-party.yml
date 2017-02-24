@@ -1,13 +1,35 @@
 version: '2'
 
 services:
-    backbone:
-        extends:
-            file: composer/third-party/backbone.yml
-            service: backbone
+    db:
+       extends:
+         file: composer/third-party/backbone.yml
+         service: db
+    es:
+       extends:
+         file: composer/third-party/backbone.yml
+         service: es
+    mongo:
+       extends:
+         file: composer/third-party/backbone.yml
+         service: mongo
+    swift:
+       extends:
+         file: composer/third-party/backbone.yml
+         service: swift
 
-    ck-service:
-         extends:
-             file: composer/third-party/ck-services.yml
-             service: ck-service
+    authservice:
+       extends:
+         file: composer/third-party/ck-services.yml
+         service: authservice
+    knowledgecenter:
+       extends:
+         file: composer/third-party/ck-services.yml
+         service: knowledgecenter
+    userpi:
+       extends:
+         file: composer/third-party/ck-services.yml
+         service: userpi
+
+
 
