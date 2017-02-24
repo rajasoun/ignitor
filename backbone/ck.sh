@@ -19,6 +19,7 @@ case "$option" in
         sh -c "workers/mongoseed.sh"
         docker-compose -f $composer  up -d
         /usr/bin/python  fcci/app.py &
+        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
     ;;
     stop)
         echo -n "Starting $DESC: "
