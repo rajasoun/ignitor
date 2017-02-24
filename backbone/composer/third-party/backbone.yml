@@ -47,4 +47,6 @@ services:
      image: "morrisjobke/docker-swift-onlyone"
      ports:
         - "8080"
+     environment:
+        - LOGSPOUT=ignore
 
