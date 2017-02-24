@@ -13,8 +13,6 @@ RUN set -x \
     && pip install --upgrade pip \
     && pip install python-swiftclient \
     && apk del .build-deps \
-    && rm -rf /var/cache/apk/*   \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 
 # Inject files in container file system
 COPY rootfs /
