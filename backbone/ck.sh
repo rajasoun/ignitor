@@ -13,7 +13,6 @@ case "$option" in
         cd base && make && cd ..
         cd java && make && cd ..
         docker-compose -f $composer build
-        docker volume ls -qf dangling=true | xargs -r docker volume rm
         docker-compose -f $composer run --rm start_dependencies
         sh -c "workers/mysqlseed.sh"
         sh -c "workers/mongoseed.sh"
@@ -24,7 +23,6 @@ case "$option" in
     stop)
         echo -n "Starting $DESC: "
         docker-compose -f $composer down
-        docker volume ls -qf dangling=true | xargs -r docker volume rm
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
         pid=`ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill`
         echo $pid
