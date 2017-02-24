@@ -30,6 +30,11 @@ services:
          file: composer/self-hosted/backbone.yml
          service: swift
 
+    nginx:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: nginx
+
     authservice:
        extends:
          file: composer/self-hosted/ck-services.yml
