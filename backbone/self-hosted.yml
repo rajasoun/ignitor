@@ -19,10 +19,12 @@ services:
        extends:
          file: composer/self-hosted/backbone.yml
          service: es
+
     mongo:
        extends:
          file: composer/self-hosted/backbone.yml
          service: mongo
+
     swift:
        extends:
          file: composer/self-hosted/backbone.yml
