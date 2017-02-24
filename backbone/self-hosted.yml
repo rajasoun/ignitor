@@ -65,6 +65,11 @@ services:
         file: composer/self-hosted/devtools.yml
         service: devtools
 
+    mongo-client:
+      extends:
+        file: composer/self-hosted/devtools.yml
+        service: mongo-client
+
     phpmyadmin:
       extends:
         file: composer/self-hosted/devtools.yml
