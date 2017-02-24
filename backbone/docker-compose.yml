@@ -33,6 +33,8 @@ services:
     build: ./mariadb
     ports:
       - "3306:3306"
+    volumes:
+      - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
     environment:
       - MASTER_PASSWORD=password@1234
       - MARIADB_DATABASE=b2b
