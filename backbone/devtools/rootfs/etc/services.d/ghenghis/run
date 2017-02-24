@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-exec /usr/bin/genghisapp --no-launch  --servers mongo:27017
+#exec /usr/bin/genghisapp --no-launch  --servers mongo:27017
 
 
