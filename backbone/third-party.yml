@@ -4,8 +4,16 @@ services:
     backbone:
         extends:
             file: composer/third-party/backbone.yml
-            service: backbone
+            service:
+                 - db
+                 - es
+                 - mongo
+                 - swift
     ck-service:
          extends:
              file: composer/third-party/ck-services.yml
-             service: ck-services
+             service:
+                 - authservice
+                 - knowledgecenter
+                 - userpi
+
