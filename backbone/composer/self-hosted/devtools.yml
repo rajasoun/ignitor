@@ -10,13 +10,17 @@ services:
      volumes:
        - /var/run/docker.sock:/var/run/docker.sock
 
+  devtools:
+     container_name: "devtools"
+     build: ../../devtools
+
   mongo-client:
      container_name: "mongo-client"
      image: mongoclient/mongoclient
      ports:
        - "3000:3000"
      environment:
-       MONGO_URL: "mongodb://ckmongo:27017/b2b"
+       MONGO_URL: mongodb://ckmongo:27017/b2b
 
   phpmyadmin:
     container_name: "phpmyadmin"
@@ -27,7 +31,4 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
 
-   devtools:
-     container_name: "devtools"
-     build: ../../devtools
 
