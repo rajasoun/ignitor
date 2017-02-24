@@ -16,7 +16,7 @@ services:
       - "3306:3306"
     volumes:
       - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
-      - /ck/data/mysql:/var/lib/mysql
+      #- /ck/data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password@1234
       - MYSQL_DATABASE=b2b
