@@ -19,6 +19,10 @@ RUN set -ex \
     && pip install --upgrade pip \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	&& pip install flask \
+    # make some useful symlinks that are expected to exist
+    && if [[ ! -e /usr/bin/python ]];        then ln -sf /usr/bin/python2.7 /usr/bin/python; fi \
+    && if [[ ! -e /usr/bin/python-config ]]; then ln -sf /usr/bin/python2.7-config /usr/bin/python-config; fi \
+    && if [[ ! -e /usr/bin/easy_install ]];  then ln -sf /usr/bin/easy_install-2.7 /usr/bin/easy_install; fi
 	&& apk del build-base py-pip libffi-dev openssl-dev
 
 WORKDIR /app
