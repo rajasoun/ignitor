@@ -20,7 +20,7 @@ services:
      ports:
        - "3000:3000"
      environment:
-       - MONGO_URL: "mongodb://ckmongo:27017/b2b"
+       MONGO_URL: "mongodb://ckmongo:27017/b2b"
 
   phpmyadmin:
     container_name: "phpmyadmin"
