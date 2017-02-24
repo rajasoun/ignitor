@@ -9,6 +9,8 @@ services:
        - "9001:9001"
      volumes:
        - /var/run/docker.sock:/var/run/docker.sock
+     environment:
+       LOGSPOUT=ignore
 
   devtools:
      container_name: "devtools"
@@ -21,6 +23,7 @@ services:
        - "3000:3000"
      environment:
        MONGO_URL: mongodb://ckmongo:27017/b2b
+       LOGSPOUT=ignore
 
   phpmyadmin:
     container_name: "phpmyadmin"

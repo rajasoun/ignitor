@@ -28,6 +28,7 @@ services:
     ports:
       - "27017:27017"
 
+
   kafka:
     container_name: "kafka"
     image: spotify/kafka
