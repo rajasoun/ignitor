@@ -52,6 +52,7 @@ services:
       - "5678:5678"
     links:
       - mongo
+      - swift
 
   phpmyadmin:
     container_name: "phpmyadmin"
