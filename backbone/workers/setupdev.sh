@@ -1,7 +1,16 @@
 #!/usr/bin/env sh
 
-curl -XDELETE localhost:8006/authorization/tenant/dev.xkit.co-2c7b663a12d39a6bbd4f062854705f57/notification
-curl -XDELETE localhost:9200/dev.xkit.co-2c7b663a12d39a6bbd4f062854705f57-b2b-kc-resources
+tenant=dev.xkit.co-2c7b663a12d39a6bbd4f062854705f57
+curl -XDELETE localhost:8006/authorization/tenant/$tenant/notification
+curl -XDELETE localhost:9200/$tenant-b2b-kc-resources
+
+print_message "Onboarding tenant $tenant"
+curl -XPOST http://localhost:8006/authorization/tenant/$tenant/notification -H"Content-Type:application/json" -d ''
+
+curl -XPOST http://localhost:8005/userpi/tenant/$tenant/notification  -d '
+{
+    "firstAdminUserId": "rajasoun@icloud.com"
+}' -H content-type:application/json
 
 curl -XPOST http://localhost:8010/tenantmanagement/superAdmin/configurations/featureFlag/register -d '
 {
