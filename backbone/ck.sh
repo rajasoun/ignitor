@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-composer=$1
+composer="$1  elk-logspout.yml"
 option=$2
 DESC="CK "
 
