@@ -50,7 +50,7 @@ services:
     working_dir: /app
     environment:
         CLASSPATH: /etc/b2b/properties
-    command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
+    command: "/etc/b2b/scripts/start.sh userpi 8005 userpi"
 
   tenantmanagement:
     container_name: "tenantmanagement"
