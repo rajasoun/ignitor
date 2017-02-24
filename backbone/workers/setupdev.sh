@@ -48,8 +48,8 @@ curl -vX POST -H "Authorization: Basic YWRtaW46Q2lzY29AIWFkbWlu" -H "Content-Typ
       "organizationId": "f687739d-19a0-407e-8c37-0bca8a3a11eb",
       "serviceUserId": "cisco-knowledge.svcAccount",
       "servicePassword": "56juWFWWIgnSf..Ggkjeiu8.2lo0976uDFF44Ma452016",
-      "cciIdentityBaseUrl": "http://localhost:5000/identity",
-      "cciBrokerBaseUrl": "http://localhost:5000/idb"
+      "cciIdentityBaseUrl": "http://fcci:5000/identity",
+      "cciBrokerBaseUrl": "http://fcci:5000/idb"
     },
     "providerName": "cci",
     "_id": null
