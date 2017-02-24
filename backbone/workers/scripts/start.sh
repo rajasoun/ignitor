@@ -7,7 +7,7 @@ port=$2
 war="$1-web/target/$3.war"
 app=$3
 
-if [ "$server_target" == "tm" ]; then
+if [ "$1" == "tm" ]; then
 	jetty="com.cisco.ccl.b2b.$3.server.JettyServer"
 else
 	jetty="com.cisco.ccl.b2b.$1.server.JettyServer"
