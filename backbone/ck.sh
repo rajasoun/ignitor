@@ -12,12 +12,13 @@ case "$option" in
         echo -n "Starting $DESC: "
         cd base && make && cd ..
         cd java && make && cd ..
+        cd python && make && cd ..
         docker-compose -f $composer build
         docker-compose -f $composer run --rm start_dependencies
         sh -c "workers/mongoseed.sh"
         sh -c "workers/mysqlseed.sh"
         docker-compose -f $composer  up -d
-        docker run -it --rm --name  fcci -v "$PWD/workers/fcci":/usr/src/myapp -w /usr/src/myapp python app.py
+        docker run -it --rm --name  fcci -v "$PWD":/usr/src/myapp -w /usr/src/myapp python /workers/fcci/app.py
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
         docker volume ls -qf dangling=true | xargs -r docker volume rm
         sh -c "workers/setupdev.sh"
