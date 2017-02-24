@@ -1,0 +1,60 @@
+version: '2'
+
+services:
+
+  start_dependencies:
+    container_name: "wait-for-it"
+    build: ./wait-for-it
+    depends_on:
+      - db
+      - es
+      - mongo
+      - swift
+    command: db:3306 es:9200 mongo:27017 swift:8080
+
+  es:
+    container_name: "ckes"
+    image: elasticsearch:2.4
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  db:
+    container_name: "ckdb"
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/Workspace/ck/devbox-docker/backbone/workers/initdb:/initdb
+      - /ck/data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password@1234
+      - MYSQL_DATABASE=b2b
+      - MYSQL_USER=ckuser
+      - MYSQL_PASSWORD=Cisco@1234
+
+  mongo:
+    container_name: "ckmongo"
+    image: mongo
+    ports:
+      - "27017:27017"
+
+
+  kafka:
+    container_name: "kafka"
+    image: spotify/kafka
+    ports:
+      - "2181:2181"
+      - "9092:9092"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 10.10.10.1
+      KAFKA_ADVERTISED_PORT: 9092
+
+  swift:
+     container_name: "ckswift"
+     image: "morrisjobke/docker-swift-onlyone"
+     ports:
+        - "8080"
+
