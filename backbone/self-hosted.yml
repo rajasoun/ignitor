@@ -60,11 +60,6 @@ services:
         file: composer/self-hosted/devtools.yml
         service: docker-manager
 
-    devtools:
-      extends:
-        file: composer/self-hosted/devtools.yml
-        service: devtools
-
     mongo-client:
       extends:
         file: composer/self-hosted/devtools.yml
@@ -75,3 +70,7 @@ services:
         file: composer/self-hosted/devtools.yml
         service: phpmyadmin
 
+    devtools:
+      extends:
+        file: composer/self-hosted/devtools.yml
+        service: devtools
