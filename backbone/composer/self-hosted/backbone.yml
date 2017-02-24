@@ -4,14 +4,14 @@ services:
 
   es:
     container_name: "ckes"
-    build: ./elasticsearch
+    build: ../../elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
 
   db:
     container_name: "ckdb"
-    build: ./mariadb
+    build: ../../mariadb
     ports:
       - "3306:3306"
     volumes:
@@ -24,7 +24,7 @@ services:
 
   mongo:
     container_name: "ckmongo"
-    build: ./mongodb
+    build: ../../mongodb
     ports:
       - "27017:27017"
 
