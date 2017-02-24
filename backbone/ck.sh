@@ -7,7 +7,7 @@ DESC="CK "
 
 set -e
 
-case "$1" in
+case "$option" in
     start)
         echo -n "Starting $DESC: "
         cd base && make && cd ..
