@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+    start_dependencies:
+       container_name: "wait-for-it"
+       build: ./wait-for-it
+       depends_on:
+          - db
+          - es
+          - mongo
+          - swift
+       command: db:3306 es:9200 mongo:27017 swift:8080
+
+    db:
+       extends:
+         file: composer/self-hosted/backbone.yml
+         service: db
+    es:
+       extends:
+         file: composer/self-hosted/backbone.yml
+         service: es
+    mongo:
+       extends:
+         file: composer/self-hosted/backbone.yml
+         service: mongo
+    swift:
+       extends:
+         file: composer/self-hosted/backbone.yml
+         service: swift
+
+    authservice:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: authservice
+
+    knowledgecenter:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: knowledgecenter
+
+    userpi:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: userpi
+
+    docker-manager:
+      extends:
+        file: composer/self-hosted/devtools.yml
+        service: docker-manager
+
+    devtools:
+      extends:
+        file: composer/self-hosted/devtools.yml
+        service: devtools
+
+    phpmyadmin:
+      extends:
+        file: composer/self-hosted/devtools.yml
+        service: phpmyadmin
+
+
+
