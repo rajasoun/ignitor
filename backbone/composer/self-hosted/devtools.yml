@@ -13,8 +13,14 @@ services:
   devtools:
     container_name: "devtools"
     build: ../../devtools
-    ports:
-      - "5678:5678"
+
+  mongo-client:
+     container_name: "mongo-client"
+     image: mongoclient/mongoclient
+     ports:
+       - "3000:3000"
+     environment:
+       - MONGO_URL: mongodb://1ckmongo:27017/b2b
 
   phpmyadmin:
     container_name: "phpmyadmin"

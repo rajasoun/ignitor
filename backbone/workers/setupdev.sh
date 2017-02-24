@@ -2,7 +2,7 @@
 
 tenant=dev.xkit.co-2c7b663a12d39a6bbd4f062854705f57
 curl -XDELETE localhost:8006/authorization/tenant/$tenant/notification
-curl -XDELETE localhost:9200/$tenant-b2b-kc-resources
+#curl -XDELETE localhost:9200/$tenant-b2b-kc-resources
 
 print_message "Onboarding tenant $tenant"
 curl -XPOST http://localhost:8006/authorization/tenant/$tenant/notification -H"Content-Type:application/json" -d ''

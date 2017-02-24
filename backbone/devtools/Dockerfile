@@ -12,13 +12,9 @@ RUN set -x \
     && apk add --no-cache py-pip build-base python-dev libffi-dev  \
     && pip install --upgrade pip \
     && pip install python-swiftclient \
-    && gem install --no-ri --no-rdoc bson_ext:'~>1.9.0' genghisapp:'~>2.3.0' \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/*   \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-
-
-EXPOSE 5678
 
 # Inject files in container file system
 COPY rootfs /
