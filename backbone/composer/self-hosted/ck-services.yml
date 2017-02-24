@@ -51,3 +51,17 @@ services:
     environment:
         CLASSPATH: /etc/b2b/properties
     command: "/etc/b2b/scripts/start.sh userpi 8002 userpi"
+
+  tenantmanagement:
+    container_name: "tenantmanagement"
+    image: rajasoun/java:0.1
+    ports:
+       - "8010:8010"
+    volumes:
+       - ~/Workspace/ck/platform/tenantmanagement:/app
+       - ~/Workspace/ck/devbox-docker/backbone/workers/override-properties/tenantmanagement:/etc/b2b/properties
+       - ~/Workspace/ck/devbox-docker/backbone/workers/scripts:/etc/b2b/scripts
+    working_dir: /app
+    environment:
+        CLASSPATH: /etc/b2b/properties
+    command: "/etc/b2b/scripts/start.sh tm 8010 tenantmanagement"
