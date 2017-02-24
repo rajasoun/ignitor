@@ -9,5 +9,5 @@ services:
     ck-service:
          extends:
              file: composer/third-party/ck-services.yml
-             service: ck-services
+             service: ck-service
 
