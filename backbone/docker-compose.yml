@@ -45,7 +45,7 @@ services:
     ports:
       - "27017:27017"
 
-  genghis:
+  devtools:
     container_name: "devtools"
     build: ./devtools
     ports:
