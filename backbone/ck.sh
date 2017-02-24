@@ -2,27 +2,35 @@
 
 composer=$1
 option=$2
+DESC="CK "
 
-case “$option” in
+test -x $composer || exit 0
+set -e
+
+case "$1" in
     start)
-            echo –n “Starting CK:”
-            cd base && make && cd ..
-            cd java && make && cd ..
-            docker-compose -f $composer build
-            docker volume ls -qf dangling=true | xargs -r docker volume rm
-            docker-compose -f $composer run --rm start_dependencies
-            sh -c "workers/mysqlseed.sh"
-            sh -c "workers/mongoseed.sh"
-            docker-compose -f $composer  up -d
-            echo “.”
-            ;;
-   stop)
-          echo –n “Stopping CK”
-          docker-compose -f $composer  down
-          echo “.”
-           ;;
-      *)
-          echo “Usage: ck.sh third-party.yml|self-hosted.yml start|stop ”
-          exit 1
-          ;;
-    esac
+        echo -n "Starting $DESC: "
+        cd base && make && cd ..
+        cd java && make && cd ..
+        docker-compose -f $composer build
+        docker volume ls -qf dangling=true | xargs -r docker volume rm
+        docker-compose -f $composer run --rm start_dependencies
+        sh -c "workers/mysqlseed.sh"
+        sh -c "workers/mongoseed.sh"
+        docker-compose -f $composer  up -d
+        /usr/bin/python  fcci/app.py &
+    ;;
+    stop)
+        docker-compose -f $composer down
+        docker volume ls -qf dangling=true | xargs -r docker volume rm
+        pid=`ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill`
+        echo $pid
+        sleep 2
+        echo "fcci/app.py killed."
+    ;;
+    *)
+        echo "Usage: ./ck.sh {self-hosted.yml|third-party.yml} {start|stop}" >&2
+        exit 1
+    ;;
+esac
+exit 0

@@ -10,5 +10,5 @@ docker-compose -f $composer run --rm start_dependencies
 sh -c "workers/mysqlseed.sh"
 sh -c "workers/mongoseed.sh"
 docker-compose -f $composer  up -d
-python fcci/app.py &
+/usr/bin/python  fcci/app.py &
 
