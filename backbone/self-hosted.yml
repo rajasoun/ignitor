@@ -50,6 +50,11 @@ services:
          file: composer/self-hosted/ck-services.yml
          service: userpi
 
+    tenantmanagement:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: tenantmanagement
+
     docker-manager:
       extends:
         file: composer/self-hosted/devtools.yml
