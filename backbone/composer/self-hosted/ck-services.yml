@@ -51,7 +51,7 @@ services:
     environment:
         CLASSPATH: /etc/b2b/properties
     command: "/etc/b2b/scripts/start.sh userpi 8005 userpi"
-                                                         x
+
   tenantmanagement:
     container_name: "tenantmanagement"
     image: rajasoun/java:0.1
