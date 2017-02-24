@@ -15,10 +15,6 @@ services:
     command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
     environment:
         - jdbc.url=jdbc:mysql://ckdb:3306/b2b
-    links:
-      - db
-    depends_on:
-      - db
 
   knowledgecenter:
     container_name: "knowledgecenter"
@@ -34,10 +30,7 @@ services:
     environment:
         CLASSPATH: /etc/b2b/properties
     command: "/etc/b2b/scripts/start.sh kc 8002 knowledgecenter"
-    links:
-      - mongo
-    depends_on:
-      - mongo
+
 
   userpi:
     container_name: "userpi"
@@ -53,9 +46,4 @@ services:
     environment:
         CLASSPATH: /etc/b2b/properties
     command: "/etc/b2b/scripts/start.sh userpi 8005 userpi"
-    links:
-      - mongo
-      - swift
-    depends_on:
-      - mongo
-      - swift
+
