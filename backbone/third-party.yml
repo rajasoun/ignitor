@@ -1,6 +1,16 @@
 version: '2'
 
 services:
+    start_dependencies:
+       container_name: "wait-for-it"
+       build: ./wait-for-it
+       depends_on:
+          - db
+          - es
+          - mongo
+          - swift
+       command: db:3306 es:9200 mongo:27017 swift:8080
+
     db:
        extends:
          file: composer/third-party/backbone.yml
