@@ -70,22 +70,3 @@ services:
         file: composer/self-hosted/devtools.yml
         service: phpmyadmin
 
-    logspout:
-      extends:
-        file: composer/common/elk-logspout.yml
-        service: logspout
-
-    logstash:
-      extends:
-        file: composer/common/elk-logspout.yml
-        service: logstash
-
-    kibana:
-      extends:
-        file: composer/common/elk-logspout.yml
-        service: kibana
-
-    elasticsearch:
-      extends:
-        file: composer/common/elk-logspout.yml
-        service: elasticsearch
