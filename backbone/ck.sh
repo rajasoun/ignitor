@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 composer=$1
-test –f $composer || exit 0
+option=$2
 
-case “$2” in
+case “$option” in
     start)
             echo –n “Starting CK:”
             cd base && make && cd ..
