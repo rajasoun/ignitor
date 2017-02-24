@@ -4,8 +4,6 @@ services:
     logspout:
       image: gliderlabs/logspout:v3
       command: 'syslog://logstash:5000'
-      links:
-        - logstash
       volumes:
         - '/var/run/docker.sock:/tmp/docker.sock'
 
@@ -15,8 +13,6 @@ services:
         - LOGSPOUT=ignore
         - DROP_NON_JSON=false
         - STDOUT=true
-      links:
-        - elasticsearch
 
     kibana:
       image: kibana
