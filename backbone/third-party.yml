@@ -4,6 +4,8 @@ services:
     backbone:
         extends:
             file: composer/third-party/backbone.yml
+            service: backbone
     ck-service:
          extends:
              file: composer/third-party/ck-services.yml
+             service: ck-services
