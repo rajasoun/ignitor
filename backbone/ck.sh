@@ -24,8 +24,7 @@ case "$option" in
         echo -n "Starting $DESC: "
         docker-compose -f $composer down
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-        pid=`ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill`
-        echo $pid
+        ps -ef | grep '[p]ython fcci/app.py' | awk '{ print $2 }' | xargs kill
         sleep 2
         echo "fcci/app.py killed."
     ;;
