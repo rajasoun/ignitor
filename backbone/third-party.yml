@@ -24,16 +24,14 @@ services:
          service: authservice
          links:
           - db
-         depends_on:
-          - db
+
     knowledgecenter:
        extends:
          file: composer/third-party/ck-services.yml
          service: knowledgecenter
          links:
            - mongo
-         depends_on:
-           - mongo
+
     userpi:
        extends:
          file: composer/third-party/ck-services.yml
@@ -41,9 +39,7 @@ services:
          links:
            - mongo
            - swift
-         depends_on:
-           - mongo
-           - swift
+
 
 
 
