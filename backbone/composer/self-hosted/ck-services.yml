@@ -9,7 +9,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ~/Workspace/ck/platform/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
+      - ~/Workspace/ck/cheetah/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
 
   authservice:
     image: rajasoun/java:0.1
@@ -17,7 +17,7 @@ services:
     ports:
        - "8006:8006"
     volumes:
-       - ~/Workspace/ck/platform/authorization:/app
+       - ~/Workspace/ck/cheetah/authorization:/app
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
     command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
@@ -30,7 +30,7 @@ services:
     ports:
        - "8002:8002"
     volumes:
-       - ~/Workspace/ck/platform/knowledgecenter:/app
+       - ~/Workspace/ck/cheetah/knowledgecenter:/app
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/kc:/etc/b2b/properties
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
@@ -44,7 +44,7 @@ services:
     ports:
        - "8005:8005"
     volumes:
-       - ~/Workspace/ck/platform/userpi:/app
+       - ~/Workspace/ck/cheetah/userpi:/app
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/userpi:/etc/b2b/properties
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
@@ -58,7 +58,7 @@ services:
     ports:
        - "8010:8010"
     volumes:
-       - ~/Workspace/ck/platform/tenantmanagement:/app
+       - ~/Workspace/ck/cheetah/tenantmanagement:/app
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/tenantmanagement:/etc/b2b/properties
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
