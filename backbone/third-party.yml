@@ -53,5 +53,8 @@ services:
           file: composer/third-party/ck-services.yml
           service: tenantmanagement
 
-
+    contentstore:
+        extends:
+          file: composer/self-hosted/ck-services.yml
+          service: contentstore
 
