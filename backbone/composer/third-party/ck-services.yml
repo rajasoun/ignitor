@@ -73,7 +73,7 @@ services:
          ports:
             - "8003:8003"
          volumes:
-            - ~/Workspace/ck/cheetah/tenantmanagement:/app
+            - ~/Workspace/ck/cheetah/contentstore:/app
             - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/contentstore:/etc/b2b/properties
             - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
          working_dir: /app
