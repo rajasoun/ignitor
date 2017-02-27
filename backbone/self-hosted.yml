@@ -25,6 +25,11 @@ services:
          file: composer/self-hosted/backbone.yml
          service: mongo
 
+    kafka:
+       extends:
+         file: composer/self-hosted/backbone.yml
+         service: kafka
+
     swift:
        extends:
          file: composer/self-hosted/backbone.yml

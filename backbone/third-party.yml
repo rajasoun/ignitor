@@ -23,6 +23,11 @@ services:
        extends:
          file: composer/third-party/backbone.yml
          service: mongo
+    kafka:
+       extends:
+         file: composer/third-party/backbone.yml
+         service: kafka
+
     swift:
        extends:
          file: composer/third-party/backbone.yml
