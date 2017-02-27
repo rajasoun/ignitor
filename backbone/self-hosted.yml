@@ -60,6 +60,11 @@ services:
          file: composer/self-hosted/ck-services.yml
          service: contentstore
 
+    pipeline:
+       extends:
+         file: composer/self-hosted/ck-services.yml
+         service: pipeline
+
     docker-manager:
       extends:
         file: composer/self-hosted/devtools.yml

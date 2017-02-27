@@ -55,6 +55,10 @@ services:
 
     contentstore:
         extends:
-          file: composer/self-hosted/ck-services.yml
+          file: composer/third-party/ck-services.yml
           service: contentstore
 
+    pipeline:
+        extends:
+          file: composer/third-party/ck-services.yml
+          service: pipeline

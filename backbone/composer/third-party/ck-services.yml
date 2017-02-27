@@ -80,3 +80,17 @@ services:
          environment:
              CLASSPATH: /etc/b2b/properties
          command: "/etc/b2b/scripts/start.sh contentstore 8003 contentstore"
+
+    pipeline:
+        container_name: "pipeline"
+        image: anapsix/alpine-java:latest
+        ports:
+           - "8001:8001"
+        volumes:
+           - ~/Workspace/ck/cheetah/pipeline:/app
+           - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/pipeline:/etc/b2b/properties
+           - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
+        working_dir: /app
+        environment:
+            CLASSPATH: /etc/b2b/properties
+        command: "/etc/b2b/scripts/start.sh pipeline 8001 pipeline"
