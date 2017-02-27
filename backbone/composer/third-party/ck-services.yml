@@ -18,6 +18,7 @@ services:
             - "8006:8006"
         volumes:
             - ~/Workspace/ck/cheetah/authorization:/app
+            - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/authorization:/etc/b2b/properties
             - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
         working_dir: /app
         command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
