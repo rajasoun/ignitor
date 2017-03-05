@@ -10,7 +10,8 @@ services:
           - mongo
           - swift
           - kafka
-       command: db:3306 es:9200 mongo:27017 swift:8080 kafka:9092 kafka:2181
+          - zookeeper
+       command: db:3306 es:9200 mongo:27017 swift:8080 kafka:9092 zookeeper:2181
 
     db:
        extends:
