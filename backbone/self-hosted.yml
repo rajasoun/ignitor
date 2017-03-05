@@ -27,10 +27,20 @@ services:
          file: composer/self-hosted/backbone.yml
          service: mongo
 
+    zookeeper:
+       extends:
+         file: composer/self-hosted/zk-kafka-proxy.yml
+         service: zookeeper
+
     kafka:
        extends:
-         file: composer/self-hosted/backbone.yml
+         file: composer/self-hosted/zk-kafka-proxy.yml
          service: kafka
+
+    rest-proxy:
+       extends:
+         file: composer/self-hosted/zk-kafka-proxy.yml
+         service: rest-proxy
 
     swift:
        extends:
