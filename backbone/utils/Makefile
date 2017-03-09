@@ -1,11 +1,4 @@
-
-image_name = rajasoun/hostlocal
-container_name = hostlocal.io
-
-VERSION=0.1
-
-
-default: build
+default: build  create
 clean: delete-images
 
 build:
