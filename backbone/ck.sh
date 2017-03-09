@@ -17,6 +17,7 @@ case "$option" in
         docker-compose $composer run --rm start_dependencies
         sh -c "workers/mongoseed.sh"
         sh -c "workers/mysqlseed.sh"
+        docker run --rm --privileged --net=host gliderlabs/hostlocal #To Enable hostlocal.io
         docker-compose $composer  up -d
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
         docker volume ls -qf dangling=true | xargs -r docker volume rm
