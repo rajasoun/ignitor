@@ -28,6 +28,7 @@ setup_ck_backbone(){
 }
 
 cleanup(){
+    docker stop log
     docker rm -v log
     docker volume ls -qf dangling=true | xargs -r docker volume rm
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
