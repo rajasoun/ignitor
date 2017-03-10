@@ -23,8 +23,7 @@ init_data(){
 setup_ck_backbone(){
     docker-compose $composer run --rm start_dependencies
     docker-compose $composer run --rm start_dependencies
-    docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock \
-                                --publish=127.0.0.1:8989:80 gliderlabs/logspout
+    docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:8989:80 gliderlabs/logspout
 }
 
 cleanup(){
@@ -72,6 +71,7 @@ case "$option" in
         cleanup
         docker stop log
         docker rm -v log
+        sudo ip addr del 169.254.255.254/24 dev lo:0
     ;;
 
     log)
