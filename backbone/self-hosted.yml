@@ -101,3 +101,8 @@ services:
       extends:
         file: composer/self-hosted/devtools.yml
         service: devtools
+
+networks:
+  default:
+    external:
+      name: clks

@@ -38,7 +38,7 @@ case "$option" in
         docker-compose $composer down
     ;;
 
-    cleanup)
+    teardown)
         echo -n "Cleaning Up $DESC: "
         docker-compose $composer down
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
@@ -49,7 +49,7 @@ case "$option" in
         curl http://127.0.0.1:8989/logs
     ;;
     *)
-        echo "Usage: ./ck.sh {self-hosted.yml|third-party.yml} {setup|start|stop|cleanup|log}" >&2
+        echo "Usage: ./ck.sh {self-hosted.yml|third-party.yml} {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
