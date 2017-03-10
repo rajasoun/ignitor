@@ -28,8 +28,6 @@ setup_ck_backbone(){
 }
 
 cleanup(){
-    docker stop log
-    docker rm -v log
     docker volume ls -qf dangling=true | xargs -r docker volume rm
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
     docker volume ls -qf dangling=true | xargs -r docker volume rm
@@ -72,6 +70,8 @@ case "$option" in
         docker network rm $DESC
         docker network prune
         cleanup
+        docker stop log
+        docker rm -v log
     ;;
 
     log)
