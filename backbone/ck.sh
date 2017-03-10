@@ -11,6 +11,30 @@ build_images()  {
     docker-compose $composer build
 }
 
+init_data(){
+    sh -c "workers/mongoseed.sh"
+    sh -c "workers/mysqlseed.sh"
+}
+
+setup_ck_backbone(){
+    docker-compose $composer run --rm start_dependencies
+    docker-compose $composer run --rm start_dependencies
+    docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock \
+                                --publish=127.0.0.1:8989:80 gliderlabs/logspout
+}
+
+cleanup(){
+    docker rm -v ckos java python
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
+}
+
+setup_hostlocal(){
+    docker run --rm --privileged --net=host gliderlabs/hostlocal
+}
+
+
 set -e
 
 case "$option" in
@@ -19,13 +43,10 @@ case "$option" in
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
        build_images
-       docker-compose $composer run --rm start_dependencies
-       docker run --rm --privileged --net=host gliderlabs/hostlocal #To Enable hostlocal.io
-       docker-compose $composer run --rm start_dependencies
-       sh -c "workers/mongoseed.sh"
-       sh -c "workers/mysqlseed.sh"
-       docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock \
-                                  --publish=127.0.0.1:8989:80 gliderlabs/logspout
+       setup_ck_backbone
+       init_data
+       cleanup
+       setup_hostlocal #To Enable hostlocal.io
     ;;
 
     start)
@@ -40,12 +61,11 @@ case "$option" in
     ;;
 
     teardown)
-        echo -n "Cleaning Up $DESC: "
+        echo -n "TearDown $DESC: "
         docker-compose $composer down
-        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-        docker volume ls -qf dangling=true | xargs -r docker volume rm
         docker network rm $DESC
         docker network prune
+        cleanup
     ;;
 
     log)
