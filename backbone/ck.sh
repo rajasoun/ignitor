@@ -2,7 +2,7 @@
 
 composer="-f $1 -f elk-logspout.yml -f fcci.yml"
 option=$2
-DESC="CK "
+DESC="CLKS "
 
 build_images()  {
     cd base && make && cd ..
@@ -17,6 +17,7 @@ case "$option" in
     setup)
        echo -n "Setup $DESC "
        echo -n "+++ docker-compose $composer +++"
+       docker network create $DESC
        build_images
        docker-compose $composer run --rm start_dependencies
        docker run --rm --privileged --net=host gliderlabs/hostlocal #To Enable hostlocal.io
@@ -43,6 +44,8 @@ case "$option" in
         docker-compose $composer down
         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
         docker volume ls -qf dangling=true | xargs -r docker volume rm
+        docker network rm $DESC
+        docker network prune
     ;;
 
     log)
