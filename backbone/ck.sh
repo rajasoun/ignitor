@@ -71,7 +71,7 @@ case "$option" in
         cleanup
         docker stop log
         docker rm -v log
-        sudo ip addr del 169.254.255.254/24 dev lo:0
+        #sudo ip addr del 169.254.255.254/24 dev lo:0
     ;;
 
     log)
