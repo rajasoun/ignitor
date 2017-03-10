@@ -21,10 +21,10 @@ case "$option" in
        docker-compose $composer run --rm start_dependencies
        docker run --rm --privileged --net=host gliderlabs/hostlocal #To Enable hostlocal.io
        docker-compose $composer run --rm start_dependencies
-       docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock \
-                                  --publish=127.0.0.1:8989:80 gliderlabs/logspout
        sh -c "workers/mongoseed.sh"
        sh -c "workers/mysqlseed.sh"
+       docker run -d --name="log" --rm --volume=/var/run/docker.sock:/var/run/docker.sock \
+                                  --publish=127.0.0.1:8989:80 gliderlabs/logspout
     ;;
 
     start)
