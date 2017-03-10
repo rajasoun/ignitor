@@ -4,11 +4,15 @@ composer="-f $1 -f elk-logspout.yml -f fcci.yml"
 option=$2
 DESC="CLKS "
 
-build_images()  {
+build_base_images()  {
     cd base && make && cd ..
     cd java && make && cd ..
     cd python && make && cd ..
     docker-compose $composer build
+}
+
+clean_base_images() {
+    docker rm -v ckos java python
 }
 
 init_data(){
@@ -24,7 +28,7 @@ setup_ck_backbone(){
 }
 
 cleanup(){
-    docker rm -v ckos java python
+    docker rm -v log
     docker volume ls -qf dangling=true | xargs -r docker volume rm
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
     docker volume ls -qf dangling=true | xargs -r docker volume rm
@@ -42,9 +46,10 @@ case "$option" in
        echo -n "Setup $DESC "
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
-       build_images
+       build_base_images
        setup_ck_backbone
        init_data
+       clean_base_images
        cleanup
        setup_hostlocal #To Enable hostlocal.io
     ;;
