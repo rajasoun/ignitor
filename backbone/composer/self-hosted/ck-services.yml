@@ -21,9 +21,10 @@ services:
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/override-properties/authorization:/etc/b2b/properties
        - ~/Workspace/ck/cheetah/ignitor/backbone/workers/scripts:/etc/b2b/scripts
     working_dir: /app
-    command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
     environment:
-        - jdbc.url=jdbc:mysql://ckdb:3306/b2b
+        jdbc.url: jdbc:mysql://ckdb:3306/b2b
+        CLASSPATH: /etc/b2b/properties
+    command: "/etc/b2b/scripts/start.sh authorization 8006 authorization"
 
   knowledgecenter:
     container_name: "knowledgecenter"
