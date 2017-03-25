@@ -15,7 +15,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ~/Workspace/ck/cheetah/ignitor/backbone/workers/initdb:/initdb
+      - ~/Workspace/ck/ignitor/backbone/workers/initdb:/initdb
     environment:
       - MASTER_PASSWORD=password@1234
       - MARIADB_DATABASE=b2b

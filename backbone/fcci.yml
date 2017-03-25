@@ -7,7 +7,7 @@ services:
        ports:
             - "5000:5000"
        volumes:
-            - ~/Workspace/ck/cheetah/ignitor/backbone/workers/fcci:/app
+            - ~/Workspace/ck/ignitor/backbone/workers/fcci:/app
        working_dir: /app
        command: "python app.py"
 
