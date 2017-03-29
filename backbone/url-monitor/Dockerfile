@@ -21,3 +21,5 @@ RUN set -ex \
 
 COPY main.go    /go/src/app
 COPY config.yml /go/src/app
+
+CMD []
