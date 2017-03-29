@@ -18,6 +18,7 @@ case "$option" in
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
+       docker-compose $composer  up -d
        cleanup
     ;;
 
