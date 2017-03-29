@@ -2,7 +2,7 @@ version: "2"
 
 services:
   url-monitor:
-    image: rajasoun/url-monitor:0.1
+    image: golang:1.8-alpine
     container_name: "cachet-url-monitor"
     volumes:
       - .:/go/src/app
