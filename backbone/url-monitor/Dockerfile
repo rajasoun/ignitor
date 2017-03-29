@@ -19,7 +19,4 @@ RUN set -ex \
 	&& go get "github.com/mitchellh/mapstructure" \
 	&& go get "gopkg.in/yaml.v2"
 
-COPY main.go    /go/src/app
-COPY config.yml /go/src/app
-
 CMD []
