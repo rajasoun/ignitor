@@ -1,6 +1,6 @@
 api:
   # cachet url
-  url: http://dev.xkit.co:8787/api/v1
+  url: http://hostlocal.io:8787/api/v1
   # cachet api token
   token: 6KskhjyJIz3M92kDIpO2
   insecure: true
@@ -8,7 +8,7 @@ monitors:
   # http monitor example
   - name: Portainer
     # test url
-    target: http://dev.xkit.co:9000/portainer/
+    target: http://hostlocal.io:9000/portainer/
     # strict certificate checking for https
     strict: false
     # HTTP method
@@ -42,7 +42,7 @@ monitors:
 
   - name: Cachet Web
     # test url
-    target: http://dev.xkit.co:8787
+    target: http://hostlocal.io:8787
     # strict certificate checking for https
     strict: false
     # HTTP method
