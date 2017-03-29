@@ -18,8 +18,19 @@ case "$option" in
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
-       docker-compose $composer  up -d
+       docker-compose $composer  build
        cleanup
+    ;;
+
+    start)
+        echo -n "Starting $DESC: "
+        docker-compose $composer  up -d
+        sh -c "workers/setupdev.sh"
+    ;;
+
+    stop)
+        echo -n "Stopping $DESC: "
+        docker-compose $composer down
     ;;
 
     teardown)
@@ -37,7 +48,7 @@ case "$option" in
         curl http://127.0.0.1:9898/logs
     ;;
     *)
-        echo "Usage: ./tools.sh {setup|teardown|log}" >&2
+        echo "Usage: ./tools.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
