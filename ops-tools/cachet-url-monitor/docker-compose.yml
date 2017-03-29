@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  url-monitor:
+    image: golang:1.8-alpine
+    container_name: "cachet-url-monitor"
+    volumes:
+      - .:/go/src/app
+    working_dir: /go/src/app
+    command: /go/src/app/entrypoint.sh

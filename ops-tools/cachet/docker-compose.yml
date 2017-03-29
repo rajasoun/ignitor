@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  nginx:
+    image: lgatica/nginx-cachet
+    container_name: "nginx-cachet"
+    ports:
+      - 8787:80
+    links:
+      - cachet
+    volumes_from:
+      - cachet
+    depends_on:
+      - cachet
+  postgres:
+    image: postgres:9.5
+    container_name: "postgres"
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  cachet:
+    #image: cachethq/docker:2.3.10
+    image: cachethq/docker
+    container_name: "cachet"
+    expose:
+      - 9000
+    links:
+      - postgres:postgres
+    environment:
+      - DB_DRIVER=pgsql
+      - DB_HOST=postgres
+      - DB_DATABASE=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+    volumes:
+      - /var/www
+    depends_on:
+      - postgres
