@@ -7,4 +7,4 @@ services:
     volumes:
       - .:/go/src/app
     working_dir: /go/src/app
-    command: entrypoint.sh
+    command: /go/src/app/entrypoint.sh
