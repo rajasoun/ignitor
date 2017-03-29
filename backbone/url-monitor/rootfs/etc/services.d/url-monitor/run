@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+exec go run main.go -c config.yml;

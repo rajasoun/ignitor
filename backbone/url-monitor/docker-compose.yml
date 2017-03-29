@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  url-monitor:
+    build: .
+    container_name: "cachet-url-monitor"
+    volumes:
+      - .:/go/src/app
+    working_dir: /go/src/app

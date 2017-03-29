@@ -1,0 +1,75 @@
+api:
+  # cachet url
+  url: http://dev.xkit.co:8787/api/v1
+  # cachet api token
+  token: 6KskhjyJIz3M92kDIpO2
+  insecure: true
+monitors:
+  # http monitor example
+  - name: Portainer
+    # test url
+    target: http://dev.xkit.co:9000/portainer/
+    # strict certificate checking for https
+    strict: false
+    # HTTP method
+    method: GET
+
+    # set to update component (either component_id or metric_id are required)
+    component_id: 2
+    # set to post lag to cachet metric (graph)
+    #metric_id: 4
+
+    # custom templates (see readme for details)
+    template:
+      investigating:
+        subject: "{{ .Monitor.Name }} - {{ .SystemName }}"
+        message: "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+      fixed:
+        subject: "I HAVE BEEN FIXED"
+
+    # seconds between checks
+    interval: 1
+    # seconds for timeout
+    timeout: 1
+    # If % of downtime is over this threshold, open an incident
+    threshold: 80
+
+    # custom HTTP headers
+    # expected status code (either status code or body must be supplied)
+    expected_status_code: 200
+    # regex to match body
+    expected_body: "<body[^>]*>"
+
+  - name: Cachet Web
+    # test url
+    target: http://dev.xkit.co:8787
+    # strict certificate checking for https
+    strict: false
+    # HTTP method
+    method: GET
+
+    # set to update component (either component_id or metric_id are required)
+    component_id: 3
+    # set to post lag to cachet metric (graph)
+    #metric_id: 4
+
+    # custom templates (see readme for details)
+    template:
+      investigating:
+        subject: "{{ .Monitor.Name }} - {{ .SystemName }}"
+        message: "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+      fixed:
+        subject: "I HAVE BEEN FIXED"
+
+    # seconds between checks
+    interval: 1
+    # seconds for timeout
+    timeout: 1
+    # If % of downtime is over this threshold, open an incident
+    threshold: 80
+
+    # custom HTTP headers
+    # expected status code (either status code or body must be supplied)
+    expected_status_code: 200
+    # regex to match body
+    expected_body: "<body[^>]*>"
