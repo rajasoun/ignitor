@@ -2,7 +2,7 @@
 
 composer="-f portainer-compose/docker-compose.yml -f cachet/docker-compose.yml  -f cachet-url-monitor/docker-compose.yml "
 DESC="CLKS-OPS"
-
+option=$1
 
 cleanup(){
     docker volume ls -qf dangling=true | xargs -r docker volume rm
@@ -36,7 +36,7 @@ case "$option" in
         curl http://127.0.0.1:9898/logs
     ;;
     *)
-        echo "Usage: ./ck.sh {setup|teardown|log}" >&2
+        echo "Usage: ./tools.sh {setup|teardown|log}" >&2
         exit 1
     ;;
 esac
