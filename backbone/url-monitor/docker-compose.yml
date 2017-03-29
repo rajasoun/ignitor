@@ -2,7 +2,7 @@ version: "2"
 
 services:
   url-monitor:
-    build: .
+    image: rajasoun/url-monitor
     container_name: "cachet-url-monitor"
     volumes:
       - .:/go/src/app
