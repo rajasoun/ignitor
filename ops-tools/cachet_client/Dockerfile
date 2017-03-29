@@ -7,6 +7,7 @@ RUN set -ex \
     && apk add --no-cache py-pip git \
     && git clone https://github.com/dmsimard/python-cachetclient \
     && cd python-cachetclient \
+    && pip install -r requirements.txt \
     && python setup.py install \
     && cd /app \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /app/python-cachetclient \
