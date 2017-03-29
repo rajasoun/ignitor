@@ -25,7 +25,6 @@ case "$option" in
     start)
         echo -n "Starting $DESC: "
         docker-compose $composer  up -d
-        sh -c "workers/setupdev.sh"
     ;;
 
     stop)
