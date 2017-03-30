@@ -5,7 +5,7 @@ services:
        image: rajasoun/python:0.1
        container_name: "cachet_client"
        volumes:
-            - ~/Workspace/ck/ignitor/ops-tools/cachet_client:/app
+            - ~/Workspace/ck/ignitor/ops-tools/cachet/client:/app
        working_dir: /app
        command: "python ck-cachet.py"
 
