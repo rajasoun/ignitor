@@ -12,6 +12,7 @@ print(ping.get())
 version = cachet.Version(endpoint=ENDPOINT)
 print(version.get())
 
+##:ToDO: Fix : Component Creation To Be Idempotent & Iterate Through Collection
 # /components
 components = cachet.Components(endpoint=ENDPOINT, api_token=API_TOKEN)
 portainer = json.loads(components.post(name='Portainer',
