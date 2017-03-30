@@ -16,7 +16,7 @@ services:
       - local
 
   postgres:
-    image: mysql:latest
+    image: mariadb:latest
     container_name: "cachet-db"
     volumes:
       - /var/lib/postgresql/data
