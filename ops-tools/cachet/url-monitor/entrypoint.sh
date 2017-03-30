@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-
+echo "Cachet URL Monitor Starting ....."
 apk add --no-cache git
 go get "github.com/Sirupsen/logrus"
 go get "github.com/castawaylabs/cachet-monitor"
