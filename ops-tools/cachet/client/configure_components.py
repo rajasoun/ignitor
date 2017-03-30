@@ -2,7 +2,7 @@ import cachetclient.cachet as cachet
 import json
 
 ENDPOINT = 'http://hostlocal.io:8787/api/v1'
-API_TOKEN = 'SmP29MjYTxLDh3ZwEhgy'
+API_TOKEN = '0yS1fNAqUBI0F3yFHL71'
 
 # /ping
 ping = cachet.Ping(endpoint=ENDPOINT)
