@@ -2,7 +2,7 @@ version: "2"
 
 services:
   nginx:
-    image: nginx/
+    build: nginx/
     container_name: "cachet-web"
     ports:
       - 8787:80
