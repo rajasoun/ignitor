@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
-
-docker run --name="analyze-local-images" --rm -v `pwd`:/app -w /app  golang:1.8-alpine  /app/entrypoint.sh $1
+### https://github.com/coreos/clair/tree/master/contrib/analyze-local-images
+# Go To Be Available On Local System
+# go get -u github.com/coreos/clair/contrib/analyze-local-images
+analyze-local-images  $1
