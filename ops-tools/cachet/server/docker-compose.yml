@@ -46,3 +46,7 @@ services:
       - postgres
     networks:
       - local
+
+networks:
+  local:
+    driver: bridge
