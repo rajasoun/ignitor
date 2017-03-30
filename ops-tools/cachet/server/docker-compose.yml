@@ -12,14 +12,20 @@ services:
       - cachet
     depends_on:
       - cachet
+    networks:
+      - local
+
   postgres:
     image: postgres:9.5
     container_name: "cachet-db"
     volumes:
       - /var/lib/postgresql/data
+    networks:
+      - local
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   cachet:
     #image: cachethq/docker:2.3.10
     image: cachethq/docker
@@ -38,3 +44,9 @@ services:
       - /var/www
     depends_on:
       - postgres
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
