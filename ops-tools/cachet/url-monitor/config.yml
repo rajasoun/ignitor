@@ -42,7 +42,7 @@ monitors:
 
   - name: Cachet Web
     # test url
-    target: http://hostlocal.io1:8787
+    target: http://hostlocal.io:8787
     # strict certificate checking for https
     strict: false
     # HTTP method
