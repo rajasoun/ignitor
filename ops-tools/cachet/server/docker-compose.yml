@@ -25,6 +25,8 @@ services:
     environment:
       - MYSQL_USER=cachet
       - MYSQL_PASSWORD=Cisco@1234
+      - MYSQL_ROOT_PASSWORD=password@1234
+      - MYSQL_DATABASE=cachet
 
   cachet:
     #image: cachethq/docker:2.3.10
