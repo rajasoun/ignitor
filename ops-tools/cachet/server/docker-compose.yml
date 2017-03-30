@@ -16,15 +16,15 @@ services:
       - local
 
   postgres:
-    image: postgres:9.5
+    image: mysql:latest
     container_name: "cachet-db"
     volumes:
       - /var/lib/postgresql/data
     networks:
       - local
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - MYSQL_USER=cachet
+      - MYSQL_PASSWORD=Cisco@1234
 
   cachet:
     #image: cachethq/docker:2.3.10
@@ -35,11 +35,12 @@ services:
     links:
       - postgres:postgres
     environment:
-      - DB_DRIVER=pgsql
-      - DB_HOST=postgres
-      - DB_DATABASE=postgres
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=postgres
+      - DB_DRIVER=mysql
+      - DB_HOST=cachet-db
+      - DB_DATABASE=cachet
+      - DB_USERNAME=cachet
+      - DB_PASSWORD=Cisco@1234
+
     volumes:
       - /var/www
     depends_on:
