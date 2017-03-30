@@ -15,15 +15,19 @@ ENV PATH /usr/local/bin:$PATH
 ENV LANG C.UTF-8
 
 RUN set -ex \
-    && apk add --no-cache py-pip build-base python-dev libffi-dev openssl-dev \
+    && apk add --no-cache py-pip build-base python-dev libffi-dev openssl-dev git \
     && pip install --upgrade pip \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	&& pip install flask \
+    && git clone https://github.com/dmsimard/python-cachetclient \
+    && cd python-cachetclient \
+    && pip install -r requirements.txt \
+    && python setup.py install \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /app/python-cachetclient \
     # make some useful symlinks that are expected to exist
     && if [[ ! -e /usr/bin/python ]];        then ln -sf /usr/bin/python2.7 /usr/bin/python; fi \
     && if [[ ! -e /usr/bin/python-config ]]; then ln -sf /usr/bin/python2.7-config /usr/bin/python-config; fi \
     && if [[ ! -e /usr/bin/easy_install ]];  then ln -sf /usr/bin/easy_install-2.7 /usr/bin/easy_install; fi   \
-	&& apk del build-base py-pip libffi-dev openssl-dev
+	&& apk del build-base py-pip libffi-dev openssl-dev git
 
 WORKDIR /app
 

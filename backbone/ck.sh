@@ -2,7 +2,7 @@
 
 composer="-f $1 -f elk-logspout.yml -f fcci.yml"
 option=$2
-DESC="CLKS "
+DESC="clks"
 
 build_base_images()  {
     cd base && make && cd ..

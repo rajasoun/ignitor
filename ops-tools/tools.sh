@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-composer="-f portainer-compose/docker-compose.yml -f cachet/docker-compose.yml  "
-DESC="CLKS-OPS"
+composer="-f portainer-compose/docker-compose.yml -f cachet/server/docker-compose.yml  "
+DESC="clks-ops"
 option=$1
 
 cleanup(){
