@@ -2,7 +2,7 @@ api:
   # cachet url
   url: http://hostlocal.io:8787/api/v1
   # cachet api token
-  token: 60wD0tzwbLVgZ0BVbqkF
+  token: KsBdbgqABvLk0ACX9vIU
   insecure: true
 monitors:
   # http monitor example
