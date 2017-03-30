@@ -105,4 +105,4 @@ services:
 networks:
   default:
     external:
-      name: CLKS
+      name: clks
