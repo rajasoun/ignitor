@@ -16,17 +16,17 @@ services:
       - local
 
   postgres:
-    image: mariadb:latest
+    image: mysql:latest
     container_name: "cachet-db"
     volumes:
-      - /var/lib/postgresql/data
+      - /var/lib/mysql/data
     networks:
       - local
     environment:
-       - MARIADB_DATABASE=cachet
-       - MARIADB_USER=cachet
-       - MARIADB_PASSWORD=Cisco@1234
-       - MASTER_PASSWORD=password@1234
+      - MYSQL_DATABASE=cachet
+      - MYSQL_USER=cachet
+      - MYSQL_PASSWORD=Cisco@1234
+      - MYSQL_ROOT_PASSWORD=password@1234
 
   cachet:
     #image: cachethq/docker:2.3.10
