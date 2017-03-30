@@ -5,6 +5,6 @@ services:
     image: golang:1.8-alpine
     container_name: "cachet-url-monitor"
     volumes:
-      - ~/Workspace/ck/ignitor/ops-tools/cachet/url-monitor:/go/src/app
-    working_dir: /go/src/app
+      - ~/Workspace/ck/ignitor/ops-tools/cachet/url-monitor:/app
+    working_dir: /app
     command: entrypoint.sh
