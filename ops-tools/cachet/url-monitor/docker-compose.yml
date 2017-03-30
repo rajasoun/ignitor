@@ -7,4 +7,4 @@ services:
     volumes:
       - ~/Workspace/ck/ignitor/ops-tools/cachet/url-monitor:/app
     working_dir: /app
-    command: entrypoint.sh
+    command: /app/entrypoint.sh
