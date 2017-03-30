@@ -23,10 +23,10 @@ services:
     networks:
       - local
     environment:
-      - MYSQL_USER=cachet
-      - MYSQL_PASSWORD=Cisco@1234
-      - MYSQL_ROOT_PASSWORD=password@1234
-      - MYSQL_DATABASE=cachet
+       - MARIADB_DATABASE=cachet
+       - MARIADB_USER=cachet
+       - MARIADB_PASSWORD=Cisco@1234
+       - MASTER_PASSWORD=password@1234
 
   cachet:
     #image: cachethq/docker:2.3.10
