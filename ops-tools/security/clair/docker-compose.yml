@@ -2,7 +2,7 @@ version: '2'
 services:
   postgres:
     container_name: clair_postgres
-    image: postgres:latest
+    image: postgres:9.5
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: password
