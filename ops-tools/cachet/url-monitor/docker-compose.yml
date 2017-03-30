@@ -7,4 +7,4 @@ services:
     volumes:
       - ~/ignitor/ops-tools/cachet/url-monitor:/go/src/app
     working_dir: /go/src/app
-    command: /go/src/app/entrypoint.sh
+    command: entrypoint.sh
