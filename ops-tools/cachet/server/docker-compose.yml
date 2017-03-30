@@ -3,7 +3,7 @@ version: "2"
 services:
   nginx:
     image: lgatica/nginx-cachet
-    container_name: "nginx-cachet"
+    container_name: "cachet-web"
     ports:
       - 8787:80
     links:
@@ -14,7 +14,7 @@ services:
       - cachet
   postgres:
     image: postgres:9.5
-    container_name: "postgres"
+    container_name: "cachet-db"
     volumes:
       - /var/lib/postgresql/data
     environment:
@@ -23,7 +23,7 @@ services:
   cachet:
     #image: cachethq/docker:2.3.10
     image: cachethq/docker
-    container_name: "cachet"
+    container_name: "cachet-server"
     expose:
       - 9000
     links:
