@@ -27,9 +27,6 @@ cachet = json.loads(components.post(name='cachet',
                                        link='http://dev.xkit.co:8787/',
                                        description='cachet'))
 
-components.put(id=portainer['data']['id'], description='Portainer Web URL Monitor')
-components.put(id=cachet['data']['id'], description='Cachet Web URL Monitor')
-
 print(components.get())
 
 
