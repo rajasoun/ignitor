@@ -10,6 +10,8 @@ services:
         - logstash
       volumes:
         - '/var/run/docker.sock:/tmp/docker.sock'
+      networks:
+        - esnet
 
     logstash:
       container_name: "logstash"
@@ -20,23 +22,28 @@ services:
         - STDOUT=true
       links:
         - elasticsearch
+      networks:
+        - esnet
 
-    kibana:
-      image: docker.elastic.co/kibana/kibana:5.3.0
-      links:
-        - elasticsearch
-      ports:
-        - 5601:5601
-
-    elasticsearch:
-      image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
-      cap_add:
-        - IPC_LOCK
-      volumes:
-        - esdata:/usr/share/elasticsearch/data
-      ports:
-        - 9201:9201
+      elasticsearch1:
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
+        container_name: elasticsearch
+        environment:
+          - bootstrap.memory_lock=true
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        cap_add:
+          - IPC_LOCK
+        volumes:
+          - esdata:/usr/share/elasticsearch/data
+        ports:
+          - 9201:9201
+        networks:
+          - esnet
 
 volumes:
   esdata:
     driver: local
+
+networks:
+  esnet:
+    driver: bridge
