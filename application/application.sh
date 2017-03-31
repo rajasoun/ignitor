@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f web/web.yml -f services/services.yml -f data-stores/data-stores.yml"
+composer="-f application.yml"
 DESC="clks"
 
 build_core_images()  {
