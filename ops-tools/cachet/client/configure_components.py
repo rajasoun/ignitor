@@ -19,15 +19,18 @@ portainer = json.loads(components.post(name='Portainer',
                                        status=1,
                                        link='http://dev.xkit.co:9000/',
                                        description='Portainer'))
-components.put(id=portainer['data']['id'], description='Updated component')
-print(components.get(id=portainer['data']['id']))
+
+
 
 cachet = json.loads(components.post(name='cachet',
                                        status=1,
                                        link='http://dev.xkit.co:8787/',
                                        description='cachet'))
-components.put(id=cachet['data']['id'], description='Updated component')
-print(components.get(id=cachet['data']['id']))
+
+components.put(id=portainer['data']['id'], description='Portainer Web URL Monitor')
+components.put(id=cachet['data']['id'], description='Cachet Web URL Monitor')
+
+print(" Cachet Components Configured")
 
 
 
