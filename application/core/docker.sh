@@ -28,9 +28,6 @@ function cleanup(){
     docker volume ls -qf dangling=true | xargs -r docker volume rm
 }
 
-clean_base_images() {
-    docker rm -v $projects
-}
 
 case "$option" in
     build)
@@ -40,7 +37,6 @@ case "$option" in
 
     clean)
        echo -n "${red} Deleting Core Docker Images "
-       clean_base_images
        cleanup
     ;;
 
