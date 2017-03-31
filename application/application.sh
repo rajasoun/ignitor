@@ -5,7 +5,9 @@ composer="-f web/web.yml -f services/services.yml -f data-stores/data-stores.yml
 DESC="clks"
 
 build_core_images()  {
+    cd core
     sh -c "core/docker.sh build"
+    cd --
 }
 
 clean_base_images() {
