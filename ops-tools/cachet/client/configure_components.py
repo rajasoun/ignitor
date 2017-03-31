@@ -17,13 +17,11 @@ print(version.get())
 components = cachet.Components(endpoint=ENDPOINT, api_token=API_TOKEN)
 portainer = json.loads(components.post(name='Portainer',
                                        status=1,
-                                       id =2,
-                                       link='http://dev.xkit.co:9000/',
+                                       link='http://dev.xkit.co:9000/portainer',
                                        description='Portainer'))
 
 cachet = json.loads(components.post(name='cachet',
                                        status=1,
-                                       id =3,
                                        link='http://dev.xkit.co:8787/',
                                        description='cachet'))
 
