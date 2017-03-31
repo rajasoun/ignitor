@@ -14,34 +14,47 @@ services:
     logstash:
       container_name: "logstash"
       image: ludekvesely/logstash-json
+      ports:
+        - "5001:5000"
+      depends_on:
+        - elasticsearch
+      links:
+        - elasticsearch
       environment:
         - LOGSPOUT=ignore
         - DROP_NON_JSON=false
         - STDOUT=true
-      links:
-        - elasticsearch
       networks:
         - elk
 
     kibana:
       container_name: "kibana"
-      image: kibana
+      image: kibana:5.2.2
       environment:
         - LOGSPOUT=ignore
       links:
         - elasticsearch
       ports:
-        - '5601:5601'
+        - "5601:5601"
+      depends_on:
+        - elasticsearch
       networks:
         - elk
 
     elasticsearch:
-      container_name: "elasticsearch"
-      image: elasticsearch
-      environment:
-        - LOGSPOUT=ignore
-      networks:
-        - elk
+        container_name: "elasticsearch"
+        image: elasticsearch:5.2.2
+        ports:
+          - "9201:9201"
+          - "9301:9301"
+        environment:
+          ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+          xpack.security.enabled: "false"
+          xpack.monitoring.enabled: "false"
+          xpack.graph.enabled: "false"
+          xpack.watcher.enabled: "false"
+        networks:
+          - elk
 
 networks:
   elk:
