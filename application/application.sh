@@ -51,8 +51,6 @@ case "$option" in
        build_core_images
        setup_data_stores
        init_data
-       clean_base_images
-       cleanup
        setup_hostlocal #To Enable hostlocal.io
     ;;
 
@@ -74,6 +72,7 @@ case "$option" in
         docker network prune
         docker stop log-ck
         docker rm -v log-ck
+        clean_base_images
         cleanup
         sudo ip addr del 169.254.255.254/24 dev lo:0
     ;;
