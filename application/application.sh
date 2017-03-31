@@ -1,29 +1,27 @@
 #!/usr/bin/env sh
 
-composer="-f $1 -f elk-logspout.yml -f web.yml"
-option=$2
+option=$1
+composer="-f web/web.yml -f services/services.yml -f data-stores/data-stores.yml"
 DESC="clks"
 
-build_base_images()  {
-    cd base && make && cd ..
-    cd java && make && cd ..
-    cd python && make && cd ..
-    docker-compose $composer build
+build_core_images()  {
+    sh -c "core/docker.sh build"
 }
 
 clean_base_images() {
-    docker rm -v ckos java python
+    sh -c "core/docker.sh clean"
 }
 
-init_data(){
-    sh -c "workers/mongoseed.sh"
-    sh -c "workers/mysqlseed.sh"
-}
-
-setup_ck_backbone(){
+setup_data_stores(){
     docker-compose $composer run --rm start_dependencies
     docker-compose $composer run --rm start_dependencies
     docker run -d --name="log-ck" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:8989:80 gliderlabs/logspout
+}
+
+
+init_data(){
+    sh -c "data-stores/setup/seed/mongoseed.sh"
+    sh -c "data-stores/setup/seed/mysqlseed.sh"
 }
 
 cleanup(){
@@ -44,8 +42,8 @@ case "$option" in
        echo -n "Setup $DESC "
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
-       build_base_images
-       setup_ck_backbone
+       build_core_images
+       setup_data_stores
        init_data
        clean_base_images
        cleanup
@@ -55,7 +53,7 @@ case "$option" in
     start)
         echo -n "Starting $DESC: "
         docker-compose $composer  up -d
-        sh -c "workers/setupdev.sh"
+        sh -c "services/setup/setupdev.sh"
     ;;
 
     stop)
@@ -71,14 +69,14 @@ case "$option" in
         docker stop log-ck
         docker rm -v log-ck
         cleanup
-        #sudo ip addr del 169.254.255.254/24 dev lo:0
+        sudo ip addr del 169.254.255.254/24 dev lo:0
     ;;
 
     log)
         curl http://127.0.0.1:8989/logs
     ;;
     *)
-        echo "Usage: ./application.sh {web.yml|third-party.yml} {setup|start|stop|teardown|log}" >&2
+        echo "Usage: ./application.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
