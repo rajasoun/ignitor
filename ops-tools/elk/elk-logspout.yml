@@ -21,7 +21,6 @@ services:
       links:
         - elasticsearch
       environment:
-        - LS_JAVA_OPTS: "-Xmx256m -Xms256m"
         - LOGSPOUT=ignore
         - DROP_NON_JSON=false
         - STDOUT=true
