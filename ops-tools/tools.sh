@@ -42,12 +42,12 @@ case "$option" in
     teardown)
         echo -n "${red} TearDown $DESC: "
         docker-compose $composer down
-        docker network rm $DESC
         docker network prune
         docker stop log-ops
         docker rm -v log-ops
         cleanup
         sudo ip addr del 169.254.255.254/24 dev lo:0
+        docker network rm $DESC
     ;;
 
     log)
