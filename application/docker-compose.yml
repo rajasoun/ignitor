@@ -36,10 +36,10 @@ services:
          file: data-stores/data-stores.yml
          service: swift
 
-#    ck-web:
-#       extends:
-#         file: web/web.yml
-#         service: ck-web
+    ck-web:
+       extends:
+         file: web/web.yml
+         service: ck-web
 
 #    authservice:
 #       extends:
