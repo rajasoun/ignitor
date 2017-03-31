@@ -23,10 +23,13 @@ logs:
 stop:
 	docker stop  $(container_name)
 
-delete:
+delete: stop
 	docker rm -v  $(container_name)
 
-delete-image: delete
+delete-image:  delete
+	docker rmi -f $(image_name):$(VERSION)
+
+destroy:
 	docker rmi -f $(image_name):$(VERSION)
 
 reset: delete-image
