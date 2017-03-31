@@ -9,7 +9,7 @@ blue=`tput setaf 4`
 gray=`tput setaf 8`
 reset=`tput sgr0`
 
-projects=( base java  python  devtools  wait-for-it ansible )
+projects=( base java python wait-for-it ansible )
 
 function docker_make(){
 	for project in "${projects[@]}"

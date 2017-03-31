@@ -1,30 +1,18 @@
 version: '2'
 
 services:
-    start_dependencies:
-       container_name: "wait-for-it"
-       build: ./wait-for-it
-       depends_on:
-          - db
-          - es
-          - mongo
-          - swift
-          - kafka
-          - zookeeper
-       command: db:3306 es:9200 mongo:27017 swift:8080 kafka:9092 zookeeper:2181
-
     db:
        extends:
-         file: composer/self-hosted/core.yml
+         file: composer/self-hosted/data-stores.yml
          service: db
     es:
        extends:
-         file: composer/self-hosted/core.yml
+         file: composer/self-hosted/data-stores.yml
          service: es
 
     mongo:
        extends:
-         file: composer/self-hosted/core.yml
+         file: composer/self-hosted/data-stores.yml
          service: mongo
 
     zookeeper:
@@ -44,7 +32,7 @@ services:
 
     swift:
        extends:
-         file: composer/self-hosted/core.yml
+         file: composer/self-hosted/data-stores.yml
          service: swift
 
     nginx:

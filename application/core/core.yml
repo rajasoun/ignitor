@@ -1,61 +1,18 @@
 version: '2'
 
 services:
-
-  es:
-    container_name: "ckes"
-    build: ../../elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-
-  db:
-    container_name: "ckdb"
-    build: ../../mariadb
-    ports:
-      - "3306:3306"
-    volumes:
-      - ~/Workspace/ck/ignitor/application/workers/initdb:/initdb
-    environment:
-      - MASTER_PASSWORD=password@1234
-      - MARIADB_DATABASE=b2b
-      - MARIADB_USER=ckuser
-      - MARIADB_PASSWORD=Cisco@1234
-
-  mongo:
-    container_name: "ckmongo"
-    build: ../../mongodb
-    ports:
-      - "27017:27017"
-
-  swift:
-     container_name: "ckswift"
-     image: "morrisjobke/docker-swift-onlyone"
-     ports:
-        - "8080"
-     environment:
-        - LOGSPOUT=ignore
-
-  zookeeper:
-    image: confluent/zookeeper
-    container_name: "zookeeper"
-    ports:
-      - "2181:2181"
-    environment:
-      zk_id: "1"
-
-  kafka:
-    image: confluent/kafka
-    container_name: "kafka"
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-
-  rest-proxy:
-    image: confluent/rest-proxy
-    container_name: "rest-proxy"
-    ports:
-      - "8082:8082"
-    environment:
-      RP_ZOOKEEPER_CONNECT: "zookeeper:2181"
+    base:
+        build: base/
+        container_name: "rajasoun/base:0.1"
+    java:
+        build: java/
+        container_name: "rajasoun/java:0.1"
+    python:
+        build: python/
+        container_name: "rajasoun/python:0.1"
+    wait-for-it:
+        build: wait-for-it/
+        container_name: "rajasoun/wait-for-it:0.1"
+    ansible:
+        build: ansible/
+        container_name: "rajasoun/ansible:0.1"
