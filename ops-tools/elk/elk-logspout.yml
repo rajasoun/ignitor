@@ -5,7 +5,7 @@ services:
     logspout:
       container_name: "logspout"
       image: gliderlabs/logspout:v3
-      command: 'syslog://logstash:5000'
+      command: 'syslog://logstash:5001'
       links:
         - logstash
       volumes:
