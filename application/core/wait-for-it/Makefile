@@ -3,4 +3,4 @@ container_name = wait-for-it
 
 VERSION=0.1
 
-include ../../make/Makefile
+include ../../../make/Makefile
