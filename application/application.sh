@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-composer="-f $1 -f elk-logspout.yml -f fcci.yml"
+composer="-f $1 -f elk-logspout.yml -f docker-compose.yml"
 option=$2
 DESC="clks"
 
@@ -78,7 +78,7 @@ case "$option" in
         curl http://127.0.0.1:8989/logs
     ;;
     *)
-        echo "Usage: ./ck.sh {self-hosted.yml|third-party.yml} {setup|start|stop|teardown|log}" >&2
+        echo "Usage: ./application.sh {docker-compose.yml|third-party.yml} {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
