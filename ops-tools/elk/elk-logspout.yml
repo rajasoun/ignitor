@@ -15,7 +15,7 @@ services:
       container_name: "logstash"
       image: ludekvesely/logstash-json
       ports:
-        - "5000:5000"
+        - "5001:5000"
       depends_on:
         - elasticsearch
       links:
