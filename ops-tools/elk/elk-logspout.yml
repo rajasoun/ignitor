@@ -37,7 +37,7 @@ services:
 
     elasticsearch:
       container_name: "elasticsearch"
-      image: elasticsearch
+      image: elasticsearch:5.3.0
       environment:
         - LOGSPOUT=ignore
       networks:
