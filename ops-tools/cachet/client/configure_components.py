@@ -20,8 +20,6 @@ portainer = json.loads(components.post(name='Portainer',
                                        link='http://dev.xkit.co:9000/',
                                        description='Portainer'))
 
-
-
 cachet = json.loads(components.post(name='cachet',
                                        status=1,
                                        link='http://dev.xkit.co:8787/',
