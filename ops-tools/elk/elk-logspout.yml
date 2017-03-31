@@ -25,7 +25,7 @@ services:
 
     kibana:
       container_name: "kibana"
-      image: kibana
+      image: docker.elastic.co/kibana/kibana
       environment:
         - LOGSPOUT=ignore
       links:
@@ -41,7 +41,7 @@ services:
       environment:
         - LOGSPOUT=ignore
       ports:
-        - 9200:9200
+        - 9201:9201
       networks:
         - elk
 
