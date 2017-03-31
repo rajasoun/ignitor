@@ -4,6 +4,13 @@ composer="-f portainer-compose/docker-compose.yml -f cachet/server/docker-compos
 DESC="clks-ops"
 option=$1
 
+# Prepare output colors
+red=`tput setaf 1`
+green=`tput setaf 10`
+blue=`tput setaf 4`
+gray=`tput setaf 8`
+reset=`tput sgr0`
+
 cleanup(){
     docker volume ls -qf dangling=true | xargs -r docker volume rm
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
@@ -14,8 +21,8 @@ set -e
 
 case "$option" in
     setup)
-       echo -n "Setup $DESC "
-       echo -n "+++ docker-compose $composer +++"
+       echo -n "${green} Setup $DESC "
+       echo -n "${green} +++ docker-compose $composer +++"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
        docker-compose $composer  build
@@ -23,17 +30,17 @@ case "$option" in
     ;;
 
     start)
-        echo -n "Starting $DESC: "
+        echo -n "${green} Starting $DESC: "
         docker-compose $composer  up -d
     ;;
 
     stop)
-        echo -n "Stopping $DESC: "
+        echo -n "${gray} Stopping $DESC: "
         docker-compose $composer down
     ;;
 
     teardown)
-        echo -n "TearDown $DESC: "
+        echo -n "${red} TearDown $DESC: "
         docker-compose $composer down
         docker network rm $DESC
         docker network prune
