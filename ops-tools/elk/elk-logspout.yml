@@ -22,17 +22,21 @@ services:
         - elasticsearch
 
     kibana:
-      container_name: "kibana"
-      image: docker.elastic.co/kibana/kibana:5.2.2
-      environment:
-        - LOGSPOUT=ignore
+      image: docker.elastic.co/kibana/kibana
       links:
         - elasticsearch
       ports:
-        - '5601:5601'
+        - 5601:5601
 
     elasticsearch:
-      container_name: "elasticsearch"
-      image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
-      environment:
-        - LOGSPOUT=ignore
+      image: docker.elastic.co/elasticsearch/elasticsearch
+      cap_add:
+        - IPC_LOCK
+      volumes:
+        - esdata:/usr/share/elasticsearch/data
+      ports:
+        - 9201:9201
+
+volumes:
+  esdata:
+    driver: local
