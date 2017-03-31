@@ -6,7 +6,7 @@ DESC="clks"
 
 build_core_images()  {
     cd core
-    sh -c "core/docker.sh build"
+    sh -c "docker.sh build"
     cd --
 }
 
