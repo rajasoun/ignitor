@@ -1,18 +1,9 @@
 version: '2'
 
 services:
-
-  docker-manager:
-     container_name: "docker-manager"
-     image: portainer/portainer
-     ports:
-       - "9001:9001"
-     volumes:
-       - /var/run/docker.sock:/var/run/docker.sock
-
   devtools:
      container_name: "devtools"
-     build: ../../devtools
+     build: swiftclient/
 
   mongo-client:
      container_name: "mongo-client"
