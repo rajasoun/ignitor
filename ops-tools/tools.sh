@@ -54,7 +54,7 @@ case "$option" in
         curl http://127.0.0.1:9898/logs
     ;;
     *)
-        echo "Usage: ./tools.sh {setup|start|stop|teardown|log}" >&2
+        echo "${blue} Usage: ./tools.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
