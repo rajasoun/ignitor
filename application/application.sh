@@ -47,7 +47,7 @@ case "$option" in
        echo -n "+++ docker-compose $composer +++"
        docker network create $DESC
        build_core_images
-#       setup_data_stores
+       setup_data_stores
 #       init_data
 #       clean_base_images
 #       cleanup
