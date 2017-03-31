@@ -16,20 +16,32 @@ function docker_make(){
 	do
 	        cd $project
 	        echo "Building... $project @ `pwd`"
-	        make $1
+	        make build
 	        cd ..
 	        echo "***Done***"
 	done
 }
+
+function cleanup(){
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
+}
+
+clean_base_images() {
+    docker rm -v $projects
+}
+
 case "$option" in
     build)
        echo -n "${green} Building Core Docker Images "
-       docker_make build
+       docker_make
     ;;
 
     clean)
        echo -n "${red} Deleting Core Docker Images "
-        docker_make delete-image
+       clean_base_images
+       cleanup
     ;;
 
     *)
