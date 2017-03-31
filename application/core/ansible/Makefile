@@ -3,4 +3,4 @@ container_name = ansible
 
 VERSION=0.1
 
-include ../utils/Makefile
+include ../../make/Makefile
