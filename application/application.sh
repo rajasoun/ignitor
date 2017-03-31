@@ -6,13 +6,13 @@ DESC="clks"
 
 build_core_images()  {
     cd core
-    sh -c "./docker.sh build"
+    ./docker.sh build
     cd --
 }
 
 clean_base_images() {
     cd core
-    sh -c "./docker.sh clean"
+    ./docker.sh clean
     cd --
 }
 
