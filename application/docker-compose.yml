@@ -3,41 +3,41 @@ version: '2'
 services:
     db:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: db
     mongo:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: mongo
 
     es:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: es
 
     zookeeper:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: zookeeper
 
     kafka:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: kafka
 
     rest-proxy:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: rest-proxy
 
     swift:
        extends:
-         file: application/data-stores/data-stores.yml
+         file: data-stores/data-stores.yml
          service: swift
 
     ck-web:
        extends:
-         file: application/web/web.yml
+         file: web/web.yml
          service: ck-web
 
 #    authservice:
