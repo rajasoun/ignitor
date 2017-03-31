@@ -16,7 +16,7 @@ function docker_make(){
 	do
 	        cd $project
 	        echo "Building... $project @ `pwd`"
-	        make $option
+	        make $1
 	        cd ..
 	        echo "***Done***"
 	done
@@ -24,12 +24,12 @@ function docker_make(){
 case "$option" in
     build)
        echo -n "${green} Building Core Docker Images "
-       docker_make
+       docker_make build
     ;;
 
     clean)
        echo -n "${red} Deleting Core Docker Images "
-        docker_make
+        docker_make delete-image
     ;;
 
     *)
