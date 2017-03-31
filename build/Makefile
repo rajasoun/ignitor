@@ -1,14 +1,14 @@
-default: build  create
-clean: delete-images
+default: build
+clean: delete-image
 
 build:
 	docker build --rm -t $(image_name):$(VERSION) .
 
 create:
 	docker create --name=$(container_name) \
-								-v $(container_name):/config $(image_name):$(VERSION)
+			-v $(container_name):/config $(image_name):$(VERSION)
 
-run:
+run: create
 	docker start $(container_name)
 
 inspect:
@@ -17,7 +17,7 @@ inspect:
 shell:
 	docker exec -it $(container_name) /bin/sh
 
-log:
+logs:
 	docker logs -f $(container_name)
 
 stop:
@@ -26,10 +26,10 @@ stop:
 delete: stop
 	docker rm -v  $(container_name)
 
-delete-images: delete
+delete-image: delete
 	docker rmi -f $(image_name):$(VERSION)
 
-reset: delete-images
+reset: delete-image
 	docker stop $(docker ps -a -q)
 	docker rm $(docker ps -a -q)
 	docker rmi $(docker images -a -q)
