@@ -5,13 +5,17 @@ composer="-f application.yml"
 DESC="clks"
 
 build_core_images()  {
+    current_dir=`pwd`
     cd core
     ./docker.sh build
-    cd ..
+    cd $current_dir
 }
 
 clean_base_images() {
+    current_dir=`pwd`
+    cd core
     ./docker.sh clean
+    cd $current_dir
 }
 
 setup_data_stores(){
