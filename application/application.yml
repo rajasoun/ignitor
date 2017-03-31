@@ -41,35 +41,35 @@ services:
          file: web/web.yml
          service: ck-web
 
-#    authservice:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: authservice
-#
-#    knowledgecenter:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: knowledgecenter
-#
-#    userpi:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: userpi
-#
-#    tenantmanagement:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: tenantmanagement
-#
-#    contentstore:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: contentstore
-#
-#    pipeline:
-#       extends:
-#         file: composer/self-hosted/services.yml
-#         service: pipeline
+    authservice:
+       extends:
+         file: services/services.yml
+         service: authservice
+
+    knowledgecenter:
+       extends:
+         file: services/services.yml
+         service: knowledgecenter
+
+    userpi:
+       extends:
+         file: services/services.yml
+         service: userpi
+
+    tenantmanagement:
+       extends:
+         file: services/services.yml
+         service: tenantmanagement
+
+    contentstore:
+       extends:
+         file: services/services.yml
+         service: contentstore
+
+    pipeline:
+       extends:
+         file: services/services.yml
+         service: pipeline
 
 networks:
   default:
