@@ -23,7 +23,7 @@ logs:
 stop:
 	docker stop  $(container_name)
 
-delete: stop
+delete:
 	docker rm -v  $(container_name)
 
 delete-image: delete
