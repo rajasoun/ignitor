@@ -7,13 +7,11 @@ DESC="clks"
 build_core_images()  {
     cd core
     ./docker.sh build
-    cd --
+    cd ..
 }
 
 clean_base_images() {
-    cd core
     ./docker.sh clean
-    cd --
 }
 
 setup_data_stores(){
