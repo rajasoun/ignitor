@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-composer="-f portainer-compose/docker-compose.yml -f cachet/server/docker-compose.yml  "
+composer="-f portainer-compose/web.yml -f cachet/server/web.yml  "
 DESC="clks-ops"
 option=$1
 
