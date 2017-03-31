@@ -3,92 +3,72 @@ version: '2'
 services:
     db:
        extends:
-         file: composer/self-hosted/data-stores.yml
+         file: application/data-stores/data-stores.yml
          service: db
-    es:
-       extends:
-         file: composer/self-hosted/data-stores.yml
-         service: es
-
     mongo:
        extends:
-         file: composer/self-hosted/data-stores.yml
+         file: application/data-stores/data-stores.yml
          service: mongo
+
+    es:
+       extends:
+         file: application/data-stores/data-stores.yml
+         service: es
 
     zookeeper:
        extends:
-         file: composer/self-hosted/zk-kafka-proxy.yml
+         file: application/data-stores/data-stores.yml
          service: zookeeper
 
     kafka:
        extends:
-         file: composer/self-hosted/zk-kafka-proxy.yml
+         file: application/data-stores/data-stores.yml
          service: kafka
 
     rest-proxy:
        extends:
-         file: composer/self-hosted/zk-kafka-proxy.yml
+         file: application/data-stores/data-stores.yml
          service: rest-proxy
 
     swift:
        extends:
-         file: composer/self-hosted/data-stores.yml
+         file: application/data-stores/data-stores.yml
          service: swift
 
-    nginx:
+    ck-web:
        extends:
-         file: composer/self-hosted/services.yml
-         service: nginx
+         file: application/web/web.yml
+         service: ck-web
 
-    authservice:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: authservice
-
-    knowledgecenter:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: knowledgecenter
-
-    userpi:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: userpi
-
-    tenantmanagement:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: tenantmanagement
-
-    contentstore:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: contentstore
-
-    pipeline:
-       extends:
-         file: composer/self-hosted/services.yml
-         service: pipeline
-
-    docker-manager:
-      extends:
-        file: composer/self-hosted/devtools.yml
-        service: docker-manager
-
-    mongo-client:
-      extends:
-        file: composer/self-hosted/devtools.yml
-        service: mongo-client
-
-    phpmyadmin:
-      extends:
-        file: composer/self-hosted/devtools.yml
-        service: phpmyadmin
-
-    devtools:
-      extends:
-        file: composer/self-hosted/devtools.yml
-        service: devtools
+#    authservice:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: authservice
+#
+#    knowledgecenter:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: knowledgecenter
+#
+#    userpi:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: userpi
+#
+#    tenantmanagement:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: tenantmanagement
+#
+#    contentstore:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: contentstore
+#
+#    pipeline:
+#       extends:
+#         file: composer/self-hosted/services.yml
+#         service: pipeline
 
 networks:
   default:

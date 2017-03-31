@@ -2,15 +2,6 @@ version: '2'
 
 services:
 
-  nginx:
-    container_name: "ckweb"
-    build: ../../nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ~/Workspace/ck/cheetah/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
-
   authservice:
     image: rajasoun/java:0.1
     container_name: "authservice"
