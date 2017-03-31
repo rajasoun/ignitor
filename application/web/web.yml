@@ -9,9 +9,3 @@ services:
       - "443:443"
     volumes:
       - ~/Workspace/ck/cheetah/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter
-    networks:
-      - local
-
-networks:
-  local:
-    driver: bridge
