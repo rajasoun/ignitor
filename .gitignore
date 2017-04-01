@@ -3,3 +3,4 @@ data/
 .idea/
 .idea
 devbox.sh
+.DS_Store
