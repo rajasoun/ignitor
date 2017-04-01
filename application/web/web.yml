@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  ck-web:
+    build: nginx/
+    container_name: "ck-web"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ~/Workspace/ck/cheetah/knowledgecenter/kc-web/src/main/webapp:/www/knowledgecenter

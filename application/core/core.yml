@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+    base:
+        build: base/
+        container_name: "base"
+    java:
+        build: java/
+        container_name: "java"
+    python:
+        build: python/
+        container_name: "python"
+    wait-for-it:
+        build: wait-for-it/
+        container_name: "wait-for-it"
+    ansible:
+        build: ansible/
+        container_name: "ansible"
