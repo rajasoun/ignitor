@@ -3,16 +3,16 @@ version: '2'
 services:
     base:
         build: base/
-        container_name: "base"
+        image: "rajasoun/base:0.1"
     java:
         build: java/
-        container_name: "java"
+        image: "rajasoun/java:0.1"
     python:
         build: python/
-        container_name: "python"
+        image: "rajasoun/python:0.1"
     wait-for-it:
         build: wait-for-it/
-        container_name: "wait-for-it"
+        image: "rajasoun/wait-for-it:0.1"
     ansible:
         build: ansible/
-        container_name: "ansible"
+        image: "rajasoun/ansible:0.1"
