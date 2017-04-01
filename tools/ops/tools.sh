@@ -11,12 +11,6 @@ blue=`tput setaf 4`
 gray=`tput setaf 8`
 reset=`tput sgr0`
 
-cleanup(){
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
-    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
-}
-
 set -e
 
 case "$option" in
@@ -26,7 +20,8 @@ case "$option" in
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
        docker-compose $composer  build
-       cleanup
+       #Removes all stopped containers, untagged images, dangling volumes, and networks
+       sh -c "clean/docker-clean run"
     ;;
 
     start)
@@ -42,12 +37,9 @@ case "$option" in
     teardown)
         echo -n "${red} TearDown $DESC: "
         docker-compose $composer down
-        docker network prune
-        docker stop log-ops
-        docker rm -v log-ops
-        cleanup
+        #Stops and removes all containers, cleans dangling volumes, and networks
+        sh -c "clean/docker-clean stop"
         sudo ip addr del 169.254.255.254/24 dev lo:0
-        docker network rm $DESC
     ;;
 
     log)
