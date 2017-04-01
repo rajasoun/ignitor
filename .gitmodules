@@ -1,3 +1,0 @@
-[submodule "ops-tools/portainer-compose"]
-	path = ops-tools/portainer-compose
-	url = https://github.com/rajasoun/portainer-compose
