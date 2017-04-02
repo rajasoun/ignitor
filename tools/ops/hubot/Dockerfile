@@ -8,7 +8,6 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
 RUN set -ex \
-  && adduser  -u 1000 -G hubot -s /bin/sh -D hubot \
   && apk add --no-cache redis  \
   && rm -rf /var/cache/apk/*
 
