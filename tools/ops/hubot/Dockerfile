@@ -13,7 +13,6 @@ RUN set -ex \
   && yarn global add yo generator-hubot \
   && rm -rf /var/cache/apk/*
 
-User hubot
 WORKDIR /hubot
 
 COPY package.json package.json
