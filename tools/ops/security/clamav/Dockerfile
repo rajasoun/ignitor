@@ -1,44 +1,33 @@
-FROM debian:jessie
-MAINTAINER https://m-ko.de Markus Kosmal <code@cnfg.io>
+FROM alpine:3.5
+LABEL Vendor="Alpine"
+MAINTAINER Raja. S <rajasoun@icloud.com>
 
-# Debian Base to use
-ENV DEBIAN_VERSION jessie
+ENV TZ="UTC"
+ENV S6_OVERLAY_VERSION=v1.19.1.1
+# Stop container initialization if error occurs in cont-init.d fix-attrs.d script's
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-# initial install of av daemon
-RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-free" > /etc/apt/sources.list && \
-    echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://security.debian.org/ $DEBIAN_VERSION/updates main contrib non-free" >> /etc/apt/sources.list && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -qq \
-        clamav-daemon \
-        clamav-freshclam \
-        libclamunrar7 \
-        wget && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+LABEL distro="alpine" distro_version="3.5" architecture="x86_64"
 
-# initial update of av databases
-RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
-    wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
-    wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd && \
-    chown clamav:clamav /var/lib/clamav/*.cvd
 
-# permission juggling
-RUN mkdir /var/run/clamav && \
-    chown clamav:clamav /var/run/clamav && \
-    chmod 750 /var/run/clamav
+RUN set -x \
+    && apk add --no-cache ca-certificates gnupg wget \
+    && wget https://keybase.io/justcontainers/key.asc --no-check-certificate -O /tmp/s6-overlay-key.asc \
+    && wget https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz --no-check-certificate -O /tmp/s6-overlay-amd64.tar.gz \
+    && wget https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz.sig --no-check-certificate -O /tmp/s6-overlay-amd64.tar.gz.sig \
+    && gpg --import /tmp/s6-overlay-key.asc \
+    && gpg --verify /tmp/s6-overlay-amd64.tar.gz.sig /tmp/s6-overlay-amd64.tar.gz \
+    && tar xvfz /tmp/s6-overlay-amd64.tar.gz -C / \
+    && rm -f /tmp/s6-overlay-key.asc \
+    && rm -f /tmp/s6-overlay-amd64.tar.gz \
+    && rm -f /tmp/s6-overlay-amd64.tar.gz.sig \
+    && apk del --no-cache wget gnupg \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/*
 
-# av configuration update
-RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
-    echo "TCPSocket 3310" >> /etc/clamav/clamd.conf && \
-    sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
+# Inject files in container file system
+COPY rootfs /
 
-# volume provision
-VOLUME ["/var/lib/clamav"]
-
-# port provision
-EXPOSE 3310
-
-# av daemon bootstrapping
-ADD bootstrap.sh /
-CMD ["/bootstrap.sh"]
+# Init
+ENTRYPOINT ["/init"]
+CMD []

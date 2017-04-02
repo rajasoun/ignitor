@@ -3,4 +3,4 @@ container_name = ckos
 
 VERSION=0.1
 
-include ../../../../make/Makefile
+include ../../../make/Makefile
