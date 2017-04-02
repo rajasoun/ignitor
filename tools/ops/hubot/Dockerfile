@@ -19,9 +19,9 @@ RUN set -ex \
 USER  hubot
 WORKDIR /hubot
 
-RUN set -ex \
-  && yarn add coffee-script \
-  && yarn add  yo generator-hubot
+#RUN set -ex \
+#  && yarn add coffee-script \
+#  && yarn add  yo generator-hubot
 
 RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
 ADD config/hubot-scripts.json /hubot/
