@@ -13,16 +13,18 @@ RUN set -ex \
   && yarn global add yo generator-hubot \
   && rm -rf /var/cache/apk/*
 
-RUN mkdir -p /root/.config/configstore
-RUN chmod g+rwx /root /root/.config /root/.config/configstore
-
+User hubot
 WORKDIR /hubot
 
 COPY package.json package.json
 ADD config/hubot-scripts.json /hubot/
 ADD config/external-scripts.json /hubot/
 
-RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
+RUN set -ex \
+    && mkdir -p /root/.config/configstore \
+    && mkdir -p /hubot/bin
+    && chmod g+rwx /root /root/.config /root/.config/configstore /hubot/bin
+    && yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
 
 
 # Init
