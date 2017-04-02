@@ -7,9 +7,6 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
 RUN set -ex \
   && addgroup -g 2000 hubot \
   && adduser -u 2000 -G hubot -s /bin/sh -D hubot \
