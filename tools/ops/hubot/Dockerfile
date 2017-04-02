@@ -11,7 +11,6 @@ RUN set -ex \
   && apk add --no-cache redis  \
   && rm -rf /var/cache/apk/*
 
-USER  hubot
 WORKDIR /hubot
 
 #RUN set -ex \
