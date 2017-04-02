@@ -9,18 +9,19 @@ ENV NODE_ENV production
 
 RUN set -ex \
   && apk add --no-cache redis  \
+  && npm install -g npm \
+  && npm install -g coffee-script \
+  && npm install -g yo generator-hubot \
   && rm -rf /var/cache/apk/*
 
 WORKDIR /hubot
 
-#RUN set -ex \
-#  && yarn add coffee-script \
-#  && yarn add  yo generator-hubot
+COPY package.json package.json
+ADD config/hubot-scripts.json /hubot/
+ADD config/external-scripts.json /hubot/
 
-#RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
-#ADD config/hubot-scripts.json /hubot/
-#ADD config/external-scripts.json /hubot/
-#COPY package.json package.json
+RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
+
 
 # Init
 ENTRYPOINT ["/init"]

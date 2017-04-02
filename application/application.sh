@@ -7,14 +7,14 @@ DESC="clks"
 build_core_images()  {
     current_dir=`pwd`
     cd core
-    ./docker.sh build
+    ./core.sh build
     cd $current_dir
 }
 
 clean_base_images() {
     current_dir=`pwd`
     cd core
-    ./docker.sh clean
+    ./core.sh clean
     cd $current_dir
 }
 
