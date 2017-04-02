@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-exec freshclam   --quiet
+exec freshclam  -d  --quiet
