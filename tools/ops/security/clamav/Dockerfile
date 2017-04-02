@@ -22,7 +22,6 @@ RUN set -x \
 
 VOLUME ["/var/lib/clamav"]
 EXPOSE 3310
-RUN freshclam --quiet
 
 # Inject files in container file system
 COPY rootfs /
