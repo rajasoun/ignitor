@@ -28,4 +28,8 @@ WORKDIR /hubot
 #ADD config/external-scripts.json /hubot/
 #COPY package.json package.json
 
+# Init
+ENTRYPOINT ["/init"]
+CMD []
+
 
