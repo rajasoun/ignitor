@@ -23,9 +23,9 @@ WORKDIR /hubot
 #  && yarn add coffee-script \
 #  && yarn add  yo generator-hubot
 
-RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
-ADD config/hubot-scripts.json /hubot/
-ADD config/external-scripts.json /hubot/
-COPY package.json package.json
+#RUN yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
+#ADD config/hubot-scripts.json /hubot/
+#ADD config/external-scripts.json /hubot/
+#COPY package.json package.json
 
 
