@@ -15,7 +15,6 @@ RUN set -ex \
 
 WORKDIR /hubot
 
-COPY package.json package.json
 ADD  config/external-scripts.json /hubot/
 
 RUN set -ex \
