@@ -9,9 +9,8 @@ ENV NODE_ENV production
 
 RUN set -ex \
   && apk add --no-cache redis  \
-  && npm install -g npm \
-  && npm install -g coffee-script \
-  && npm install -g yo generator-hubot \
+  && yarn global add  coffee-script \
+  && yarn global add yo generator-hubot \
   && rm -rf /var/cache/apk/*
 
 WORKDIR /hubot
