@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-exec clamd  -O /dev/stdout
+exec clamd

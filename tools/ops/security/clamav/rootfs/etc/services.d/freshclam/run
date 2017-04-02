@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-exec freshclam -d  -O /dev/stdout
+exec freshclam -d
