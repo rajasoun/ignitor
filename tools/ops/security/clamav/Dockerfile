@@ -8,7 +8,7 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN set -x \
     && apk add --no-cache  wget clamav clamav-libunrar  \
-    && apk del --no-cache wget gnupg \
+    && apk del --no-cache wget \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 # Inject files in container file system
