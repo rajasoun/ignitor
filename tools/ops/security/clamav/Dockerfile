@@ -15,7 +15,9 @@ RUN set -x \
 #    && wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd \
 #    && wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd \
 #    && wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd  \
-#    && apk del --no-cache wget \
+#    && apk del --no-cache wget
+
+VOLUME ["/var/lib/clamav"]
 
 # Inject files in container file system
 COPY rootfs /
