@@ -21,7 +21,7 @@ case "$option" in
        docker-compose -f $tools_path/portainer/portainer.yml  up -d  --build
        docker-compose -f $tools_path/cachet/server/cachet-server.yml  up -d --build
        #Removes all stopped containers, untagged images, dangling volumes, and networks
-       sh -c "clean/docker-clean run"
+       sh -c "$tools_path/clean/docker-clean run"
     ;;
 
     start)
@@ -41,7 +41,7 @@ case "$option" in
         docker-compose -f $tools_path/portainer/portainer.yml  down
         docker-compose -f $tools_path/cachet/server/cachet-server.yml  down
         #Stops and removes all containers, cleans dangling volumes, and networks
-        sh -c "clean/docker-clean stop"
+        sh -c "$tools_path/clean/docker-clean stop"
         sudo ip addr del 169.254.255.254/24 dev lo:0
     ;;
 
