@@ -16,8 +16,7 @@ RUN set -ex \
 WORKDIR /hubot
 
 COPY package.json package.json
-ADD config/hubot-scripts.json /hubot/
-ADD config/external-scripts.json /hubot/
+ADD  config/external-scripts.json /hubot/
 
 RUN set -ex \
     && mkdir -p /root/.config/configstore \
