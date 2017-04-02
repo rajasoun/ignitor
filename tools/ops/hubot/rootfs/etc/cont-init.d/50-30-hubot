@@ -34,6 +34,5 @@ fi
 chown -R $user:$user /opt/$user/data
 chown -R $user:$user /opt/$user/log
 
-mkdir -p /root/.config/configstore
-chmod g+rwx /root /root/.config /root/.config/configstore
+
 

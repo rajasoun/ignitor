@@ -13,6 +13,9 @@ RUN set -ex \
   && yarn global add yo generator-hubot \
   && rm -rf /var/cache/apk/*
 
+RUN mkdir -p /root/.config/configstore
+RUN chmod g+rwx /root /root/.config /root/.config/configstore
+
 WORKDIR /hubot
 
 COPY package.json package.json
