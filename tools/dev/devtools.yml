@@ -4,6 +4,7 @@ services:
   devtools:
      container_name: "devtools"
      build: swiftclient/
+     image: "rajasoun/devtools:0.1"
 
   mongo-client:
      container_name: "mongo-client"
