@@ -20,8 +20,8 @@ RUN set -x \
     && sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
 
+VOLUME ["/var/lib/clamav"]
 EXPOSE 3310
-
 RUN freshclam --quiet
 
 # Inject files in container file system
