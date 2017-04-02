@@ -7,6 +7,9 @@ services:
     java:
         build: java/
         image: "rajasoun/java:0.1"
+    java:
+        build: nodejs/
+        image: "rajasoun/nodejs:0.1"
     python:
         build: python/
         image: "rajasoun/python:0.1"
