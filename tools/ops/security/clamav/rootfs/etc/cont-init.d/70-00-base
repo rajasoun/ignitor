@@ -10,6 +10,4 @@ wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd
 wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
 chown clamav:clamav /var/lib/clamav/*.cvd
 
-sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf \
-sed -i 's/^#TCPSocket .*$/TCPSocket 3310/g' /etc/clamav/clamd.conf \
-sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
+
