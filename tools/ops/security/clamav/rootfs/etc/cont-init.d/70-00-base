@@ -3,9 +3,7 @@
 mkdir /run/clamav
 chown clamav:clamav /run/clamav
 
-wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
-wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
-wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd && \
+
 chown clamav:clamav /var/lib/clamav/*.cvd
 
 sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf \
