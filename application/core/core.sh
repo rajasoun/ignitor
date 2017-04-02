@@ -41,7 +41,7 @@ case "$option" in
     ;;
 
     *)
-        echo "${gray} Usage: ./docker.sh {build|clean}" >&2
+        echo "${gray} Usage: ./core.sh {build|clean}" >&2
         exit 1
     ;;
 esac
