@@ -10,7 +10,7 @@ ENV NODE_VERSION 6.10.1
 ENV YARN_VERSION 0.21.3
 
 RUN set -ex \
-  &&  addgroup -g 1000 node \
+  && addgroup -g 1000 node \
   && adduser -u 1000 -G node -s /bin/sh -D node \
   && apk add --no-cache libstdc++ \
   && apk add --no-cache --virtual .build-deps \
