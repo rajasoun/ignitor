@@ -2,7 +2,7 @@
 
 DESC="clks-ops"
 option=$1
-tools_path=tools/ops
+tools_path=ops
 
 # Prepare output colors
 red=`tput setaf 1`
