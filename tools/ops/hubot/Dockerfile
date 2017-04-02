@@ -21,10 +21,8 @@ ADD config/external-scripts.json /hubot/
 
 RUN set -ex \
     && mkdir -p /root/.config/configstore \
-    && mkdir -p /hubot/bin \
-    && chmod g+rwx /root /root/.config /root/.config/configstore /hubot/bin  \
+    && chmod g+rwx /root /root/.config /root/.config/configstore /hubot/bin /hubot \
     && yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
-
 
 # Init
 ENTRYPOINT ["/init"]
