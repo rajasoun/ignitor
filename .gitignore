@@ -4,3 +4,4 @@ data/
 .idea
 devbox.sh
 .DS_Store
+__init__.py
