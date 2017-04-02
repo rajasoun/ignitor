@@ -7,15 +7,9 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN set -x \
-    && apk add --no-cache  wget clamav clamav-libunrar  \
+    && apk add --no-cache  wget clamav clamav-db clamav-libunrar  \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
-
-#RUN set -x \
-#    && wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd \
-#    && wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd \
-#    && wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd  \
-#    && apk del --no-cache wget
 
 VOLUME ["/var/lib/clamav"]
 
