@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-composer="-f portainer/cachet-server.yml -f cachet/server/cachet-server.yml  "
+composer="-f portainer/portainer.yml -f cachet/server/cachet-server.yml  "
 DESC="clks-ops"
 option=$1
 
@@ -15,8 +15,10 @@ set -e
 
 case "$option" in
     setup)
-       echo -n "${green} Setup $DESC "
-       echo -n "${green} +++ docker-compose $composer +++"
+       echo -n "${green} Setup $DESC\n "
+       echo -n "${gray} ++++++++++++++"
+       echo -n "${blue} docker-compose $composer"
+       echo -n "${gray} ++++++++++++++"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
        docker-compose $composer  build
