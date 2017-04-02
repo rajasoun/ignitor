@@ -11,6 +11,11 @@ RUN set -x \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
+RUN set -x \
+    && sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf  \
+    && echo "TCPSocket 3310" >> /etc/clamav/clamd.conf  \
+    && sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
+
 VOLUME ["/var/lib/clamav"]
 
 # Inject files in container file system
