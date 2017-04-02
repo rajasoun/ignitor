@@ -16,9 +16,9 @@ set -e
 case "$option" in
     setup)
        echo -n "${green} Setup $DESC\n "
-       echo -n "${gray} ++++++++++++++"
-       echo -n "${blue} docker-compose $composer"
-       echo -n "${gray} ++++++++++++++"
+       echo -n "${gray} ++++++++++++++\n"
+       echo -n "${blue} docker-compose $composer \n"
+       echo -n "${gray} ++++++++++++++ \n"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
        docker-compose $composer  build
