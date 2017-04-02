@@ -16,6 +16,14 @@ RUN set -x \
     && echo "TCPSocket 3310" >> /etc/clamav/clamd.conf  \
     && sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
+RUN set -x \
+    && mkdir /run/clamav  \
+    && wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd   \
+    && wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd   \
+    && wget -O /var/lib/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd  \
+    && chown clamav:clamav /run/clamav  \
+    && chown clamav:clamav /var/lib/clamav/*.cvd
+
 VOLUME ["/var/lib/clamav"]
 
 # Inject files in container file system
