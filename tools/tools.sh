@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-composer="-f portainer/portainer.yml -f cachet/server/cachet-server.yml  "
 DESC="clks-ops"
 option=$1
+tools_path=tools/ops
 
 # Prepare output colors
 red=`tput setaf 1`
@@ -16,29 +16,30 @@ set -e
 case "$option" in
     setup)
        echo -n "${green} Setup $DESC\n "
-       echo -n "${gray} ++++++++++++++\n"
-       echo -n "${blue} docker-compose $composer \n"
-       echo -n "${gray} ++++++++++++++ \n"
        docker network create $DESC
        docker run -d --name="log-ops" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:9898:80 gliderlabs/logspout
-       docker-compose $composer  build
+       docker-compose -f $tools_path/portainer/portainer.yml  up -d  --build
+       docker-compose -f $tools_path/cachet/server/cachet-server.yml  up -d --build
        #Removes all stopped containers, untagged images, dangling volumes, and networks
        sh -c "clean/docker-clean run"
     ;;
 
     start)
         echo -n "${green} Starting $DESC: "
-        docker-compose $composer  up -d
+        docker-compose -f $tools_path/portainer/portainer.yml  start
+        docker-compose -f $tools_path/cachet/server/cachet-server.yml  start
     ;;
 
     stop)
         echo -n "${gray} Stopping $DESC: "
-        docker-compose $composer down
+        docker-compose -f $tools_path/portainer/portainer.yml  stop
+        docker-compose -f $tools_path/cachet/server/cachet-server.yml  stop
     ;;
 
     teardown)
         echo -n "${red} TearDown $DESC: "
-        docker-compose $composer down
+        docker-compose -f $tools_path/portainer/portainer.yml  down
+        docker-compose -f $tools_path/cachet/server/cachet-server.yml  down
         #Stops and removes all containers, cleans dangling volumes, and networks
         sh -c "clean/docker-clean stop"
         sudo ip addr del 169.254.255.254/24 dev lo:0
