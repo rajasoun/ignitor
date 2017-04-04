@@ -8,15 +8,13 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
 
-# Create hubot user
-RUN adduser -h /hubot -s /bin/sh -S hubot
-USER  hubot
-WORKDIR /hubot
-
 RUN set -ex \
   && apk add --no-cache redis  \
-  && npm install coffee-script -g \
-  && npm install yo generator-hubot -g \
+  && npm install --ignore-optional -g \
+               yarn \
+               coffee-script \
+               yo generator-hubot \
+  && npm uninstall npm -g \
   && yo hubot --owner="Raja. S <rajasoun@icloud.com>" \
               --name="sparkbot" \
               --description="Cisco Spark Hubot" \
