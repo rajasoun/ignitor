@@ -16,7 +16,7 @@ ENV NODE_ENV production
 #                   /hubot /hubot/bin
 
 USER root
-RUN chown hubot:hubot -R
+RUN chown hubot:hubot -R   /hubot
 
 RUN set -ex \
   && apk add --no-cache redis  \
