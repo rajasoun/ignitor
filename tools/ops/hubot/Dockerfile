@@ -8,20 +8,26 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
 RUN set -ex \
+    && mkdir -p /root/.config/configstore \
+    && mkdir -p /hubot/bin \
+    && mkdir -p /root/.npm \
+    && chmod g+rwx /root /root/.npm /root/.npm/coffee-script \
+                    root/.config /root/.config/configstore \
+                    /hubot/bin /hubot
+
+RUN set -ex \
   && apk add --no-cache redis  \
   && npm install coffee-script -g \
   && npm install yo generator-hubot -g \
+  && yo hubot --owner="Raja. S <rajasoun@icloud.com>" \
+              --name="sparkbot" \
+              --description="Cisco Spark Hubot" \
+              --defaults \
   && rm -rf /var/cache/apk/*
 
 WORKDIR /hubot
 
 
-RUN set -ex \
-    && mkdir -p /root/.config/configstore \
-    && mkdir -p /hubot/bin \
-    && mkdir -p /root/.npm \
-    && chmod g+rwx /root /root/.config /root/.config/configstore /root/.npm/coffee-script /hubot/bin /hubot  /root/.npm \
-    && yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
 
 # Init
 ENTRYPOINT ["/init"]
