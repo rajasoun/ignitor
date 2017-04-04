@@ -20,7 +20,7 @@ RUN set -ex \
     && mkdir -p /root/.config/configstore \
     && mkdir -p /hubot/bin \
     && mkdir -p /root/.npm \
-    && chmod g+rwx /root /root/.config /root/.config/configstore /hubot/bin /hubot  /root/.npm \
+    && chmod g+rwx /root /root/.config /root/.config/configstore /root/.npm/coffee-script /hubot/bin /hubot  /root/.npm \
     && yo hubot --owner="Raja. S <rajasoun@icloud.com>" --name="sparkbot" --description="Cisco Spark Hubot" --defaults
 
 # Init
