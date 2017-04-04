@@ -13,7 +13,7 @@ RUN set -ex \
   && npm uninstall npm -g
 
 RUN set -ex \
-  && apk add --no-cache redis  \
+  && apk add --update --no-cache redis  \
   && yarn global add yarn coffee-script yo generator-hubot \
   && yo hubot --owner="Raja. S <rajasoun@icloud.com>" \
               --name="sparkbot" \
