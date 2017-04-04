@@ -8,12 +8,12 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
 RUN set -ex \
-    && mkdir -p /root/.config/configstore \
-    && mkdir -p /hubot/bin \
+    && mkdir -p /root/.config \
     && mkdir -p /root/.npm \
-    && chmod g+rwx /root /root/.npm /root/.npm/coffee-script \
-                    root/.config /root/.config/configstore \
-                    /hubot/bin /hubot
+    && mkdir -p /hubot/bin \
+
+    && chmod g+rwx /root /root/.npm /root/.config  \
+                   /hubot /hubot/bin
 
 RUN set -ex \
   && apk add --no-cache redis  \
