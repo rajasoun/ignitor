@@ -7,13 +7,16 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
-RUN set -ex \
-    && mkdir -p /root/.config \
-    && mkdir -p /root/.npm \
-    && mkdir -p /hubot/bin \
+#RUN set -ex \
+#    && mkdir -p /root/.config \
+#    && mkdir -p /root/.npm \
+#    && mkdir -p /hubot/bin \
+#
+#    && chmod g+rwx /root /root/.npm /root/.config  \
+#                   /hubot /hubot/bin
 
-    && chmod g+rwx /root /root/.npm /root/.config  \
-                   /hubot /hubot/bin
+USER root
+RUN chown hubot:hubot -R
 
 RUN set -ex \
   && apk add --no-cache redis  \
