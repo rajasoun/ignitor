@@ -7,23 +7,23 @@ services:
     ports:
       - "9000:80"
     networks:
-      - local
+      - docker_manager
 
   templates:
     build: templates/
     container_name: "portainer-templates"
     networks:
-      - local
+      - docker_manager
 
   portainer:
     image: portainer/portainer
     container_name: "portainer-server"
     command: --templates http://templates/templates.json
-    networks:
-      - local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/portainer/data:/data
+    networks:
+      - docker_manager
 
   watchtower:
     image: centurylink/watchtower
@@ -31,7 +31,9 @@ services:
     command: --cleanup portainer-app
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker_manager
 
 networks:
-  local:
+  docker_manager:
     driver: bridge
