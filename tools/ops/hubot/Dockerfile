@@ -7,16 +7,11 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV NODE_ENV production
 
-#RUN set -ex \
-#    && mkdir -p /root/.config \
-#    && mkdir -p /root/.npm \
-#    && mkdir -p /hubot/bin \
-#
-#    && chmod g+rwx /root /root/.npm /root/.config  \
-#                   /hubot /hubot/bin
 
-USER root
-RUN chown hubot:hubot -R   /hubot
+# Create hubot user
+RUN adduser -h /hubot -s /bin/sh -S hubot
+USER  hubot
+WORKDIR /hubot
 
 RUN set -ex \
   && apk add --no-cache redis  \
@@ -27,9 +22,6 @@ RUN set -ex \
               --description="Cisco Spark Hubot" \
               --defaults \
   && rm -rf /var/cache/apk/*
-
-WORKDIR /hubot
-
 
 
 # Init
