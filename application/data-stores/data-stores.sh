@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 option=$1
+composer="-f data-stores.yml"
 
 # Prepare output colors
 red=`tput setaf 1`
@@ -22,11 +23,6 @@ function docker_make(){
 	done
 }
 
-function cleanup(){
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
-    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
-}
 
 setup_data_stores(){
     docker-compose $composer run --rm start_dependencies
@@ -37,6 +33,13 @@ setup_data_stores(){
 init_data(){
     sh -c "data-stores/setup/seed/mongoseed.sh"
     sh -c "data-stores/setup/seed/mysqlseed.sh"
+}
+
+function cleanup(){
+    docker-compose $composer down
+    docker stop log-ck
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
 }
 
 case "$option" in
