@@ -31,9 +31,9 @@ init_data(){
 }
 
 cleanup(){
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
+    #docker volume ls -qf dangling=true | xargs -r docker volume rm
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
-    docker volume ls -qf dangling=true | xargs -r docker volume rm
+    #docker volume ls -qf dangling=true | xargs -r docker volume rm
 }
 
 setup_hostlocal(){
