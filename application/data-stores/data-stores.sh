@@ -54,7 +54,7 @@ case "$option" in
     ;;
 
     clean)
-       echo -n "${red} Setup Data Stores "
+       echo -n "${red} Clean Data Stores "
        cleanup
     ;;
 
