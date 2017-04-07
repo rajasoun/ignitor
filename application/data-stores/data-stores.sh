@@ -44,17 +44,17 @@ function cleanup(){
 
 case "$option" in
     build)
-       echo -n "${green} Building Core Docker Images "
+       echo -n "${green} Building Data Stores Docker Images "
        docker_make
     ;;
     setup)
-       echo -n "${green} Building Core Docker Images "
+       echo -n "${green} Setup Data Stores  "
        setup_data_stores
        init_data
     ;;
 
     clean)
-       echo -n "${red} Deleting Core Docker Images "
+       echo -n "${red} Setup Data Stores "
        cleanup
     ;;
 
