@@ -28,11 +28,26 @@ function cleanup(){
     docker volume ls -qf dangling=true | xargs -r docker volume rm
 }
 
+setup_data_stores(){
+    docker-compose $composer run --rm start_dependencies
+    docker-compose $composer run --rm start_dependencies
+    docker run -d --name="log-ck" --rm --volume=/var/run/docker.sock:/var/run/docker.sock --publish=127.0.0.1:8989:80 gliderlabs/logspout
+}
+
+init_data(){
+    sh -c "data-stores/setup/seed/mongoseed.sh"
+    sh -c "data-stores/setup/seed/mysqlseed.sh"
+}
 
 case "$option" in
     build)
        echo -n "${green} Building Core Docker Images "
        docker_make
+    ;;
+    setup)
+       echo -n "${green} Building Core Docker Images "
+       setup_data_stores
+       init_data
     ;;
 
     clean)
@@ -41,7 +56,7 @@ case "$option" in
     ;;
 
     *)
-        echo "${gray} Usage: ./data-stores.sh {build|clean}" >&2
+        echo "${gray} Usage: ./data-stores.sh {build|setup|clean}" >&2
         exit 1
     ;;
 esac
