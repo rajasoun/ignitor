@@ -31,8 +31,8 @@ setup_data_stores(){
 }
 
 init_data(){
-    sh -c "data-stores/setup/seed/mongoseed.sh"
-    sh -c "data-stores/setup/seed/mysqlseed.sh"
+    sh -c "setup/seed/mongoseed.sh"
+    sh -c "setup/seed/mysqlseed.sh"
 }
 
 function cleanup(){
