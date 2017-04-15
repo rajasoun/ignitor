@@ -3,7 +3,7 @@ version: '2'
 services:
   hubot:
     build: .
-    container_name: hubot
+    container_name: ops-bot
     restart: always
     volumes:
       - ./scripts:/hubot/scripts
