@@ -21,6 +21,8 @@ services:
     links:
       - redis
     command: ./bin/hubot -a slack
+    networks:
+      - chat_ops
 
   redis:
     image: redis
@@ -28,3 +30,9 @@ services:
     volumes:
       - ./redis:/data
       - /etc/localtime:/etc/localtime:ro
+    networks:
+      - chat_ops
+
+networks:
+  chat_ops:
+    driver: bridge
