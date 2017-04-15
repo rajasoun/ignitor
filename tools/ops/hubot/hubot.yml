@@ -25,11 +25,12 @@ services:
       - chat_ops
 
   redis:
-    image: redis
+    image: redis:alpine
     container_name: redis
     volumes:
       - ./redis:/data
       - /etc/localtime:/etc/localtime:ro
+    command: redis-server --appendonly yes
     networks:
       - chat_ops
 
