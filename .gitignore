@@ -7,3 +7,4 @@ devbox.sh
 __init__.py
 node_module
 yarn.lock
+redis/
