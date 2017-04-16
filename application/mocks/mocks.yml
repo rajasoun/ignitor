@@ -11,3 +11,9 @@ services:
        working_dir: /app
        command: "python app.py"
 
+    s3server:
+       image: scality/s3server
+       container_name: "s3server"
+       ports:
+            - "28000:8000"
+
