@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  proxy:
+    build: nginx/
+    container_name: "portainer-proxy"
+    ports:
+      - "80:80"
+    networks:
+      - local
+
+  templates:
+    image: portainer/templates
+    container_name: "portainer-templates"
+    networks:
+      - local
+
+  portainer:
+    image: portainer/portainer
+    container_name: "portainer-app"
+    command: --templates http://templates/templates.json
+    networks:
+      - local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/portainer/data:/data
+
+  watchtower:
+    image: centurylink/watchtower
+    container_name: "portainer-watchtower"
+    command: --cleanup portainer-app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  local:
+    driver: bridge
