@@ -11,7 +11,8 @@ ENV DB_PATH=/data/db
 
 # do all in one step
 RUN set -ex \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
+    && echo http://dl-4.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+    && echo http://dl-4.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
     && apk add --no-cache mongodb mongodb-tools \
     && mkdir -p ${DB_PATH} \
     && chown mongodb:mongodb ${DB_PATH} \
