@@ -17,6 +17,7 @@ services:
       - HUBOT_NAME=ops-bot
       - HUBOT_SLACK_TOKEN=@token
       - HUBOT_AUTH_ADMIN=U06LZSRD0
+      - HUBOT_UPTIMEROBOT_APIKEY=@roken
       - REDIS_URL=redis://redis:6379
     links:
       - redis
