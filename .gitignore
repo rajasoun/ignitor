@@ -10,6 +10,9 @@ yarn.lock
 redis/
 hubot_secret.yml
 .vault_pass
+tracker.learn.cisco-selfsign.crt
+tracker.learn.cisco-selfsign.csr
+tracker.learn.cisco-selfsign.key
 
 
 
