@@ -5,9 +5,8 @@
 #   hubot reload - Reloads scripts without restart. Loads new scripts too. (a fork version that works perfectly)
 #
 # Author:
-#   spajus
-#   vinta
-#   m-seldin
+#   Raja. S
+
 
 Fs       = require 'fs'
 Path     = require 'path'
