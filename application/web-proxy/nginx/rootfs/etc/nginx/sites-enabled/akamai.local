@@ -10,8 +10,8 @@ server {
         server_name tracker.learn.cisco;
 
         ssl on;
-        ssl_certificate /etc/nginx/ssl/tracker.learn.cisco-selfsign.crt;
-        ssl_certificate_key /etc/nginx/ssl/tracker.learn.cisco-selfsign.key;
+        ssl_certificate /etc/nginx/certs/tracker.learn.cisco-selfsign.crt;
+        ssl_certificate_key /etc/nginx/certs/tracker.learn.cisco-selfsign.key;
 
         ssl_session_timeout 5m;
 
