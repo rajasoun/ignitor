@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx-proxy:
-    build: nginx-proxy/
+    build: nginx/
     container_name: "nginx-proxy"
     ports:
       - "80:80"
