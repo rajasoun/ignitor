@@ -10,4 +10,3 @@ yarn.lock
 redis/
 hubot_secret.yml
 .vault_pass
-/application/web-proxy/nginx/rootfs/etc/nginx/certs/*.*
