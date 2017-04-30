@@ -10,9 +10,7 @@ yarn.lock
 redis/
 hubot_secret.yml
 .vault_pass
-application/web-proxy/nginx-proxy/rootfs/etc/nginx/ssl/tracker.learn.cisco-selfsign.crt
-application/web-proxy/nginx-proxy/rootfs/etc/nginx/ssl/tracker.learn.cisco-selfsign.csr
-application/web-proxy/nginx-proxy/rootfs/etc/nginx/ssl/tracker.learn.cisco-selfsign.key
+
 
 
 
