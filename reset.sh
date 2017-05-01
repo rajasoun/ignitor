@@ -3,5 +3,6 @@
 sh -c "tools/ops/clean/docker-clean all"
 docker-compose -f  tools/ops/portainer/portainer.yml  build
 docker-compose -f  tools/ops/portainer/portainer.yml  up -d
-sh -c "web-proxy/proxy.sh setup"
-sh -c "web-proxy/proxy.sh start"
+cd web-proxy
+sh -c "proxy.sh setup"
+sh -c "proxy.sh start"
