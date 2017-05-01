@@ -1,5 +1,5 @@
-image_name = rajasoun/nginx-proxy
-container_name = nginx-proxy
+image_name = rajasoun/proxy
+container_name = proxy
 
 VERSION=0.1
 
