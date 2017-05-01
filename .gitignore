@@ -2,7 +2,6 @@ src/
 data/
 .idea/
 .idea
-devbox.sh
 .DS_Store
 __init__.py
 node_module
