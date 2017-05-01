@@ -9,3 +9,4 @@ yarn.lock
 redis/
 hubot_secret.yml
 .vault_pass
+.passwords
