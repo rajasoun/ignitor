@@ -10,7 +10,7 @@ cleanup(){
 
 setup_ssl_certificate(){
     ansible-vault decrypt \
-        nginx/rootfs/etc/nginx/certs/tracker.learn.cisco-selfsign.* \
+        ~/Workspace/ck/ignitor/web-proxy/nginx/rootfs/etc/nginx/certs/tracker.learn.cisco-selfsign.* \
         --vault-password-file ~/Workspace/ck/ignitor/.vault_pass
 }
 
