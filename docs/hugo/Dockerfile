@@ -29,7 +29,7 @@ RUN set -x \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
-COPY ./run.sh /run.sh
+COPY ./run.sh /app/run.sh
 RUN sh -c "/app/run.sh"
 
 # Expose the ports for Hugo
