@@ -14,7 +14,7 @@ WORKDIR /app
 RUN set -x \
     && apk add --no-cache py-pygments git \
     && git clone https://github.com/rajasoun/tracker.doc /app \
-    && sh -c "/app/deploy.sh" \
+#    && sh -c "/app/deploy.sh" \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
