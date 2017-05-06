@@ -1,13 +1,13 @@
 version: '2'
 services:
-  tracker-docs:
+  tracker:
     build: hugo/
-    container_name: tracker-docs
+    container_name: tracker
     ports:
       - "1313:1313"
     networks:
-      - tracker_docs_net
+      - tracker_net
 
 networks:
-  tracker_docs_net:
+  tracker_net:
     driver: bridge
