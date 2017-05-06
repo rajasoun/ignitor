@@ -7,9 +7,9 @@ npm install
 npm run index
 
 # Build the project.
-hugo -destination=../tracker.doc
+hugo -destination=~/Workspace/ck/tracker.doc
 
-cd ../tracker.doc
+cd ~/Workspace/ck/tracker.doc
 # Add changes to git.
 git add -A
 
@@ -22,3 +22,4 @@ git commit -m "$msg"
 
 # Push source and build repos.
 git push origin master
+cd -
