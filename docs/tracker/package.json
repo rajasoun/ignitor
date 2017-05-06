@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rajasoun/tracker.doc.git"
+    "url": "git+https://github.com/rajasoun/ignitor.git"
   },
   "keywords": [
     "lunr"
@@ -19,9 +19,9 @@
      "url": "http://www.apache.org/licenses/LICENSE-2.0"
    }],
   "bugs": {
-    "url": "https://github.com/rajasoun/tracker.doc/issues"
+    "url": "https://github.com/rajasoun/ignitor/issues"
   },
-  "homepage": "https://github.com/rajasoun/tracker.doc#readme",
+  "homepage": "https://github.com/rajasoun/ignitor#readme",
   "devDependencies": {
     "lunr-hugo": "^0.1.2"
   }
