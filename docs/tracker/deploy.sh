@@ -20,5 +20,6 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
+cd public
 git push origin master
-git subtree push --prefix=public git@github.com:rajasoun/ignitor.git gh-pages
+git subtree push --prefix=public git@github.com:rajasoun/tracker.doc.git gh-pages
