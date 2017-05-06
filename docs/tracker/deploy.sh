@@ -7,7 +7,7 @@ npm install
 npm run index
 
 # Build the project.
-hugo -destination=~/Workspace/ck/tracker.doc
+hugo --destination=~/Workspace/ck/tracker.doc
 
 cd ~/Workspace/ck/tracker.doc
 # Add changes to git.
