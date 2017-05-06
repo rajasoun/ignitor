@@ -9,6 +9,14 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV HUGO_VERSION 0.20.7
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux-64bit
 
+ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
+
+RUN set -x \
+    && tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp \
+    && mkdir -p /usr/local/sbin \
+    && mv /tmp/hugo /usr/local/sbin/hugo \
+    && rm -rf /tmp/hugo_${HUGO_VERSION}_linux_amd64
+
 WORKDIR /app
 
 RUN set -x \
@@ -21,15 +29,9 @@ RUN set -x \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
-# Download and Install hugo
-RUN mkdir -p /usr/local/hugo
-ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tar.gz /usr/local/hugo/
-
-RUN set -x \
-    && tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
-	&& ln -s /usr/local/hugo/hugo /usr/local/bin/hugo \
-	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz \
-	&& hugo
+COPY ./run.sh /run.sh
+VOLUME /app
+VOLUME /output
 
 # Expose the ports for Hugo
 EXPOSE 1313
@@ -39,5 +41,5 @@ COPY rootfs /
 
 # Init
 ENTRYPOINT ["/init"]
-CMD []
+CMD ["/run.sh"]
 
