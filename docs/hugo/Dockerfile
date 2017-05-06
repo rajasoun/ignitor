@@ -14,6 +14,10 @@ WORKDIR /app
 RUN set -x \
     && apk add --no-cache py-pygments git \
     && git clone https://github.com/rajasoun/tracker.doc /app \
+    && git submodule init \
+    && git submodule update \
+    && npm install \
+	&& npm run index \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
@@ -27,9 +31,7 @@ RUN set -x \
 	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
 RUN set -x \
-    && npm install \
-	&& npm run index
-#    && hugo
+    && hugo
 
 # Expose the ports for Hugo
 EXPOSE 1313
