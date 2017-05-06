@@ -26,7 +26,7 @@ RUN set -x \
     && git submodule update \
     && npm install \
 	&& npm run index \
-	&& hugo server --source="/app" --destination="/app/public" \
+	&& hugo  --source="/app" --destination="/app/public" \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
