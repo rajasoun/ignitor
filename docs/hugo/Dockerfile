@@ -18,7 +18,7 @@ RUN set -x \
     && git submodule update \
     && npm install \
 	&& npm run index \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
     && apk del git
 
 # Download and Install hugo
