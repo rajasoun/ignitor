@@ -6,6 +6,8 @@ services:
       - "1313:1313"
     networks:
       - tracker_net
+    environment:
+      - HUGO_WATCH=true
 
 networks:
   tracker_net:
