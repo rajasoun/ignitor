@@ -14,10 +14,10 @@ while [ true ]
 do
     if [[ $HUGO_WATCH != 'false' ]]; then
 	    echo "Watching..."
-        $HUGO server --watch=true --source="/src" --theme="$HUGO_THEME" --destination="/output" --baseUrl="$HUGO_BASEURL" --bind="0.0.0.0" "$@" || exit 1
+        $HUGO server --watch=true --source="/app" --theme="$HUGO_THEME" --destination="/app/public" --baseUrl="$HUGO_BASEURL" --bind="0.0.0.0" "$@" || exit 1
     else
 	    echo "Building one time..."
-        $HUGO --source="/src" --theme="$HUGO_THEME" --destination="/output" --baseUrl="$HUGO_BASEURL" "$@" || exit 1
+        $HUGO --source="/app" --theme="$HUGO_THEME" --destination="/app/public" --baseUrl="$HUGO_BASEURL" "$@" || exit 1
     fi
 
     if [[ $HUGO_REFRESH_TIME == -1 ]]; then
