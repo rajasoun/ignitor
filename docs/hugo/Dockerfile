@@ -36,9 +36,6 @@ VOLUME /output
 # Expose the ports for Hugo
 EXPOSE 1313
 
-# Inject files in container file system
-COPY rootfs /
-
 # Init
 ENTRYPOINT ["/init"]
 CMD ["/run.sh"]
