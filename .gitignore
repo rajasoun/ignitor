@@ -10,3 +10,7 @@ redis/
 hubot_secret.yml
 .vault_pass
 .passwords
+node_modules
+static/json
+.vscode
+public/

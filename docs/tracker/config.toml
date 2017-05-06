@@ -1,0 +1,12 @@
+baseurl = "https://tracker,learn.cisco/"
+languageCode = "en-us"
+title = "Tracker Docs"
+theme = "hugo-theme-learn"
+MetaDataFormat = "yaml"
+
+[params]
+  editURL = "https://github.com/rajasoun/tracker.doc/edit/master/content/"
+  description = "Documentation for Tracker"
+  author = "Raja. S"
+  autoNav = true
+  search = true
