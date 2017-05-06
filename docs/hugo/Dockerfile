@@ -29,7 +29,7 @@ RUN set -x \
 RUN set -x \
     && npm install \
 	&& npm run index
-    && hugo
+#    && hugo
 
 # Expose the ports for Hugo
 EXPOSE 1313
