@@ -10,7 +10,7 @@ ENV HUGO_VERSION 0.20.7
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux-64bit
 
 RUN set -x \
-    && apk add --no-cache py-pygments \
+    && apk add --no-cache py-pygments git \
     && rm -rf /var/cache/apk/*
 
 # Download and Install hugo
@@ -26,6 +26,9 @@ RUN set -x \
 EXPOSE 1313
 
 WORKDIR /app
+RUN set -x \
+    && git clone https://github.com/rajasoun/tracker.doc \
+    && apk del git
 
 # Inject files in container file system
 COPY rootfs /
