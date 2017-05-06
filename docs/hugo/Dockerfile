@@ -26,16 +26,15 @@ RUN set -x \
     && git submodule update \
     && npm install \
 	&& npm run index \
-	&& hugo  --source="/app" --destination="/app/public" \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
-# COPY ./run.sh /run.sh
+COPY ./run.sh /run.sh
 
 # Expose the ports for Hugo
 EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD []
+CMD ["/run.sh"]
 
