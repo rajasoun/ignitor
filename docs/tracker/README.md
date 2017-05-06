@@ -1,2 +1,0 @@
-# tracker.doc
-Tracker Documentation

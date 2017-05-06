@@ -1,4 +1,4 @@
-FROM rajasoun/base:0.1
+FROM rajasoun/nodejs:0.1
 LABEL Vendor="Raja.S"
 
 MAINTAINER Raja. S <rajasoun@icloud.com>
@@ -9,9 +9,14 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV HUGO_VERSION 0.20.7
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux-64bit
 
+WORKDIR /app
+
 RUN set -x \
     && apk add --no-cache py-pygments git \
-    && rm -rf /var/cache/apk/*
+    && git clone https://github.com/rajasoun/tracker.doc /app \
+    && sh -c "deploy.sh"
+    && rm -rf /var/cache/apk/* \
+    && apk del git
 
 # Download and Install hugo
 RUN mkdir -p /usr/local/hugo
@@ -24,11 +29,6 @@ RUN set -x \
 
 # Expose the ports for Hugo
 EXPOSE 1313
-
-WORKDIR /app
-RUN set -x \
-    && git clone https://github.com/rajasoun/tracker.doc \
-    && apk del git
 
 # Inject files in container file system
 COPY rootfs /
