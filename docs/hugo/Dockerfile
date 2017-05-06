@@ -29,13 +29,12 @@ RUN set -x \
     && rm -rf /var/cache/apk/* \
     && apk del git
 
-COPY ./run.sh /app/run.sh
-RUN sh -c "/app/run.sh"
+COPY ./run.sh /run.sh
 
 # Expose the ports for Hugo
 EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD []
+CMD ["/run.sh"]
 
