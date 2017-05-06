@@ -24,7 +24,6 @@ ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINA
 RUN set -x \
     && tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
 	&& ln -s /usr/local/hugo/hugo /usr/local/bin/hugo \
-	&& sh -c "/app/deploy.sh" \
 	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
 # Expose the ports for Hugo
