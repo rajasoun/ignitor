@@ -19,7 +19,7 @@ RUN set -x \
     && npm install \
 	&& npm run index \
     && rm -rf /var/cache/apk/*
- #   && apk del git
+    && apk del git
 
 # Download and Install hugo
 RUN mkdir -p /usr/local/hugo
@@ -28,15 +28,13 @@ ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINA
 RUN set -x \
     && tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
 	&& ln -s /usr/local/hugo/hugo /usr/local/bin/hugo \
-	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
-
-RUN set -x \
-    && hugo
+	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz \
+	&& hugo
 
 # Expose the ports for Hugo
 EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD []
+CMD [hugo server]
 
