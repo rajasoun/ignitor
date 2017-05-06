@@ -6,6 +6,3 @@
 	path = docs/tracker/themes/hugo-theme-learn
 	url = https://github.com/matcornic/hugo-theme-learn
 
-[submodule "docs/tracker.doc"]
-	path = docs/tracker.doc
-	url = https://github.com/rajasoun/tracker.doc
