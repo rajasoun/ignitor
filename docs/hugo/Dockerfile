@@ -36,5 +36,5 @@ EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD [hugo server]
+CMD [/usr/local/bin/hugo server]
 
