@@ -26,6 +26,11 @@ RUN set -x \
 	&& ln -s /usr/local/hugo/hugo /usr/local/bin/hugo \
 	&& rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
+RUN set -x \
+    && npm install \
+	&& npm run index \
+	&& hugo
+
 # Expose the ports for Hugo
 EXPOSE 1313
 
