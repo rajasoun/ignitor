@@ -30,11 +30,12 @@ RUN set -x \
     && apk del git
 
 COPY ./run.sh /run.sh
+RUN sh -c "/app/run.sh"
 
 # Expose the ports for Hugo
 EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD ["/run.sh"]
+CMD []
 
