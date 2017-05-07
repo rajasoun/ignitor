@@ -3,7 +3,7 @@ services:
   tracker:
     build: hugo/
     ports:
-      - "9100:1313"
+      - "9100:443"
     networks:
       - tracker_net
     environment:
