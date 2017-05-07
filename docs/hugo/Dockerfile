@@ -35,5 +35,5 @@ EXPOSE 1313
 
 # Init
 ENTRYPOINT ["/init"]
-CMD ["/etc/usr/bin/run.sh"]
+CMD []
 
