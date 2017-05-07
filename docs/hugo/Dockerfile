@@ -26,7 +26,7 @@ RUN set -x \
     && git submodule update \
     && npm install \
 	&& npm run index \
-    && apk del git
+    && apk del git  \
     && rm -rf /var/cache/apk/* \
 
 
