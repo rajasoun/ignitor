@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-exec hugo server --source="/app" --baseURL=https://tracker.learn.cisco/docs --theme=hugo-theme-learn --port=80 --bind=0.0.0.0
+hugo --source="/app" --destination="/app/public"
+exec hugo server --source="/app" --destination="/app/public" --baseURL=https://tracker.learn.cisco/docs --theme=hugo-theme-learn --port=80 --bind=0.0.0.0
+
