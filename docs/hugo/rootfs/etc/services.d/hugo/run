@@ -1,4 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-hugo --source="/app" --destination="/app/public"
-exec hugo server --source="/app" --destination="/app/public"
+exec hugo server --source="/app" --theme=hugo-theme-learn
