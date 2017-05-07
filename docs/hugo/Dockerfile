@@ -38,5 +38,5 @@ COPY rootfs /
 
 # Init
 ENTRYPOINT ["/init"]
-CMD ["/etc/usr/bin/run.sh"]
+CMD []
 
