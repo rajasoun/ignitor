@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv sh
 
-exec hugo server --source="/app" --theme=hugo-theme-learn --port=80 --bind=0.0.0.0
+exec hugo server --source="/app" --theme=hugo-theme-learn  --bind=0.0.0.0
 

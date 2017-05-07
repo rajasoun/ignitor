@@ -32,7 +32,7 @@ RUN set -x \
 
 
 # Expose the ports for Hugo
-EXPOSE 80
+EXPOSE 1313
 
 # Inject files in container file system
 COPY rootfs /
