@@ -58,7 +58,7 @@ case "$option" in
         docker-compose $composer logs -f
     ;;
     *)
-        echo "Usage: ./application.sh {setup|start|stop|teardown|log}" >&2
+        echo "Usage: ./proxy.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
