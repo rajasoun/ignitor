@@ -15,11 +15,6 @@ if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
-if ( (!empty( $_SERVER['HTTP_X_FORWARDED_HOST'])) ||
-     (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) ) {
-    $_SERVER['HTTPS'] = 'on';
-	$_SERVER['HTTP_HOST'] = $_SERVER['https://tracker.learn.cisco/actions/'];
-}
 
 require_once(ABSPATH . 'wp-secrets.php');
 require_once(ABSPATH . 'wp-settings.php');
