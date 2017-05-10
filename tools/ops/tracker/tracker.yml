@@ -21,7 +21,7 @@ services:
      depends_on:
        - db
      image: wordpress:latest
-     container_name: wordpress
+     #image: wordpress:4.7.4-php7.1-fpm-alpine
      ports:
        - "28000:80"
      restart: always
