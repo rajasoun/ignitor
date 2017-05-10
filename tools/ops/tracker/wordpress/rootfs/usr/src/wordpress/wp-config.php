@@ -20,6 +20,7 @@ if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
 
 if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
     $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+    _SERVER['REQUEST_URI'] = "/actions".$_SERVER['REQUEST_URI'];
 }
 
 
