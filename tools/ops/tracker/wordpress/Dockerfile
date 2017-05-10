@@ -28,14 +28,14 @@ RUN set -x \
     	&& echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
       && mkdir -p /usr/src/ \
     	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
-    	&& rm wordpress.tar.gz \
-    	&& chown -R nobody.nobody /usr/src/wordpress
+    	&& rm wordpress.tar.gz 
 
 # Inject files in container file system
 COPY rootfs /
 
 # Chown Permissions
 RUN set -x \
+  && chown -R nobody.nobody /usr/src/wordpress
   && chown nobody.nobody /usr/src/wordpress/wp-config.php \
   && chmod 640 /usr/src/wordpress/wp-config.php \
   && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
