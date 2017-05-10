@@ -18,9 +18,7 @@ if (!defined('ABSPATH')) {
 if ( (!empty( $_SERVER['HTTP_X_FORWARDED_HOST'])) ||
      (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) ) {
     $_SERVER['HTTPS'] = 'on';
-	// $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
-	$_SERVER['REQUEST_URI'] = str_replace("/wp-admin/", "/actions/wp-admin/",
-                                            $_SERVER['REQUEST_URI']);
+	$_SERVER['HTTP_HOST'] = $_SERVER['https://tracker.learn.cisco/actions/'];
 }
 
 require_once(ABSPATH . 'wp-secrets.php');
