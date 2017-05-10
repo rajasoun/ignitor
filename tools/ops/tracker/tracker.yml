@@ -4,13 +4,6 @@ version: '2'
 
 services:
 
-  proxy:
-    build: nginx/
-    ports:
-      - "28000:80"
-    networks:
-      - wordpress_net
-
    db:
      image: mysql:5.7
      volumes:
@@ -30,7 +23,7 @@ services:
      image: wordpress:latest
      container_name: wordpress
      ports:
-       - "80"
+       - "28000:80"
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
