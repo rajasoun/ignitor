@@ -18,6 +18,7 @@ if (!defined('ABSPATH')) {
 if ( (!empty( $_SERVER['HTTP_X_FORWARDED_HOST'])) ||
      (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) ) {
     $_SERVER['HTTPS'] = 'on';
+	$_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
 }
 
 require_once(ABSPATH . 'wp-secrets.php');
