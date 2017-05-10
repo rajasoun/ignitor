@@ -35,7 +35,7 @@ COPY rootfs /
 
 # Chown Permissions
 RUN set -x \
-  && chown -R nobody.nobody /usr/src/wordpress
+  && chown -R nobody.nobody /usr/src/wordpress \
   && chown nobody.nobody /usr/src/wordpress/wp-config.php \
   && chmod 640 /usr/src/wordpress/wp-config.php \
   && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
