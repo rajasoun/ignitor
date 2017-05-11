@@ -1,6 +1,8 @@
 <?php
 
 define('WP_CONTENT_DIR', '/var/www/wp-content');
+define( 'UPLOADS', 'wp-content/uploads' );
+
 
 $table_prefix  = getenv('TABLE_PREFIX') ?: 'wp_';
 
