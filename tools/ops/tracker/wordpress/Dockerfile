@@ -17,7 +17,13 @@ RUN set -x \
     php7-mbstring php7-gd nginx \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-    && apk --no-cache add supervisor curl bash
+    && apk --no-cache add supervisor curl bash \
+    && ln -s /etc/php7 /etc/php  \
+    && ln -s /usr/bin/php7 /usr/bin/php  \
+    && ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm  \
+    && ln -s /usr/lib/php7 /usr/lib/php  \
+    && rm -rf /var/cache/apk/*  \
+    && rm -rf /tmp/*
 
 
 
@@ -28,14 +34,7 @@ RUN set -x \
     	&& echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
       && mkdir -p /usr/src/ \
     	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
-      && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-      && chmod +x ./wp-cli.phar \
-      && mv ./wp-cli.phar /usr/bin/wp \
-      && wp core install --url=https://tracker.learn.cisco --title="Tracker" --admin_user=admin --admin_password=Cisco@1234 --admin_email=rajasoun@icloud.com \
-      && curl -O https://github.com/rajasoun/glfs/blob/master/tracker/taskrocket.zip \
-      && wp theme install taskrocket.zip --activate \
-      && rm wordpress.tar.gz \
-      && rm taskrocket.zip
+      && rm wordpress.tar.gz 
 
 
 # Inject files in container file system
@@ -49,7 +48,6 @@ RUN set -x \
   && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
   && chmod 640 /usr/src/wordpress/wp-secrets.php \
   && chown -R nobody.nobody /var/www
-
 
 # wp-content volume
 VOLUME /var/www/wp-content
