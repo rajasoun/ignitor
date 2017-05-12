@@ -28,7 +28,15 @@ RUN set -x \
     	&& echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
       && mkdir -p /usr/src/ \
     	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
-    	&& rm wordpress.tar.gz 
+      && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+      && chmod +x ./wp-cli.phar \
+      && mv ./wp-cli.phar /usr/bin/wp \
+      && wp core install --url=https://tracker.learn.cisco --title="Tracker" --admin_user=admin --admin_password=Cisco@1234 --admin_email=rajasoun@icloud.com \
+      && curl -O https://github.com/rajasoun/glfs/blob/master/tracker/taskrocket.zip \
+      && wp theme install taskrocket.zip --activate \
+      && rm wordpress.tar.gz \
+      && rm taskrocket.zip
+
 
 # Inject files in container file system
 COPY rootfs /
