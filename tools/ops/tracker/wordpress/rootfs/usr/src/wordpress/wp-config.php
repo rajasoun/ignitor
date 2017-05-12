@@ -1,7 +1,7 @@
 <?php
 
 define('WP_CONTENT_DIR', '/var/www/wp-content');
-
+define('WP_MEMORY_LIMIT', '64M');
 
 $table_prefix  = getenv('TABLE_PREFIX') ?: 'wp_';
 
