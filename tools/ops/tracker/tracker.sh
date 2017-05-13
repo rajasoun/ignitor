@@ -36,7 +36,6 @@ case "$option" in
                         --title="Tracker" --admin_user=admin \
                         --admin_password=vziMjlWd3^RoZRO%i# \
                         --admin_email=rajasoun@icloud.com
-        docker exec -it tracker_tasks_1 chown -R nobody.nobody /var/www
         docker exec -it tracker_tasks_1 wp cli update --path=/usr/src/wordpress/
     ;;
 
