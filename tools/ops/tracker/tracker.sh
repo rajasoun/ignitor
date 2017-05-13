@@ -30,8 +30,9 @@ case "$option" in
         echo -n "Starting $DESC: "
         docker-compose $composer run --rm start_dependencies
         docker-compose $composer  up -d  --build
+        docker exec -it tracker_tasks_1 wp cli update --path=/usr/src/wordpress/        
         docker exec -it tracker_tasks_1 wp core install --path=/usr/src/wordpress/ --url=https://tracker.learn.cisco/tasks --title="Tracker" --admin_user=admin --admin_password=vziMjlWd3^RoZRO%i# --admin_email=rajasoun@icloud.com
-    ;;
+ 
 
     stop)
         echo -n "Stopping $DESC: "
