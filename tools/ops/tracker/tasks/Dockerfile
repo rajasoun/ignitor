@@ -12,5 +12,5 @@ RUN set -x \
       && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
       && chmod +x ./wp-cli.phar \
       && php wp-cli.phar --allow-root cli version \
-      && mv ./wp-cli.phar /usr/bin/wp
+      && mv ./wp-cli.phar /usr/bin/wp \
       && chown -R nobody.nobody /var/www
