@@ -11,10 +11,10 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 
-  wordpress:
+  tracker:
     depends_on:
       - db
-    build: wordpress/
+    build: tracker/
     volumes:
       - "site-data:/var/www/wp-content"
     links:
