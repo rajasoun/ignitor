@@ -33,9 +33,9 @@ services:
       - "28000:80"
     environment:
       DB_HOST: db
-      DB_PASSWORD: wordpress
       DB_NAME: wordpress
       DB_USER: wordpress
+      DB_PASSWORD: wordpress
       WORDPRESS_SITE_URL: https://tracker.learn.cisco
       FS_METHOD: direct
 

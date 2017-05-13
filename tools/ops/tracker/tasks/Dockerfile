@@ -6,6 +6,12 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 # Stop container initialization if error occurs in cont-init.d fix-attrs.d script's
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
+ENV DB_HOST db
+ENV DB_NAME wordpress
+ENV DB_USER wordpress
+ENV DB_PASSWORD wordpress
+
+
 
 # Install WP-CLI
 RUN set -x \
