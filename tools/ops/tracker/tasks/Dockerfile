@@ -15,7 +15,8 @@ RUN set -x \
 
 # Configure Wordpress
 RUN set -x \
-      && wp core config --dbhost=db --dbname=wordpress --dbuser=wordpress --dbpass=wordpress  \
+      && wp core config  --path=/usr/src/wordpress/ \
+         --dbhost=db --dbname=wordpress --dbuser=wordpress --dbpass=wordpress  \
       && wp core install --path=/usr/src/wordpress/ \
          --url=https://tracker.learn.cisco/tasks \
          --title="Tracker" --admin_user=admin \
