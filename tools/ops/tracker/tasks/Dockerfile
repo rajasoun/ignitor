@@ -12,9 +12,4 @@ RUN set -x \
       && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
       && chmod +x ./wp-cli.phar \
       && php wp-cli.phar --allow-root cli version \
-      && mv ./wp-cli.phar /usr/bin/wp \
-      #&& wp core install --path=/usr/src/wordpress/ --url=https://tracker.learn.cisco/actions --title="Tracker" --admin_user=admin --admin_password=vziMjlWd3^RoZRO%i# --admin_email=rajasoun@icloud.com \
-      && curl -O https://github.com/rajasoun/glfs/blob/master/tracker/taskrocket.zip \
-      && mv taskrocket.zip /tmp \
-      #&& wp theme install --path=/usr/src/wordpress/ taskrocket.zip --activate \
-      #&& rm taskrocket.zip
+      && mv ./wp-cli.phar /usr/bin/wp 
