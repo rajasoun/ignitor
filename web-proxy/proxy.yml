@@ -9,8 +9,8 @@ services:
     volumes:
       - /etc/nginx/conf.d
     networks:
-      - proxy_net
+      - net
 
 networks:
-  proxy_net:
+  net:
     driver: bridge
