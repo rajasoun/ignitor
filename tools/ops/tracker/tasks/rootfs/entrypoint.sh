@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # terminate on errors
-set -e
+# set -e
 
 chown -R nobody.nobody /var/www
 wp core install --path=/usr/src/wordpress/ \
