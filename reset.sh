@@ -13,7 +13,7 @@ docker-compose -f  docs/docs.yml  up -d --build
 
 
 cd tools/ops/tracker
-sh -c "tracker.sh start"
+./tracker.sh start
 cd ~/Workspace/ck/ignitor
 
 ## Unified Log
