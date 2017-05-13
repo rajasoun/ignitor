@@ -22,3 +22,6 @@ services:
     nginx-static:
         build: nginx-static
         image: "rajasoun/nginx-static:0.1"
+    wordpress:
+        build: wordpress
+        image: "rajasoun/wordpress:0.1"        

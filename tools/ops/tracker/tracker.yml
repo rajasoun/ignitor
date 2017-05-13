@@ -1,6 +1,15 @@
 version: '2'
 
 services:
+
+  start_dependencies:
+     image: rajasoun/wait-for-it:0.1
+     container_name: "wait-for-it"
+     depends_on:
+        - db
+        
+     command: db:3306 
+
   db:
     image: mariadb:10.1
     volumes:
@@ -11,10 +20,10 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 
-  wordpress:
+  tasks:
     depends_on:
       - db
-    build: wordpress/
+    build: tasks/
     volumes:
       - "site-data:/var/www/wp-content"
     links:
