@@ -19,8 +19,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    networks:
-      - tracker_tasks
+
 
   tasks:
     depends_on:
@@ -39,13 +38,9 @@ services:
       DB_USER: wordpress
       WORDPRESS_SITE_URL: https://tracker.learn.cisco
       FS_METHOD: direct
-    networks:
-      - tracker_tasks
+
 
 volumes:
   db-data:
   site-data:
 
-networks:
-  tracker_tasks:
-    driver: bridge
