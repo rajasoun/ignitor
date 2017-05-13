@@ -6,13 +6,6 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 # Stop container initialization if error occurs in cont-init.d fix-attrs.d script's
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-ENV DB_HOST db
-ENV DB_NAME wordpress
-ENV DB_USER wordpress
-ENV DB_PASSWORD wordpress
-
-
-
 # Install WP-CLI
 RUN set -x \
       && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
@@ -22,6 +15,7 @@ RUN set -x \
 
 # Configure Wordpress
 RUN set -x \
+      && wp core config --dbhost=db --dbname=wordpress --dbuser=wordpress --dbpass=wordpress
       && wp core install --path=/usr/src/wordpress/ \
          --url=https://tracker.learn.cisco/tasks \
          --title="Tracker" --admin_user=admin \
