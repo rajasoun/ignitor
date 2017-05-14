@@ -2,9 +2,9 @@ version: '2'
 
 services:
 
-  static-site:
+  tracker:
     build: tracker/
-    container_name: "tracker.static.site"
+    container_name: "tracker.static"
     ports:
       - "7100:80"
 
