@@ -8,10 +8,9 @@ cd web-proxy
 cd -
 
 ## Setup hostlocal.io
-docker run --rm --privileged --net=host gliderlabs/hostlocal
+docker-compose -f  tools/static-site/tracker.learn.cisco.yml up -d --build
 docker-compose -f  tools/ops/portainer/portainer.yml  up -d --build
 docker-compose -f  docs/docs.yml  up -d --build
-
 
 cd tools/ops/tracker
 ./tracker.sh start
