@@ -4,6 +4,7 @@ services:
 
   static-site:
     build: tracker/
+    container_name: "tracker.static.site"
     ports:
       - "7100:80"
 
