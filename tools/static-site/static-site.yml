@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+
+  static-site:
+    build: tracker/
+    ports:
+      - "7100:80"
+
