@@ -9,7 +9,7 @@ blue=`tput setaf 4`
 gray=`tput setaf 8`
 reset=`tput sgr0`
 
-projects=( base java nodejs python wait-for-it ansible nginx-static wordpress)
+projects=( base java nodejs python wait-for-it ansible nginx-static php)
 
 function docker_make(){
 	for project in "${projects[@]}"
