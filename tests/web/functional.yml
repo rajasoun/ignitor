@@ -2,11 +2,6 @@ version: '2'
 
 services:
 
-  nginx-static:
-    build: ../../application/core/nginx-static
-    ports:
-      - "7100:80"
-
   php:
     build: ../../application/core/php
     ports:
