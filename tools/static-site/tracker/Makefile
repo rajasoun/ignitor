@@ -1,5 +1,5 @@
-image_name = rajasoun/nginx-static
-container_name = nginx-static
+image_name = rajasoun/static
+container_name = static-site
 
 VERSION=0.1
 
