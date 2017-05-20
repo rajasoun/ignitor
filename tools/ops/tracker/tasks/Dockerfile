@@ -42,7 +42,6 @@ RUN set -x \
 # wp-content volume
 VOLUME /var/www/wp-content
 WORKDIR /var/www/wp-content
-#VOLUME ["/var/www", "/var/log/nginx"]
 
 EXPOSE 80
 
