@@ -20,13 +20,13 @@ RUN set -x \
     && rm wordpress.tar.gz
 
 # Inject files in container file system
-COPY rootfs /
+#COPY rootfs /
 
 
 # Expose the ports for nginx
 EXPOSE 80 443
 
-#VOLUME ["/var/www", "/var/log/nginx"]
+VOLUME ["/var/www", "/var/log/nginx"]
 
 
 # Init
