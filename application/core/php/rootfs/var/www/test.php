@@ -2,7 +2,7 @@
 echo 'Date: '.date('jS F Y').'<br>';
 echo 'Time: '.date('h:i:s a').'<br>';
 
-$db = mysqli_connect('db', 'root', 'php', 'mysql')
+$db = mysqli_connect('db', 'root', 'wordpress', 'mysql')
 	or die('Error: ' . mysqli_error());
 
 $query = 'SHOW DATABASES;';
