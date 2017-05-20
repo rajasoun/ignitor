@@ -7,17 +7,6 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 
-## Install Packages
-#RUN set -x \
-#    && apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
-#      php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader \
-#      php7-ctype php7-mbstring php7-gd php7-session php7-pdo \
-#      php7-pdo_mysql php7-mysqlnd php7-mcrypt php7-opcache php7-bcmath \
-#      --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
-#      --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-#    && rm -rf /var/cache/apk/*  \
-#    && rm -rf /tmp/*
-
 # Install php 7
 RUN set -x \
     && apk add php7 php7-session php7-fpm php7-json php7-zlib php7-xml \
