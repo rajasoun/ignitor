@@ -26,7 +26,7 @@ COPY rootfs /
 # Expose the ports for nginx
 EXPOSE 80 443
 
-VOLUME ["/var/www", "/var/log/nginx"]
+#VOLUME ["/var/www", "/var/log/nginx"]
 
 
 # Init
