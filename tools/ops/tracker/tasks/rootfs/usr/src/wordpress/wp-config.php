@@ -2,6 +2,8 @@
 
 define('WP_CONTENT_DIR', '/var/www/wp-content');
 define('WP_MEMORY_LIMIT', '64M');
+define('WP_ALLOW_REPAIR', true);
+
 
 $table_prefix  = getenv('TABLE_PREFIX') ?: 'wp_';
 
