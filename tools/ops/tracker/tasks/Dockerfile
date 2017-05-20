@@ -19,13 +19,27 @@ RUN set -x \
     && tar -xzf wordpress.tar.gz -C /usr/src/ \
     && rm wordpress.tar.gz
 
+
 # Inject files in container file system
 COPY rootfs /
 
-# Expose the ports for nginx
-EXPOSE 80 443
+# Chown Permissions
+RUN set -x \
+    && chown -R nobody.nobody /usr/src/wordpress \
+    && chown nobody.nobody /usr/src/wordpress/wp-config.php \
+    && chmod 640 /usr/src/wordpress/wp-config.php \
+    && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
+    && chmod 640 /usr/src/wordpress/wp-secrets.php \
+    && cp -r /usr/src/wordpress/wp-content /var/www/ \
+    && chown -R nobody.nobody /var/www   \
+    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
-VOLUME ["/var/www", "/var/log/nginx"]
+# wp-content volume
+VOLUME /var/www/wp-content
+WORKDIR /var/www/wp-content
+#VOLUME ["/var/www", "/var/log/nginx"]
+
+EXPOSE 80
 
 # Init
 ENTRYPOINT ["/init"]
