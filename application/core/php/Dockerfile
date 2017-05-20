@@ -34,7 +34,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Expose the ports for nginx
-EXPOSE 80 443
+EXPOSE 80
 
 # Inject files in container file system
 COPY rootfs /

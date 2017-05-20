@@ -19,3 +19,6 @@ RUN set -x \
     && tar -xzf wordpress.tar.gz -C /usr/src/ \
     && rm wordpress.tar.gz \
     && ln -s /usr/src/wordpress /var/www/wordpress
+
+# Expose the ports for nginx
+EXPOSE 81

@@ -30,7 +30,7 @@ services:
     links:
       - db
     ports:
-      - "28000:80"
+      - "28000:81"
     environment:
       DB_HOST: db
       DB_NAME: wordpress
