@@ -13,7 +13,7 @@ services:
     volumes:
       - "php-db-data:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: php
+      MYSQL_ROOT_PASSWORD: wordpress
 
   php:
     build: ../../application/core/php
