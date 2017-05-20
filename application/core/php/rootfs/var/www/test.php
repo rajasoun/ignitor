@@ -1,4 +1,6 @@
 <?php
+echo 'Date: '.date('jS F Y').'<br>';
+echo 'Time: '.date('h:i:s a').'<br>';
 
 $db = mysqli_connect('db', 'root', 'php', 'mysql')
 	or die('Error: ' . mysqli_error());
