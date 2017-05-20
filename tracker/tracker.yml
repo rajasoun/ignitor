@@ -7,8 +7,9 @@ services:
      container_name: "wait-for-it"
      depends_on:
         - db
-
      command: db:3306
+     networks:
+       - net
 
   db:
     image: mariadb:10.1
@@ -19,7 +20,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-
+    networks:
+      - net
 
   tasks:
     depends_on:
@@ -38,7 +40,12 @@ services:
       DB_PASSWORD: wordpress
       WORDPRESS_SITE_URL: https://tracker.learn.cisco
       FS_METHOD: direct
+    networks:
+      - net
 
+networks:
+  net:
+    driver: bridge
 
 volumes:
   db-data:
