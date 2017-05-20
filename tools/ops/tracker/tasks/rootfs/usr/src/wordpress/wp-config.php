@@ -4,6 +4,12 @@ define('WP_CONTENT_DIR', '/var/www/wp-content');
 define('WP_MEMORY_LIMIT', '64M');
 define('WP_ALLOW_REPAIR', true);
 
+define('DB_HOST', 'db');
+define('DB_NAME', 'wordpress');
+define('DB_USER', 'wordpress');
+define('DB_PASSWORD', 'wordpress');
+
+
 
 $table_prefix  = getenv('TABLE_PREFIX') ?: 'wp_';
 
