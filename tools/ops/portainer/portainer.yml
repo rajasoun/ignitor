@@ -8,12 +8,16 @@ services:
       - "9000:80"
     networks:
       - docker_manager
+    environment:
+       LOGSPOUT: ignore
 
   templates:
     build: templates/
     container_name: "portainer-templates"
     networks:
       - docker_manager
+    environment:
+       LOGSPOUT: ignore
 
   portainer:
     image: portainer/portainer
@@ -24,6 +28,8 @@ services:
       - /opt/portainer/data:/data
     networks:
       - docker_manager
+    environment:
+       LOGSPOUT: ignore
 
   watchtower:
     image: centurylink/watchtower
