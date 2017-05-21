@@ -29,12 +29,13 @@ case "$option" in
     start)
         echo -n "Starting $DESC: "
         docker-compose $composer run --rm start_dependencies
-        docker-compose $composer  up -d  --build
+        docker-compose $composer up -d  --build
     ;;
 
     stop)
         echo -n "Stopping $DESC: "
         docker-compose $composer down
+        docker volume rm tracker_db-data tracker_site-data
     ;;
 
     teardown)

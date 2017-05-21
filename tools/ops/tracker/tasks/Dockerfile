@@ -59,13 +59,11 @@ COPY rootfs /
 
 ## Chown Permissions
 #RUN set -x \
-#    && find /usr/src/wordpress -type d -print0 | xargs -0 chmod 0755 \
-#    && find /usr/src/wordpress -type f -print0 | xargs -0 chmod 0644 \
 #    && cp -r /usr/src/wordpress/wp-content /var/www/  \
-#    && mkdir -p /var/www/wp-content/uploads \
-#    && chown -R nobody.nobody /var/www \
 #    && find /var/www -type d -print0 | xargs -0 chmod 0755 \
 #    && find /var/www -type f -print0 | xargs -0 chmod 0644 \
+#    && mkdir -p /var/www/wp-content/uploads \
+#    && chown -Rf nobody.nobody /var/www \
 #    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
 ## Chown Permissions
