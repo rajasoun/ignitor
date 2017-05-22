@@ -66,11 +66,13 @@ COPY rootfs /
 #    && chown -Rf nobody.nobody /var/www \
 #    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
-## Chown Permissions
-RUN set -x \
-    && cp -r /usr/src/wordpress/wp-content /var/www/  \
-    && chown -Rf nginx.nginx /var/www \
-    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
+## Chown Permissions  - For Installing Themes & Plugins
+#RUN set -x \
+#    && cp -r /usr/src/wordpress/wp-content /var/www/  \
+#    && chown -Rf nginx.nginx /var/www \
+#    && find /var/www/wp-content -type d -exec chmod 775 {} \; \
+#    && find /var/www/wp-content -type f -exec chmod 664 {} \;  \
+#    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
 # wp-content volume
 VOLUME /var/www/wp-content
@@ -80,4 +82,4 @@ EXPOSE 80
 
 # Init
 ENTRYPOINT ["/init"]
-CMD []
+CMD ["./set-permissions.sh"]

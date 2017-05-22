@@ -2,10 +2,12 @@
 
 # terminate on errors
 set -e
+echo 'Setting up wp-content volume'
 
 WP_OWNER=nobody # <-- wordpress owner
 WP_GROUP=nobody # <-- wordpress group
 WP_ROOT=/usr/src/wordpress # <-- wordpress root directory
+WP_CONTENT=/var/www
 WS_GROUP=nginx # <-- webserver group
 
 # reset to safe defaults
@@ -21,4 +23,11 @@ chmod 660 ${WP_ROOT}/wp-config.php
 find ${WP_ROOT}/wp-content -exec chown ${WS_GROUP}:${WS_GROUP} {} \;
 find ${WP_ROOT}/wp-content -type d -exec chmod 775 {} \;
 find ${WP_ROOT}/wp-content -type f -exec chmod 664 {} \;
+
+
+cp -r ${WP_ROOT}/wp-content ${WP_CONTENT}
+chown -Rf nginx.nginx ${WP_CONTENT}
+find ${WP_CONTENT}/wp-content -type d -exec chmod 775 {} \;
+find ${WP_CONTENT}/wp-content -type f -exec chmod 664 {} \;
+curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> ${WP_ROOT}/wp-secrets.php
 
