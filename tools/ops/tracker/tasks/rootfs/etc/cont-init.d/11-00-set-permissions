@@ -27,7 +27,6 @@ find ${WP_ROOT}/wp-content -type f -exec chmod 664 {} \;
 
 cp -r ${WP_ROOT}/wp-content ${WP_CONTENT}
 chown -Rf nginx.nginx ${WP_CONTENT}
-find ${WP_CONTENT}/wp-content -type d -exec chmod 775 {} \;
+find ${WP_CONTENT}/wp-content -type d -exec chmod 774 {} \;
 find ${WP_CONTENT}/wp-content -type f -exec chmod 664 {} \;
 curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> ${WP_ROOT}/wp-secrets.php
-
