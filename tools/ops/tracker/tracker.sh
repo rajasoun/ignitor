@@ -10,7 +10,7 @@ cleanup(){
 
 setup_ssl_certificate(){
     ansible-vault decrypt \
-        ~/Workspace/ck/ignitor/tools/ops/tracker/tasks/rootfs/etc/cont-init.d/11-02-configure-wordpress \
+        ~/Workspace/ck/ignitor/tools/ops/tracker/tasks/rootfs/etc/cont-init.d/11-00-configure-wordpress \
         --vault-password-file ~/Workspace/ck/ignitor/.vault_pass
 }
 
