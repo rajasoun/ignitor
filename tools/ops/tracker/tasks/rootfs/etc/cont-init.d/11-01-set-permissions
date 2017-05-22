@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/usr/bin/with-contenv sh
 
 # terminate on errors
 set -e
