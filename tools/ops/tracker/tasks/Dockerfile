@@ -57,15 +57,6 @@ RUN set -x \
 # Inject files in container file system
 COPY rootfs /
 
-# Chown Permissions
-RUN set -x \
-  && chown -R nobody.nobody /usr/src/wordpress \
-  && chown nobody.nobody /usr/src/wordpress/wp-config.php \
-  && chmod 640 /usr/src/wordpress/wp-config.php \
-  && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
-  && chmod 640 /usr/src/wordpress/wp-secrets.php \
-  && chown -R nobody.nobody /var/www
-
 # wp-content volume
 VOLUME /var/www/wp-content
 WORKDIR /var/www/wp-content
