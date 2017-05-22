@@ -82,4 +82,4 @@ EXPOSE 80
 
 # Init
 ENTRYPOINT ["/init"]
-CMD ["./set-permissions.sh"]
+CMD []
