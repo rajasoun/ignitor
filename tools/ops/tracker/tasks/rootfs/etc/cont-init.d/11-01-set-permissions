@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-# terminate on errors
+# Terminate on Errors
 set -e
 echo 'Setting up wp-content volume'
 
