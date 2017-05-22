@@ -57,22 +57,14 @@ RUN set -x \
 # Inject files in container file system
 COPY rootfs /
 
-## Chown Permissions
-#RUN set -x \
-#    && cp -r /usr/src/wordpress/wp-content /var/www/  \
-#    && find /var/www -type d -print0 | xargs -0 chmod 0755 \
-#    && find /var/www -type f -print0 | xargs -0 chmod 0644 \
-#    && mkdir -p /var/www/wp-content/uploads \
-#    && chown -Rf nobody.nobody /var/www \
-#    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
-
-## Chown Permissions  - For Installing Themes & Plugins
-#RUN set -x \
-#    && cp -r /usr/src/wordpress/wp-content /var/www/  \
-#    && chown -Rf nginx.nginx /var/www \
-#    && find /var/www/wp-content -type d -exec chmod 775 {} \; \
-#    && find /var/www/wp-content -type f -exec chmod 664 {} \;  \
-#    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
+# Chown Permissions
+RUN set -x \
+  && chown -R nobody.nobody /usr/src/wordpress \
+  && chown nobody.nobody /usr/src/wordpress/wp-config.php \
+  && chmod 640 /usr/src/wordpress/wp-config.php \
+  && chown nobody.nobody /usr/src/wordpress/wp-secrets.php \
+  && chmod 640 /usr/src/wordpress/wp-secrets.php \
+  && chown -R nobody.nobody /var/www
 
 # wp-content volume
 VOLUME /var/www/wp-content

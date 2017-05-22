@@ -26,8 +26,8 @@ services:
   tasks:
     depends_on:
       - db
-    build: tasks/
-    #build: wordpress/
+    #build: tasks/
+    build: wordpress/
     volumes:
       - "site-data:/var/www/wp-content"
     links:
