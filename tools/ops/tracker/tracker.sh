@@ -8,11 +8,19 @@ cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
 }
 
+setup_ssl_certificate(){
+    ansible-vault decrypt \
+        ~/Workspace/ck/ignitor/tools/ops/tracker/tasks/rootfs/etc/cont-init.d/11-02-configure-wordpress \
+        --vault-password-file ~/Workspace/ck/ignitor/.vault_pass
+}
 
 setup_hostlocal(){
     docker run --rm --privileged --net=host gliderlabs/hostlocal
 }
 
+teardown_ssl_certificate(){
+    git reset --hard
+}
 
 teardown_hostlocal(){
     sudo ip addr del 169.254.255.254/24 dev lo:0
@@ -28,8 +36,10 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
+        setup_ssl_certificate ##Secret File  .vault_pass is required
         docker-compose $composer run --rm start_dependencies
         docker-compose $composer up -d  --build
+        teardown_ssl_certificate
     ;;
 
     stop)
