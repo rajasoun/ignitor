@@ -67,10 +67,10 @@ COPY rootfs /
 #    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
 ## Chown Permissions
-#RUN set -x \
-#    && cp -r /usr/src/wordpress/wp-content /var/www/  \
-#    && chown -R nobody.nobody /var/www \
-#    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
+RUN set -x \
+    && cp -r /usr/src/wordpress/wp-content /var/www/  \
+    && chown -Rf nginx.nginx /var/www \
+    && curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 
 # wp-content volume
 VOLUME /var/www/wp-content
