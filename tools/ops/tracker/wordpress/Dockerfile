@@ -31,11 +31,11 @@ RUN set -x \
 # Install Wordpress
 RUN set -x \
     # Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
-      && curl -o wordpress.tar.gz -SL https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz \
-    	&& echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
-      && mkdir -p /usr/src/ \
-    	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
-      && rm wordpress.tar.gz 
+    && curl -o wordpress.tar.gz -SL https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz \
+    && echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
+    && mkdir -p /usr/src/ \
+    && tar -xzf wordpress.tar.gz -C /usr/src/ \
+    && rm wordpress.tar.gz
 
 
 # Inject files in container file system
