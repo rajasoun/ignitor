@@ -31,7 +31,7 @@ RUN set -x \
 
 # Install Nginx
 RUN set -x \
-    && apk add --no-cache nginx curl\
+    && apk add --no-cache nginx curl bash \
     && chown -R nginx:www-data /var/lib/nginx \
     && rm -rf /var/cache/apk/*
 
