@@ -22,9 +22,7 @@ teardown_ssl_certificate(){
     git reset --hard
 }
 
-teardown_hostlocal(){
-    sudo ip addr del 169.254.255.254/24 dev lo:0
-}
+
 
 set -e
 
@@ -51,7 +49,6 @@ case "$option" in
     teardown)
         echo -n "TearDown $DESC: "
         docker-compose $composer down
-        teardown_hostlocal
         cleanup
     ;;
 
