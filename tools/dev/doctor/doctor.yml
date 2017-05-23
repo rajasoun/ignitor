@@ -1,11 +1,37 @@
-version: '2'
+version: '3'
 
 services:
+
+  start_dependencies:
+     image: rajasoun/wait-for-it:0.1
+     container_name: "wait-for-it"
+     depends_on:
+        - orientdb
+     command: orientdb:2424
+     networks:
+       - net
+
   orientdb:
-     image: "orientdb"
+     build: orientdb/
      ports:
         - "2424:2424"
         - "2480:2480"
      environment:
-        ORIENTDB_ROOT_PASSWORD: admin
+        ORIENTDB_DB_USER: admin
+        ORIENTDB_DB_USER_PASSWORD: admin
+        ORIENTDB_ROOT_USER: admin
+        ORIENTDB_ROOT_USER_PASSWORD: admin
+        ORIENTDB_DB: authorization
+     networks:
+        - net
 
+  scanner:
+     build: .
+     depends_on:
+       - orientdb
+     networks:
+       - net
+
+networks:
+  net:
+    driver: bridge
