@@ -25,12 +25,12 @@ services:
      networks:
         - net
 
-  scanner:
-     build: .
-     depends_on:
-       - orientdb
-     networks:
-       - net
+#  scanner:
+#     build: scanner/
+#     depends_on:
+#       - orientdb
+#     networks:
+#       - net
 
 networks:
   net:
