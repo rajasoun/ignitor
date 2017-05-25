@@ -3,8 +3,6 @@ LABEL Vendor="Raja.S"
 
 MAINTAINER Raja. S <rajasoun@icloud.com>
 
-# Inject files in container file system
-COPY rootfs /
 
 # WP config
 COPY wp-config.php /var/www/html
