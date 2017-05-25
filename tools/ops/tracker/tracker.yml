@@ -24,8 +24,9 @@ services:
       - net
 
   tasks:
-    image: wordpress:latest
+    #image: wordpress:latest
     #build: tasks/
+    build: wordpress/
     depends_on:
       - db
     volumes:
