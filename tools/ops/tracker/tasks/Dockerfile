@@ -6,6 +6,8 @@ MAINTAINER Raja. S <rajasoun@icloud.com>
 # Inject files in container file system
 COPY rootfs /
 RUN curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> ${WP_ROOT}/wp-secrets.php
+RUN chmod 644 wp-config.php wp-secrets.php
+RUN chown www-data:www-data wp-config.php wp-secrets.php
 
 #EXPOSE 80
 #

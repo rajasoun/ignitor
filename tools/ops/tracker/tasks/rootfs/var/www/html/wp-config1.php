@@ -1,36 +1,30 @@
 <?php
 
-// ** MySQL settings - You can get this info from your web host ** //
+define('WP_CONTENT_DIR', '/var/www/wp-content');
+define('UPLOADS', 'wp-content/uploads');
+define('WP_MEMORY_LIMIT', '64M');
+define('WP_ALLOW_REPAIR', true);
+define('FS_METHOD', 'direct');
 
-/** MySQL hostname */
 define('DB_HOST', 'db');
-
-/** The name of the database for WordPress */
 define('DB_NAME', 'wordpress');
-
-/** MySQL database username */
 define('DB_USER', 'wordpress');
-
-/** MySQL database password */
 define('DB_PASSWORD', 'wordpress');
 
 
-/** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
 
-/** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
+$table_prefix  = getenv('TABLE_PREFIX') ?: 'wp_';
 
+foreach ($_ENV as $key => $value) {
+    $capitalized = strtoupper($key);
+    if (!defined($capitalized)) {
+        define($capitalized, $value);
+    }
+}
 
-$table_prefix  = 'wp_';
-
-
-define('WP_DEBUG', true);
-
-
-/** Absolute path to the WordPress directory. */
-if ( !defined('ABSPATH') )
+if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
+}
 
 if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
     $_SERVER['HTTPS']='on';
