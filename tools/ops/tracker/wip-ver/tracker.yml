@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
 
@@ -24,15 +24,16 @@ services:
       - net
 
   tasks:
-    image: wordpress:latest
     depends_on:
       - db
+    build: tasks/
+    #build: wordpress/
     volumes:
       - "site-data:/var/www/wp-content"
     links:
       - db
     ports:
-      - "18000:80"
+      - "28000:80"
     environment:
       DB_HOST: db
       DB_NAME: wordpress
