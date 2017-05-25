@@ -32,7 +32,6 @@ services:
 
     wordpress:
         image: wordpress
-        container_name: "tasks"
         depends_on:
           - db
           - reverseproxy
