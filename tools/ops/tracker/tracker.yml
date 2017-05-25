@@ -2,6 +2,12 @@ version: '3'
 
 services:
 
+  reverseproxy:
+    build: reverseproxy/
+    ports:
+        - 18000:80
+    restart: always
+
   start_dependencies:
      image: rajasoun/wait-for-it:0.1
      container_name: "wait-for-it"
@@ -25,17 +31,14 @@ services:
       - net
 
   tasks:
-    #image: wordpress:latest
-    #build: tasks/
     build: wordpress/
     depends_on:
       - db
+      - reverseproxy
     volumes:
       - "site-data:/var/www/wp-content"
     links:
       - db
-    ports:
-      - "18000:80"
     environment:
       DB_HOST: db
       DB_NAME: wordpress
