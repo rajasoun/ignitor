@@ -6,7 +6,8 @@ services:
     build: reverseproxy/
     ports:
         - 18000:80
-    restart: always
+    networks:
+       - net
 
   start_dependencies:
      image: rajasoun/wait-for-it:0.1
