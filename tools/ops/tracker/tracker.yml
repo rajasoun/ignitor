@@ -32,7 +32,8 @@ services:
       - net
 
   tasks:
-    build: wordpress/
+    build: tasks/
+    container_name: "tasks"
     depends_on:
       - db
       - reverseproxy
