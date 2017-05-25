@@ -1,0 +1,54 @@
+#version: '3'
+#
+#services:
+#
+# start_dependencies:
+#     image: rajasoun/wait-for-it:0.1
+#     container_name: "wait-for-it"
+#     depends_on:
+#        - db
+#     command: db:3306
+#     networks:
+#       - net
+#
+#
+#  db:
+#    image: mariadb:10.1
+#    volumes:
+#      - "db-data:/var/lib/mysql"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: wordpress
+#      MYSQL_DATABASE: wordpress
+#      MYSQL_USER: wordpress
+#      MYSQL_PASSWORD: wordpress
+#    networks:
+#      - net
+#
+#  tasks:
+#    build: tasks/
+#    container_name: "tasks"
+#    depends_on:
+#      - db
+#      - reverseproxy
+#    volumes:
+#      - "site-data:/var/www/wp-content"
+#    links:
+#      - db
+#    environment:
+#      DB_HOST: db
+#      DB_NAME: wordpress
+#      DB_USER: wordpress
+#      DB_PASSWORD: wordpress
+#      WORDPRESS_SITE_URL: https://tracker.learn.cisco
+#      FS_METHOD: direct
+#    networks:
+#      - net
+#
+#networks:
+#  net:
+#    driver: bridge
+#
+#volumes:
+#  db-data:
+#  site-data:
+#
