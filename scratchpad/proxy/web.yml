@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 
 services:
 
@@ -13,6 +13,7 @@ services:
         ports:
             - 18080:8080
             - 18081:8081
+            - 18000:8082
         restart: always
 
     nginx:
