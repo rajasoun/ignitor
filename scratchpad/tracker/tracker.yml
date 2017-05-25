@@ -31,6 +31,8 @@ services:
        - db
     links:
        - db
+    ports:
+       - "18000:80"
     volumes:
       - "site-data:/var/www/wp-content"
     environment:
