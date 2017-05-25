@@ -3,7 +3,7 @@ LABEL Vendor="Raja.S"
 
 MAINTAINER Raja. S <rajasoun@icloud.com>
 
-ADD config/wp-config.php
+ADD config/wp-config.php  /var/www/html
 ADD
 
 RUN curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> ${WP_ROOT}/wp-secrets.php
