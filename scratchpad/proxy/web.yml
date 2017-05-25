@@ -1,6 +1,15 @@
 version: '2'
 
 services:
+
+    start_dependencies:
+         image: rajasoun/wait-for-it:0.1
+         depends_on:
+            - db
+         command: db:3306
+         networks:
+           - net
+
     reverseproxy:
         build: reverseproxy/
         ports:
