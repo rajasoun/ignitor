@@ -1,19 +1,11 @@
 version: '3.1'
 
 services:
-
-    start_dependencies:
-         image: rajasoun/wait-for-it:0.1
-         depends_on:
-            - db
-         command: db:3306
-
     reverseproxy:
         build: reverseproxy/
         ports:
             - 18080:8080
             - 18081:8081
-            - 18000:8082
         restart: always
 
     nginx:
@@ -28,33 +20,3 @@ services:
         image: httpd:alpine
         restart: always
 
-    db:
-        image: mariadb:10.1
-        volumes:
-          - "db-data:/var/lib/mysql"
-        environment:
-          MYSQL_ROOT_PASSWORD: wordpress
-          MYSQL_DATABASE: wordpress
-          MYSQL_USER: wordpress
-          MYSQL_PASSWORD: wordpress
-
-    wordpress:
-        image: wordpress
-        depends_on:
-          - db
-          - reverseproxy
-        volumes:
-          - "site-data:/var/www/wp-content"
-        links:
-          - db
-        environment:
-          DB_HOST: db
-          DB_NAME: wordpress
-          DB_USER: wordpress
-          DB_PASSWORD: wordpress
-          #WORDPRESS_SITE_URL: https://tracker.learn.cisco
-          FS_METHOD: direct
-
-volumes:
-  db-data:
-  site-data:
