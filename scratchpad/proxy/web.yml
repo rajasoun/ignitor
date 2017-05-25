@@ -31,7 +31,7 @@ services:
           MYSQL_PASSWORD: wordpress
 
     wordpress:
-        image: wordpress:alpine
+        image: wordpress
         container_name: "tasks"
         depends_on:
           - db
