@@ -3,12 +3,12 @@ LABEL Vendor="Raja.S"
 
 MAINTAINER Raja. S <rajasoun@icloud.com>
 
-ADD config/wp-config.php  /var/www/html
-ADD config/wp-secrets.php  /var/www/html
+# Inject files in container file system
+COPY rootfs /
 
-RUN curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> ${WP_ROOT}/wp-secrets.php
-RUN chmod 644 wp-config.php wp-secrets.php
-RUN chown www-data:www-data wp-config.php wp-secrets.php
+RUN curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> wp-secrets.php
+#RUN chmod 644 wp-config.php wp-secrets.php
+#RUN chown www-data:www-data wp-config.php wp-secrets.php
 
 #EXPOSE 80
 #
