@@ -6,7 +6,7 @@ __init__.py
 node_module
 yarn.lock
 redis/
-hubot_secret.yml
+hubot_slack_secret.yml
 .vault_pass
 .passwords
 node_modules
