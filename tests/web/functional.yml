@@ -22,7 +22,14 @@ services:
     links:
       - db
     volumes:
-      - ~/Workspace/practice/lms:/var/www/html
+      - ~/Workspace/practice/lms/sundance:/var/www/html/lms
+      - /var/lib/jenkins
+
+#  composer:
+#    image: composer/composer
+#    volumes_from:
+#       - moodle
+#    working_dir: /var/www/html/lms
 
 volumes:
   php-db-data:
