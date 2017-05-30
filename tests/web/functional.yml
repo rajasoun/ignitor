@@ -21,5 +21,12 @@ services:
     links:
       - db
 
+  moodle:
+    build: ../../scratchpad/moodle
+    ports:
+      - "7102:80"
+    links:
+      - db
+
 volumes:
   php-db-data:
