@@ -14,12 +14,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: php
 
-  php:
-    build: ../../application/core/php
-    ports:
-      - "7101:80"
-    links:
-      - db
 
   moodle:
     build: ../../scratchpad/moodle
