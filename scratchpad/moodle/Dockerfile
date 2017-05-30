@@ -8,7 +8,6 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 
 
-
 # Init
 ENTRYPOINT ["/init"]
 CMD []
