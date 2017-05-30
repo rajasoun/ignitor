@@ -4,8 +4,8 @@ services:
     reverseproxy:
         build: reverseproxy/
         ports:
-            - 18080:8080
-            - 18081:8081
+            - 28080:8080
+            - 28081:8081
         restart: always
 
     nginx:
