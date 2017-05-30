@@ -3,7 +3,6 @@ version: '2'
 services:
   start_dependencies:
      image: rajasoun/wait-for-it:0.1
-     container_name: "wait-for-it"
      depends_on:
         - db
      command: db:3306
