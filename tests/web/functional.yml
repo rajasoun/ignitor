@@ -21,6 +21,8 @@ services:
       - "7102:80"
     links:
       - db
+    volumes:
+      - ~/Workspace/practice/lms:/var/www/html
 
 volumes:
   php-db-data:

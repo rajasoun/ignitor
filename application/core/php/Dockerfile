@@ -40,7 +40,7 @@ EXPOSE 80 443
 # Inject files in container file system
 COPY rootfs /
 
-VOLUME ["/var/www", "/var/log/nginx"]
+VOLUME ["/var/www/html", "/var/log/nginx"]
 
 
 # Init
