@@ -26,7 +26,7 @@ services:
  wordpress:
     build: wordpress/
     #build: tasks/
-    #image: wordpress:latest
+
     depends_on:
        - db
     links:
