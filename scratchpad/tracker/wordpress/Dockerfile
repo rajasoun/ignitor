@@ -8,11 +8,11 @@ RUN { \
 		echo 'RewriteEngine On'; \
 		echo 'RewriteBase /'; \
 		echo 'RewriteRule ^index\.php$ - [L]'; \
-		echo 'RewriteRule (.+)/$ http://www.yourdomain.com/blog/$1 [R=301,L]'; \
+		echo 'RewriteRule (.+)/$ https://tracker.learn.cisco/tasks/$1 [R=301,L]'; \
 		echo 'RewriteCond %{REQUEST_FILENAME} !-f'; \
 		echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
 		echo 'RewriteRule . /index.php [L]'; \
 		echo '</IfModule>'; \
-	} > .htaccess
+	} > /var/www/html/.htaccess
 
-RUN chown www-data:www-data .htaccess
+RUN chown www-data:www-data /var/www/html/.htaccess
