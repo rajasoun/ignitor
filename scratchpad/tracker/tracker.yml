@@ -24,8 +24,8 @@ services:
        - net
 
  wordpress:
-    #build: wordpress/
-    build: tasks/
+    build: wordpress/
+    #build: tasks/
 
     depends_on:
        - db
