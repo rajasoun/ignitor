@@ -13,6 +13,6 @@ RUN { \
 		echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
 		echo 'RewriteRule . /index.php [L]'; \
 		echo '</IfModule>'; \
-	} > /var/www/html/.htaccess
+	} > .htaccess
 
-RUN chown www-data:www-data /var/www/html/.htaccess
+#RUN chown www-data:www-data /var/www/html/.htaccess
