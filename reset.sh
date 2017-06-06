@@ -2,7 +2,7 @@
 
 sh -c "tools/ops/clean/docker-clean all"
 
-cd web-proxy
+cd proxy
 ./proxy.sh setup
 ./proxy.sh start
 cd -
