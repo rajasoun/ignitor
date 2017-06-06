@@ -8,15 +8,7 @@ cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
 }
 
-setup_ssl_certificate(){
-    ansible-vault decrypt \
-        ~/Workspace/ck/ignitor/proxy/certs/tracker.learn.cisco-selfsign.* \
-        --vault-password-file ~/Workspace/ck/ignitor/.vault_pass
-}
 
-teardown_ssl_certificate(){
-    git reset --hard
-}
 
 setup_hostlocal(){
     docker run --rm --privileged --net=host gliderlabs/hostlocal
@@ -35,10 +27,8 @@ case "$option" in
     start)
         echo -n "Starting $DESC: "
         #docker network create nginx-net
-        setup_ssl_certificate ##Secret File  .vault_pass is required
         docker network create --driver bridge reverse-proxy
         docker-compose $composer up -d  --build
-        teardown_ssl_certificate
     ;;
 
     stop)
