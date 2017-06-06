@@ -2,12 +2,8 @@
 
 sh -c "tools/ops/clean/docker-clean all"
 
-cd proxy
-./proxy.sh setup
-./proxy.sh start
-cd -
+docker-compose -f proxy/proxy.yml up -d --build
 
-## Setup hostlocal.io
 docker-compose -f  tools/static-site/tracker.learn.cisco.yml up -d --build
 docker-compose -f  tools/ops/portainer/portainer.yml  up -d --build
 docker-compose -f  docs/docs.yml  up -d --build
