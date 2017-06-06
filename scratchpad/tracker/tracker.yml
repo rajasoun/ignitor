@@ -41,8 +41,8 @@ services:
       WORDPRESS_SITE_URL: https://tracker.learn.cisco/tasks
       FS_METHOD: direct
       VIRTUAL_HOST: tracker.ngrok.io
-      VIRTUAL_PORT: 1234
-      LETSENCRYPT_HOST: site.ngrok.io
+      VIRTUAL_PORT: 18000
+      LETSENCRYPT_HOST: tracker.ngrok.io
       LETSENCRYPT_EMAIL: rajasoun@icloud.com
 
     networks:
