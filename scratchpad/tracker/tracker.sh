@@ -25,6 +25,7 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
+        docker network create --driver bridge reverse-proxy
         docker-compose $composer run --rm start_dependencies
         docker-compose $composer up -d  --build
     ;;
@@ -32,7 +33,8 @@ case "$option" in
     stop)
         echo -n "Stopping $DESC: "
         docker-compose $composer down
-        docker volume rm tracker_db-data tracker_site-data
+        #docker volume rm tracker_db-data tracker_site-data
+        docker network rm reverse-proxy
     ;;
 
     teardown)

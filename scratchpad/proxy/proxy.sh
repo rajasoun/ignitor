@@ -33,7 +33,7 @@ case "$option" in
     stop)
         echo -n "Stopping $DESC: "
         docker-compose $composer down
-        docker network rm nginx-net
+        docker network rm reverse-proxy
     ;;
 
     teardown)
