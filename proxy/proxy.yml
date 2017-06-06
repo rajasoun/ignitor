@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2'
 
 services:
   nginx-proxy:
@@ -23,6 +23,8 @@ services:
     volumes:
       - 'ssl-certs:/etc/nginx/certs'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    volumes_from:
+      - nginx-proxy
     networks:
        - reverse-proxy
 
