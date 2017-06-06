@@ -21,7 +21,6 @@ case "$option" in
     setup)
        echo -n "Setup $DESC "
        setup_hostlocal #To Enable hostlocal.io
-       docker network create --driver bridge reverse-proxy
     ;;
 
     start)
@@ -39,7 +38,6 @@ case "$option" in
         echo -n "TearDown $DESC: "
         docker-compose $composer down
         docker volume rm tracker_db-data tracker_site-data
-        docker network rm reverse-proxy
         cleanup
     ;;
 
