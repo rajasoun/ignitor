@@ -21,11 +21,11 @@ case "$option" in
     setup)
        echo -n "Setup $DESC "
        setup_hostlocal #To Enable hostlocal.io
+       docker network create --driver bridge reverse-proxy
     ;;
 
     start)
         echo -n "Starting $DESC: "
-        docker network create --driver bridge reverse-proxy
         docker-compose $composer run --rm start_dependencies
         docker-compose $composer up -d  --build
     ;;
