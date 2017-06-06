@@ -9,7 +9,7 @@ services:
         - db
      command: db:3306
      networks:
-       - net
+       - back
 
  db:
     image: mariadb:latest
@@ -21,12 +21,10 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     networks:
-       - net
+       - back
 
  wordpress:
     build: wordpress/
-    #build: tasks/
-
     depends_on:
        - db
     links:
@@ -42,11 +40,20 @@ services:
       DB_PASSWORD: wordpress
       WORDPRESS_SITE_URL: https://tracker.learn.cisco/tasks
       FS_METHOD: direct
+      VIRTUAL_HOST: tracker.ngrok.io
+      VIRTUAL_PORT: 1234
+      LETSENCRYPT_HOST: site.ngrok.io
+      LETSENCRYPT_EMAIL: rajasoun@icloud.com
+
     networks:
-       - net
+      - reverse-proxy
+      - back
 
 networks:
-  net:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+  back:
     driver: bridge
 
 volumes:
