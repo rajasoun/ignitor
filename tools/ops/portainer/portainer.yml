@@ -30,10 +30,6 @@ services:
       - docker_manager
     environment:
        LOGSPOUT: ignore
-       VIRTUAL_HOST: portainer.myck.io
-       VIRTUAL_PORT: 80
-       LETSENCRYPT_HOST: portainer.myck.io
-       LETSENCRYPT_EMAIL: rajasoun@icloud.com
 
   watchtower:
     image: centurylink/watchtower
