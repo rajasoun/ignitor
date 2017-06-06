@@ -20,7 +20,7 @@ services:
     container_name: letsencrypt-nginx-proxy
     image: 'jrcs/letsencrypt-nginx-proxy-companion'
     volumes:
-      - '$HOME/certs:/etc/nginx/certs'
+      - '$HOME/Workspace/ck/ignitor/proxy/certs:/etc/nginx/certs'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
     volumes_from:
       - nginx-proxy
