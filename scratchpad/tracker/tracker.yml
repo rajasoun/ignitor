@@ -32,7 +32,6 @@ services:
     volumes:
       - "site-data:/var/www/wp-content"
     environment:
-
       WORDPRESS_SITE_URL: https://tracker.ngrok.io
       FS_METHOD: direct
       VIRTUAL_HOST: tracker.ngrok.io
