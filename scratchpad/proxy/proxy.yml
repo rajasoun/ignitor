@@ -9,46 +9,40 @@ services:
     volumes:
       - '/etc/nginx/vhost.d'
       - '/usr/share/nginx/html'
-      - '~/etc/nginx/certs:/etc/nginx/certs:ro'
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
+      - '$HOME/certs:/etc/nginx/certs:ro'
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
+    networks:
+       - reverse-proxy
 
   letsencrypt-nginx-proxy:
     container_name: letsencrypt-nginx-proxy
     image: 'jrcs/letsencrypt-nginx-proxy-companion'
     volumes:
-      - '~/etc/nginx/certs:/etc/nginx/certs'
+      - '$HOME/certs:/etc/nginx/certs'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
     volumes_from:
       - nginx-proxy
+    networks:
+       - reverse-proxy
 
-  ghost:
-    image: gold/ghost
-    command: npm start --production
+  site:
+    image: nginx:alpine
+    container_name: nginx-site
     restart: always
-    ports:
-        - "2368:2368"
-    volumes:
-        - ~/blog/:/var/lib/ghost
     environment:
-        - GHOST_URL=http://gold-ghost.ngrok.io
-        - PROD_FORCE_ADMIN_SSL=true
-        - VIRTUAL_HOST=gold-ghost.ngrok.io
-        - LETSENCRYPT_HOST=gold-ghost.ngrok.io
+        - VIRTUAL_HOST=site.ngrok.io
+        - VIRTUAL_PORT=1234
+        - LETSENCRYPT_HOST=site.ngrok.io
         - LETSENCRYPT_EMAIL=rajasoun@icloud.com
-
-#  ngrok:
-#    container_name: ngrok
-#    ports:
-#        - "0.0.0.0:4040:4040"
-#    image: wernight/ngrok
-#    links:
-#        - nginx-proxy
-#    environment:
-#        - NGROK_AUTH=5ZqthG6vijSovhHym3LFt_4ie6bHaKUTkRD7QAd17mp
-#        - NGROK_SUBDOMAIN=gold-ghost
-
+    networks:
+      - reverse-proxy
+      - back
 
 networks:
-  default:
+  reverse-proxy:
     external:
-      name: nginx-net
+      name: reverse-proxy
+  back:
+    driver: bridge

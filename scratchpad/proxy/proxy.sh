@@ -25,7 +25,8 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
-        docker network create nginx-net
+        #docker network create nginx-net
+        docker network create --driver bridge reverse-proxy
         docker-compose $composer up -d  --build
     ;;
 
