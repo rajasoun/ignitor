@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f web.yml"
+composer="-f proxy.yml"
 DESC="Proxy"
 
 cleanup(){
@@ -25,14 +25,14 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
-        docker-compose $composer run --rm start_dependencies
+        docker network create nginx-net
         docker-compose $composer up -d  --build
     ;;
 
     stop)
         echo -n "Stopping $DESC: "
         docker-compose $composer down
-        docker volume rm proxy_db-data proxy_site-data
+        docker network rm nginx-net
     ;;
 
     teardown)
