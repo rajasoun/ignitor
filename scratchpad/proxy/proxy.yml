@@ -27,18 +27,18 @@ services:
     networks:
        - reverse-proxy
 
-  site:
-    image: nginx:alpine
-    container_name: nginx-site
-    restart: always
-    environment:
-        - VIRTUAL_HOST=site.ngrok.io
-        - VIRTUAL_PORT=1234
-        - LETSENCRYPT_HOST=site.ngrok.io
-        - LETSENCRYPT_EMAIL=rajasoun@icloud.com
-    networks:
-      - reverse-proxy
-      - back
+#  site:
+#    image: nginx:alpine
+#    container_name: nginx-site
+#    restart: always
+#    environment:
+#        - VIRTUAL_HOST=site.ngrok.io
+#        - VIRTUAL_PORT=1234
+#        - LETSENCRYPT_HOST=site.ngrok.io
+#        - LETSENCRYPT_EMAIL=rajasoun@icloud.com
+#    networks:
+#      - reverse-proxy
+#      - back
 
 networks:
   reverse-proxy:
