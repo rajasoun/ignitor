@@ -10,8 +10,10 @@ services:
       - docker_manager
     environment:
        LOGSPOUT: ignore
-       VIRTUAL_HOST: /portainer/
+       VIRTUAL_HOST: portainer.myck.io
        VIRTUAL_PORT: 9000
+       LETSENCRYPT_HOST: portainer.myck.io
+       LETSENCRYPT_EMAIL: rajasoun@icloud.com
 
   templates:
     build: templates/
