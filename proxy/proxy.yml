@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -31,5 +31,4 @@ networks:
   reverse-proxy:
     external:
       name: reverse-proxy
-  back:
-    driver: bridge
+
