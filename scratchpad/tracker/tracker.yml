@@ -29,8 +29,8 @@ services:
        - db
     links:
        - db
-    ports:
-       - "18000:80"
+#    ports:
+#       - "18000:80"
     volumes:
       - "site-data:/var/www/wp-content"
     environment:
@@ -38,10 +38,10 @@ services:
       DB_NAME: wordpress
       DB_USER: wordpress
       DB_PASSWORD: wordpress
-      WORDPRESS_SITE_URL: https://tracker.learn.cisco/tasks
+      WORDPRESS_SITE_URL: https://tracker.ngrok.io
       FS_METHOD: direct
       VIRTUAL_HOST: tracker.ngrok.io
-      VIRTUAL_PORT: 18000
+      #VIRTUAL_PORT: 18000
       LETSENCRYPT_HOST: tracker.ngrok.io
       LETSENCRYPT_EMAIL: rajasoun@icloud.com
 
