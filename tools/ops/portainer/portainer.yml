@@ -10,6 +10,8 @@ services:
       - docker_manager
     environment:
        LOGSPOUT: ignore
+       VIRTUAL_HOST: tracker.learn.cisco
+       VIRTUAL_PORT: 9000
 
   templates:
     build: templates/
