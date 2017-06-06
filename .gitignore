@@ -14,3 +14,4 @@ node_modules
 static/json
 .vscode
 public/
+proxy/conf.d/default.conf
