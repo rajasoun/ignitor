@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+
+  web:
+    restart: always
+    image: nginx:alpine
+    networks:
+      - reverse-proxy
+      - back
+    environment:
+      - VIRTUAL_PORT=80
+      - VIRTUAL_HOST=tracker.learn.cisco
+      - LETSENCRYPT_HOST=tracker.learn.cisco
+      - LETSENCRYPT_EMAIL=rajasoun@icloud.com
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+  back:
+    driver: bridge
