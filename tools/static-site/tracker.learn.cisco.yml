@@ -5,11 +5,8 @@ services:
   tracker:
     build: tracker/
     container_name: "tracker.static"
-    ports:
-      - "10000:80"
     environment:
       VIRTUAL_HOST: tracker.learn.cisco
-      VIRTUAL_PORT: 10000
     networks:
       - reverse-proxy
       - back
