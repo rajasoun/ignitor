@@ -10,7 +10,7 @@ services:
       - '/etc/nginx/vhost.d'
       - '/usr/share/nginx/html'
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
-      - '$HOME/Workspace/ck/ignitor/proxy/certs:/etc/nginx/certs:ro'
+      - '$HOME/certs:/etc/nginx/certs:ro'
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
     networks:
@@ -20,7 +20,7 @@ services:
     container_name: letsencrypt-nginx-proxy
     image: 'jrcs/letsencrypt-nginx-proxy-companion'
     volumes:
-      - '$HOME/Workspace/ck/ignitor/proxy/certs:/etc/nginx/certs'
+      - '$HOME/certs:/etc/nginx/certs'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
     volumes_from:
       - nginx-proxy
