@@ -33,13 +33,13 @@ case "$option" in
     stop)
         echo -n "Stopping $DESC: "
         docker-compose $composer down
-        #docker volume rm tracker_db-data tracker_site-data
-        docker network rm reverse-proxy
     ;;
 
     teardown)
         echo -n "TearDown $DESC: "
         docker-compose $composer down
+        docker volume rm tracker_db-data tracker_site-data
+        docker network rm reverse-proxy
         cleanup
     ;;
 
