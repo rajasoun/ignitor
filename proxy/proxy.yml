@@ -12,7 +12,6 @@ services:
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
       - '/usr/share/nginx/html'
       - '$HOME/certs:/etc/nginx/certs:ro'
-      - '$PWD/conf.d:/etc/nginx/conf.d'
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
     networks:
