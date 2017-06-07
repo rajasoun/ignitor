@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 
 services:
   nginx-proxy:
@@ -8,9 +8,11 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - '/etc/nginx/vhost.d'
-      - '/usr/share/nginx/html'
-      - '$HOME/certs:/etc/nginx/certs:ro'
+      - 'nginx-certs:/etc/nginx/conf.d:ro'
+      - 'nginx-conf:/etc/nginx/conf.d'
+      - 'nginx-contents:/usr/share/nginx/html'
+      - 'nginx-logs:/var/log/nginx'
+      - 'nginx-vhost:/etc/nginx/vhost.d'
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
@@ -21,10 +23,11 @@ services:
     image: 'jrcs/letsencrypt-nginx-proxy-companion'
     container_name: nginx-letsencrypt
     volumes:
-      - '$HOME/certs:/etc/nginx/certs:rw'
+      - 'nginx-certs:/etc/nginx/conf.d:rw'
+      - 'nginx-conf:/etc/nginx/conf.d::nocopy'
+      - 'nginx-vhost:/etc/nginx/vhost.d'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-    volumes_from:
-      - nginx-proxy
+
     networks:
        - reverse-proxy
 
@@ -34,7 +37,8 @@ networks:
       name: reverse-proxy
 
 volumes:
-  nginx-conf: {}
   nginx-certs: {}
+  nginx-conf: {}
+  nginx-vhost: {}
   nginx-contents: {}
   nginx-logs: {}
