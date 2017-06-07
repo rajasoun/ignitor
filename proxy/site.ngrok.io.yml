@@ -3,11 +3,10 @@ services:
 
   web:
     image: nginx:alpine
-    container_name: site.ngrok.io
+    container_name: static-site
     environment:
-      VIRTUAL_HOST: site.ngrok.io
-      VIRTUAL_PORT: 80
-      LETSENCRYPT_HOST: site.ngrok.io
+      VIRTUAL_HOST: static-site.ngrok.io
+      LETSENCRYPT_HOST: static-site.ngrok.io
       LETSENCRYPT_EMAIL: rajasoun@icloud.com
     networks:
       - reverse-proxy
