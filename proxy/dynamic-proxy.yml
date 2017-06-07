@@ -24,7 +24,7 @@ services:
     container_name: nginx-letsencrypt
     volumes:
       - 'nginx-certs:/etc/nginx/conf.d:rw'
-      - 'nginx-conf:/etc/nginx/conf.d::nocopy'
+      - 'nginx-conf:/etc/nginx/conf.d:nocopy'
       - 'nginx-vhost:/etc/nginx/vhost.d'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
 
