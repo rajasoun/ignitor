@@ -21,6 +21,8 @@ services:
       - web
     environment:
       - NGROK_AUTH=5ZqthG6vijSovhHym3LFt_4ie6bHaKUTkRD7QAd17mp
+      - NGROK_PORT=web:80
+      - NGROK_PROTOCOL=HTTP
       - NGROK_SUBDOMAIN=site
     networks:
       - reverse-proxy
