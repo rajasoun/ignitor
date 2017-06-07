@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+  web:
+    image: nginx:alpine
+    container_name: site.ngrok.io
+    environment:
+      VIRTUAL_HOST: site.ngrok.io
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: site.ngrok.io
+      LETSENCRYPT_EMAIL: rajasoun@icloud.com
+    networks:
+      - reverse-proxy
+      - back
+
+  ngrok:
+    image: wernight/ngrok
+    container_name: ngrok
+    ports:
+      - "0.0.0.0:4040:4040"
+    links:
+      - web
+    environment:
+      - NGROK_AUTH=5ZqthG6vijSovhHym3LFt_4ie6bHaKUTkRD7QAd17mp
+      - NGROK_SUBDOMAIN=site
+    networks:
+      - reverse-proxy
+      - back
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+  back:
+    driver: bridge
