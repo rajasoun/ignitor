@@ -20,6 +20,7 @@ start_nginx_proxy(){
         -v /etc/nginx/vhost.d \
         -v /usr/share/nginx/html \
         -v /var/run/docker.sock:/tmp/docker.sock:ro \
+        -e DEFAULT_HOST=myck.io \
         --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true \
     jwilder/nginx-proxy
 }
