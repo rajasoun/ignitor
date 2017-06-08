@@ -41,7 +41,7 @@ case "$option" in
     start)
         echo -n "Starting $DESC: "
         start_nginx_proxy
-        start_nginx-letsencrypt
+        start_nginx_letsencrypt
 
     ;;
 
