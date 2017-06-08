@@ -62,6 +62,7 @@ case "$option" in
     reset)
         cleanup
         echo -n "Reset $DESC: "
+        create_net
         start_nginx_proxy
         start_nginx_letsencrypt
     ;;
