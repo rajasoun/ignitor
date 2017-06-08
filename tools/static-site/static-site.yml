@@ -10,8 +10,8 @@ services:
       - back
     environment:
       - VIRTUAL_PORT=80
-      - VIRTUAL_HOST=myck.io,tracker.learn.cisco
-      - LETSENCRYPT_HOST=myck.io,tracker.learn.cisco
+      - VIRTUAL_HOST=$HOSTNAME
+      - LETSENCRYPT_HOST=$HOSTNAME
       - LETSENCRYPT_EMAIL=rajasoun@icloud.com
 
 networks:

@@ -3,6 +3,7 @@
 option=$1
 composer="-f static-site.yml"
 DESC="Tracker Static Site"
+HOSTNAME=$(hostname)
 
 cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
