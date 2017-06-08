@@ -59,9 +59,11 @@ case "$option" in
 
     reset)
         echo -n "Reset $DESC: "
-        docker network rm reverse-proxy
-        cleanup
-        docker network create --driver bridge reverse-proxy
+        net_count=$(docker network  ls | grep reverse-proxy | wc -l)
+        if [ $net_count = 0 ]
+        then
+            docker network create --driver bridge reverse-proxy
+        fi
         start_nginx_proxy
         start_nginx_letsencrypt
     ;;
