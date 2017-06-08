@@ -4,7 +4,7 @@ option=$1
 composer="-f proxy.yml"
 DESC="Proxy Controller"
 
-start_services(){
+start_nginx_proxy(){
     docker run --rm -d -p 80:80 -p 443:443 \
         --name nginx-proxy \
         --net reverse-proxy \
@@ -16,7 +16,7 @@ start_services(){
     jwilder/nginx-proxy
 }
 
-stop_services(){
+start_nginx-letsencrypt(){
     docker run --rm -d \
         --name nginx-letsencrypt \
         --net reverse-proxy \
@@ -40,12 +40,14 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
-        start_services
+        start_nginx_proxy
+        start_nginx-letsencrypt
+
     ;;
 
     stop)
         echo -n "Stopping $DESC: "
-        stop_services
+        docker stop nginx-proxy nginx-letsencrypt
     ;;
 
     teardown)
