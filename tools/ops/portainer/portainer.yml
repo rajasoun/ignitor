@@ -6,7 +6,7 @@ services:
     command: --templates http://templates/templates.json
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /opt/portainer/data:/data
+#      - /opt/portainer/data:/data
     networks:
       - docker_manager
       - reverse-proxy
