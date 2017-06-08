@@ -4,6 +4,14 @@ option=$1
 composer="-f proxy.yml"
 DESC="Proxy Controller"
 
+create_net(){
+    net_count=$(docker network  ls | grep reverse-proxy | wc -l)
+    if [ $net_count = 0 ]
+    then
+        docker network create --driver bridge reverse-proxy
+    fi
+}
+
 start_nginx_proxy(){
     docker run --rm -d -p 80:80 -p 443:443 \
         --name nginx-proxy \
@@ -28,19 +36,19 @@ start_nginx_letsencrypt(){
 
 cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+    net_count=$(docker network  ls | grep reverse-proxy | wc -l)
+    if [ $net_count = 1 ]
+    then
+        docker network rm reverse-proxy
+    fi
 }
 
 set -e
 
 case "$option" in
-    setup)
-       echo -n "Setup $DESC "
-       docker network create --driver bridge reverse-proxy
-    ;;
-
     start)
         echo -n "Starting $DESC: "
-        docker network create --driver bridge reverse-proxy
+        create_net
         start_nginx_proxy
         start_nginx_letsencrypt
     ;;
@@ -51,24 +59,14 @@ case "$option" in
         docker network rm reverse-proxy
     ;;
 
-    teardown)
-        echo -n "TearDown $DESC: "
-        docker network rm reverse-proxy
-        cleanup
-    ;;
-
     reset)
+        cleanup
         echo -n "Reset $DESC: "
-        net_count=$(docker network  ls | grep reverse-proxy | wc -l)
-        if [ $net_count = 0 ]
-        then
-            docker network create --driver bridge reverse-proxy
-        fi
         start_nginx_proxy
         start_nginx_letsencrypt
     ;;
     *)
-        echo "Usage: ./proxy.sh {setup|start|stop|teardown|reset}" >&2
+        echo "Usage: ./proxy.sh {start|stop|reset}" >&2
         exit 1
     ;;
 esac
