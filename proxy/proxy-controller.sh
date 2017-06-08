@@ -3,7 +3,6 @@
 option=$1
 composer="-f proxy.yml"
 DESC="Proxy Controller"
-HOSTNAME=$(hostname)
 
 create_net(){
     net_count=$(docker network  ls | grep reverse-proxy | wc -l)
@@ -21,7 +20,6 @@ start_nginx_proxy(){
         -v /etc/nginx/vhost.d \
         -v /usr/share/nginx/html \
         -v /var/run/docker.sock:/tmp/docker.sock:ro \
-        -e DEFAULT_HOST=$HOSTNAME \
         --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true \
     jwilder/nginx-proxy
 }
