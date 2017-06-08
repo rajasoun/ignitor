@@ -4,6 +4,8 @@ services:
   proxy:
     build: nginx/
     container_name: "portainer-web"
+    ports:
+      - "9000:80"
     networks:
       - docker_manager
       - reverse-proxy
@@ -11,7 +13,7 @@ services:
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
        LETSENCRYPT_HOST: portainer.myck.io
        VIRTUAL_HOST: portainer.myck.io
-       VIRTUAL_PORT: 80
+       VIRTUAL_PORT: 9000
        LOGSPOUT: ignore
 
   templates:
