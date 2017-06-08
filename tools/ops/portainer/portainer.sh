@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f static-site.yml"
+composer="-f portainer.yml"
 DESC="Tracker Static Site"
-export STATIC_HOST=$(hostname)
+export PORTAINER_HOST=portainer.$(hostname)
 
 cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
@@ -44,7 +44,7 @@ case "$option" in
         docker-compose $composer logs -f
     ;;
     *)
-        echo "Usage: ./static-site.sh {setup|start|stop|teardown|log}" >&2
+        echo "Usage: ./portainer.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac

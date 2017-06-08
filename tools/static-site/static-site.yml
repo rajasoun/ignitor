@@ -10,8 +10,8 @@ services:
       - back
     environment:
       - VIRTUAL_PORT=80
-      - VIRTUAL_HOST=$HOSTNAME
-      - LETSENCRYPT_HOST=$HOSTNAME
+      - VIRTUAL_HOST=$STATIC_HOST
+      - LETSENCRYPT_HOST=$STATIC_HOST
       - LETSENCRYPT_EMAIL=rajasoun@icloud.com
 
 networks:

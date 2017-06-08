@@ -11,8 +11,8 @@ services:
       - reverse-proxy
     environment:
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
-       LETSENCRYPT_HOST: portainer.myck.io
-       VIRTUAL_HOST: portainer.myck.io
+       LETSENCRYPT_HOST: $PORTAINER_HOST
+       VIRTUAL_HOST: $PORTAINER_HOST
        VIRTUAL_PORT: 9000
        LOGSPOUT: ignore
 

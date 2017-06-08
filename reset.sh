@@ -1,14 +1,11 @@
 #!/usr/bin/env sh
 
-### Complete CleanUp ###
+
 sh -c "tools/ops/clean/docker-clean all"
-
-### Dynamic Nginx Proxy  ###
 sh -c "proxy/proxy-controller.sh reset"
+sh -c "tools/ops/portainer/portainer.sh start"
+sh -c "tools/static-site/static-site.sh start"
 
-
-docker-compose -f  tools/ops/portainer/portainer.yml  up -d --build
-#docker-compose -f  tools/static-site/tracker.learn.cisco.yml up -d --build
 #docker-compose -f  docs/docs.yml  up -d --build
 
 ## Unified Log
