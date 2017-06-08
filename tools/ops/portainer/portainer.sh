@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f $(pwd)/portainer.yml"
+composer="-f $(pwd)/tools/ops/portainer/portainer.yml"
 DESC="Tracker Static Site"
 export PORTAINER_HOST=portainer.$(hostname)
 
