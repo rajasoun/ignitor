@@ -11,7 +11,7 @@ hubot_spark_secret.yml
 .vault_pass
 .passwords
 node_modules
-static/json
+tools/site/web/json
 .vscode
 public/
 proxy/conf.d/default.conf

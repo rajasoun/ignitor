@@ -6,7 +6,7 @@ sh -c "proxy/proxy-controller.sh reset"
 sh -c "tools/ops/portainer/portainer.sh start"
 
 docker-compose -f application/core/core.yml build nginx-static
-sh -c "tools/static-site/static-site.sh start"
+sh -c "tools/site/site.sh start"
 
 #docker-compose -f  docs/docs.yml  up -d --build
 

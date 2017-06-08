@@ -51,7 +51,7 @@ services:
 
     ck-web:
        extends:
-         file: web/web.yml
+         file: web/site.yml
          service: ck-web
 
     authservice:

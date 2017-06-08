@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f $(pwd)/tools/static-site/static-site.yml"
+composer="-f $(pwd)/tools/static-site/site.yml"
 DESC="Tracker Static Site"
 export STATIC_HOST=$(hostname)
 
@@ -44,7 +44,7 @@ case "$option" in
         docker-compose $composer logs -f
     ;;
     *)
-        echo "Usage: ./static-site.sh {setup|start|stop|teardown|log}" >&2
+        echo "Usage: ./site.sh {setup|start|stop|teardown|log}" >&2
         exit 1
     ;;
 esac
