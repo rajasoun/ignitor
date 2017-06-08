@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  portainer:
+    image: portainer/portainer
+    command: --templates http://templates/templates.json
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker_manager
+      - reverse-proxy
+    environment:
+       LETSENCRYPT_EMAIL: rajasoun@icloud.com
+       LETSENCRYPT_HOST: portainer.myck.io
+       VIRTUAL_HOST: portainer.myck.io
+       VIRTUAL_PORT: 9000
+       LOGSPOUT: ignore
+
+  watchtower:
+    image: centurylink/watchtower
+    command: --cleanup portainer-app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker_manager
+
+networks:
+  docker_manager:
+    driver: bridge
+
+  reverse-proxy:
+    external:
+      name: reverse-proxy
