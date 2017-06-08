@@ -1,14 +1,14 @@
 version: '3.1'
 
 services:
-  nginx-proxy:
+  dynamic-proxy:
     image: jwilder/nginx-proxy
-    container_name: nginx-proxy
+    container_name: dynamic-nginx-proxy
     ports:
       - '80:80'
       - '443:443'
     volumes:
-      - 'nginx-certs:/etc/nginx/conf.d:ro'
+      - 'nginx-certs:/etc/nginx/certs:ro'
       - 'nginx-conf:/etc/nginx/conf.d'
       - 'nginx-contents:/usr/share/nginx/html'
       - 'nginx-logs:/var/log/nginx'
@@ -19,15 +19,16 @@ services:
     networks:
        - reverse-proxy
 
-  letsencrypt-nginx-proxy:
+  dynamic-letsencrypt:
     image: 'jrcs/letsencrypt-nginx-proxy-companion'
-    container_name: nginx-letsencrypt
+    container_name: dynamic-nginx-letsencrypt
     volumes:
-      - 'nginx-certs:/etc/nginx/conf.d:rw'
+      - 'nginx-certs:/etc/nginx/certs:rw'
       - 'nginx-conf:/etc/nginx/conf.d:nocopy'
+      - 'nginx-contents:/usr/share/nginx/html'
+      - 'nginx-logs:/var/log/nginx'
       - 'nginx-vhost:/etc/nginx/vhost.d'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-
     networks:
        - reverse-proxy
 
