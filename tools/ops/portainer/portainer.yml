@@ -8,12 +8,7 @@ services:
       - "9000:80"
     networks:
       - docker_manager
-      - reverse-proxy
     environment:
-       LETSENCRYPT_EMAIL: rajasoun@icloud.com
-       LETSENCRYPT_HOST: portainer.myck.io
-       VIRTUAL_HOST: portainer.myck.io
-       VIRTUAL_PORT: 9000
        LOGSPOUT: ignore
 
   templates:
@@ -48,8 +43,3 @@ services:
 networks:
   docker_manager:
     driver: bridge
-
-  reverse-proxy:
-    external:
-      name: reverse-proxy
-
