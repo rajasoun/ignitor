@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f $(pwd)/tools/static-site/site.yml"
+composer="-f $(pwd)/tools/site/site.yml"
 DESC="Tracker Static Site"
 export STATIC_HOST=$(hostname)
 
