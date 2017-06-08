@@ -57,8 +57,15 @@ case "$option" in
         cleanup
     ;;
 
+    reset)
+        echo -n "Reset $DESC: "
+        docker network rm reverse-proxy
+        cleanup
+        start_nginx_proxy
+        start_nginx_letsencrypt
+    ;;
     *)
-        echo "Usage: ./proxy.sh {setup|start|stop|teardown}" >&2
+        echo "Usage: ./proxy.sh {setup|start|stop|teardown|reset}" >&2
         exit 1
     ;;
 esac

@@ -4,8 +4,8 @@
 sh -c "tools/ops/clean/docker-clean all"
 
 ### Dynamic Nginx Proxy  ###
-sh -c "proxy/proxy-controller.sh setup"
-sh -c "proxy/proxy-controller.sh start"
+sh -c "proxy/proxy-controller.sh reset"
+
 
 docker-compose -f  tools/ops/portainer/portainer.yml  up -d --build
 #docker-compose -f  tools/static-site/tracker.learn.cisco.yml up -d --build
