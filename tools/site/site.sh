@@ -3,7 +3,7 @@
 option=$1
 composer="-f $(pwd)/tools/site/site.yml"
 DESC="Tracker Static Site"
-export STATIC_HOST=$(hostname)
+export STATIC_HOST=web.$(hostname)
 
 cleanup(){
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
