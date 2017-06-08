@@ -16,7 +16,7 @@ start_nginx_proxy(){
     jwilder/nginx-proxy
 }
 
-start_nginx-letsencrypt(){
+start_nginx_letsencrypt(){
     docker run --rm -d \
         --name nginx-letsencrypt \
         --net reverse-proxy \
