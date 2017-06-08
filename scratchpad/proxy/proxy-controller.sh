@@ -40,15 +40,14 @@ case "$option" in
 
     start)
         echo -n "Starting $DESC: "
-        docker network create --driver bridge reverse-proxy
         start_nginx_proxy
         start_nginx_letsencrypt
+
     ;;
 
     stop)
         echo -n "Stopping $DESC: "
         docker stop nginx-proxy nginx-letsencrypt
-        docker network rm reverse-proxy
     ;;
 
     teardown)
