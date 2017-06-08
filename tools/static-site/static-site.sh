@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 option=$1
-composer="-f tracker.learn.cisco.yml"
+composer="-f static-site.yml"
 DESC="Tracker Static Site"
 
 cleanup(){
