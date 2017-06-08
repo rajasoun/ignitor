@@ -4,7 +4,7 @@ services:
 
   web:
     build: web/
-    container_name: "tracker.static"
+    container_name: "static.web"
     networks:
       - reverse-proxy
       - back
