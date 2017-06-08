@@ -61,6 +61,7 @@ case "$option" in
         echo -n "Reset $DESC: "
         docker network rm reverse-proxy
         cleanup
+        docker network create --driver bridge reverse-proxy
         start_nginx_proxy
         start_nginx_letsencrypt
     ;;
