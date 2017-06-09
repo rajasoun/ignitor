@@ -3,7 +3,6 @@ version: '3.1'
 services:
   portainer:
     image: portainer/portainer
-    command: --templates http://templates/templates.json
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:

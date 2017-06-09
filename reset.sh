@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-
 sh -c "tools/ops/clean/docker-clean all"
+sudo ip addr del 169.254.255.254/24 dev lo:0
+
 sh -c "proxy/proxy-controller.sh reset"
 sh -c "tools/ops/portainer/portainer.sh start"
 
