@@ -30,7 +30,5 @@ services:
 networks:
   net:
     driver: bridge
-
-networks:
   nginx-proxy:
     external: true
