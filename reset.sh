@@ -5,8 +5,13 @@ cleanup(){
     sudo ip addr del 169.254.255.254/24 dev lo:0
 }
 
+setup_hostlocal(){
+    docker run --rm --privileged --net=host gliderlabs/hostlocal
+}
+
 setUp() {
     cleanup
+    setup_hostlocal
     sh -c "proxy/proxy.sh start"
     sh -c "tools/ops/portainer/portainer.sh start"
     #docker-compose -f application/core/core.yml build nginx-static
