@@ -2,7 +2,7 @@
 
 cleanup(){
     sh -c "tools/ops/clean/docker-clean all"
-    sudo ip addr del 169.254.255.254/24 dev lo:0
+    #sudo ip addr del 169.254.255.254/24 dev lo:0
 }
 
 setup_hostlocal(){
