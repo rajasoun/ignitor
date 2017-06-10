@@ -9,7 +9,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - net
-      - reverse-proxy
+      - nginx-proxy
     environment:
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
        LETSENCRYPT_HOST: $PORTAINER_HOST
@@ -31,6 +31,6 @@ networks:
   net:
     driver: bridge
 
-  reverse-proxy:
-    external:
-      name: reverse-proxy
+networks:
+  nginx-proxy:
+    external: true
