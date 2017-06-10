@@ -11,10 +11,9 @@ services:
       - net
       - nginx-proxy
     environment:
+       VIRTUAL_HOST: $PORTAINER_HOST
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
        LETSENCRYPT_HOST: $PORTAINER_HOST
-       VIRTUAL_HOST: $PORTAINER_HOST
-       VIRTUAL_PORT: 9000
        LOGSPOUT: ignore
 
   watchtower:
