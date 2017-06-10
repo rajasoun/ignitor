@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-NGINX_PROXY_NET="reverse-proxy"
+NGINX_PROXY_NET="nginx-proxy"
 
 createNginxProxyNetwork() {
     nginx_proxy_net_defined=$(docker network list | grep $NGINX_PROXY_NET | wc -l)
