@@ -4,7 +4,7 @@ NGINX_PROXY_NET="reverse-proxy"
 
 createNginxProxyNetwork() {
     nginx_proxy_net_defined=$(docker network list | grep $NGINX_PROXY_NET | wc -l)
-    if [ $nginx_proxy_net_defined == 0 ]
+    if [ "$nginx_proxy_net_defined" == 0 ]
     then
         docker network create -d bridge \
             --subnet 172.28.0.0/16 \
