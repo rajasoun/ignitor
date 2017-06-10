@@ -11,7 +11,6 @@ setup_hostlocal(){
 
 setUp() {
     cleanup
-    setup_hostlocal
     sh -c "proxy/proxy.sh start"
     sh -c "tools/ops/portainer/portainer.sh start"
     #docker-compose -f application/core/core.yml build nginx-static
@@ -21,6 +20,7 @@ setUp() {
     docker run -d --name="log-ck" --rm \
         --volume=/var/run/docker.sock:/var/run/docker.sock \
         --publish=127.0.0.1:8989:80 gliderlabs/logspout
+    setup_hostlocal
 }
 
 tearDown() {
