@@ -18,7 +18,7 @@ services:
       - nginx-proxy
 
   nginx-gen:
-    image: docker-gen/
+    build: docker-gen/
     container_name: nginx-gen
     command: -notify-sighup nginx-proxy -wait 5s:30s -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
     volumes:
