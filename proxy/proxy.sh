@@ -17,7 +17,8 @@ getControllerPath() {
 
 setUp() {
   getControllerPath $controller
-  source $controller
+  # Source The Controller Script
+  . $controller
 }
 
 
