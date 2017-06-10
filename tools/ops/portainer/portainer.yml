@@ -1,12 +1,14 @@
 version: '3.1'
 
 services:
-  portainer:
+  app:
     image: portainer/portainer
+    ports:
+      - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - docker_manager
+      - net
       - reverse-proxy
     environment:
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
@@ -21,10 +23,10 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - docker_manager
+      - net
 
 networks:
-  docker_manager:
+  net:
     driver: bridge
 
   reverse-proxy:

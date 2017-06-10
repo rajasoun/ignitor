@@ -1,18 +1,27 @@
 #!/usr/bin/env sh
 
-
 option=$1
+DESC="Portainer Docker Monitor"
+WORKSPACE="$HOME/Workspace/ck/ignitor/"
+
+
 composer="portainer.yml"
-DESC="Tracker Static Site"
 export PORTAINER_HOST=portainer.$(hostname)
 
 controller="ignitor.sh"
 getControllerPath() {
     file=$1
-    WORKSPACE="$HOME/Workspace/ck/ignitor/"
     controller=$(find $WORKSPACE -type f -name "*$file*")
 }
 
-getControllerPath $controller
-source $controller
+
+setUp() {
+  getControllerPath $controller
+  source $controller
+}
+
+
+set -e
+setUp
+trap tearDown EXIT
 
