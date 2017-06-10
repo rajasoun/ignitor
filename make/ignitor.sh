@@ -4,7 +4,7 @@ NGINX_PROXY_NET="nginx-proxy"
 
 createNginxProxyNetwork() {
     nginx_proxy_net_defined=$(docker network list | grep $NGINX_PROXY_NET | wc -l)
-    if [ "$nginx_proxy_net_defined" = "0" ]; then
+    if [ $nginx_proxy_net_defined == 0 ]; then
         docker network create -d bridge \
             --subnet 172.28.0.0/16 \
             --opt com.docker.network.bridge.name=$NGINX_PROXY_NET $NGINX_PROXY_NET
@@ -31,8 +31,8 @@ getPath $composer scratchpad
 case "$option" in
     setup)
        echo -n "Setup $DESC "
-       setup_hostlocal #To Enable hostlocal.io
        createNginxProxyNetwork
+       setup_hostlocal #To Enable hostlocal.io
     ;;
 
     start)
