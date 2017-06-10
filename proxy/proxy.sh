@@ -4,7 +4,6 @@ option=$1
 DESC="Nginx Proxy -Autopilot"
 WORKSPACE="$HOME/Workspace/ck/ignitor/"
 
-
 composer="proxy.yml"
 #export PORTAINER_HOST=portainer.$(hostname)
 
@@ -18,7 +17,7 @@ getControllerPath() {
 setUp() {
   getControllerPath $controller
   # Source The Controller Script
-  . $controller
+  # . $controller
 }
 
 
