@@ -9,8 +9,8 @@ setUp() {
     cleanup
     sh -c "proxy/proxy.sh start"
     sh -c "tools/ops/portainer/portainer.sh start"
-    docker-compose -f application/core/core.yml build nginx-static
-    sh -c "tools/site/site.sh start"
+    #docker-compose -f application/core/core.yml build nginx-static
+    #sh -c "tools/site/site.sh start"
     #docker-compose -f  docs/docs.yml  up -d --build
     ## Unified Log
     docker run -d --name="log-ck" --rm \
