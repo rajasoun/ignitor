@@ -20,6 +20,9 @@ setUp() {
   # . $controller
 }
 
+tearDown() {
+    echo "TearDown"
+}
 
 set -e
 setUp
