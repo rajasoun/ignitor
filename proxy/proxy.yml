@@ -58,8 +58,8 @@ services:
     networks:
       - nginx-proxy
     environment:
-      - VIRTUAL_HOST=whoami.local,whomai.myck.io
-      - LETSENCRYPT_HOST=whoami.local,whomai.myck.io
+      - VIRTUAL_HOST=$WHOAMI_HOST
+      - LETSENCRYPT_HOST=$WHOAMI_HOST
       - LETSENCRYPT_EMAIL=rajasoun@icloud.com
 
 volumes:
