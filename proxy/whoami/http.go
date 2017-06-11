@@ -17,7 +17,7 @@ func main() {
     hostname, _ := os.Hostname()
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(os.Stdout, "I'm %s\n", hostname)
- 	fmt.Fprintf(w, "I'm %s\n", hostname)
+ 	    fmt.Fprintf(w, "I'm %s\n", hostname)
     })
 
 
