@@ -50,7 +50,7 @@ case "$option" in
     ;;
 
     stop)
-        echo  "${red}  Stop $DESC " >&2
+        echo  "${red}  Stop $DESC  " >&2
         docker-compose -f $composer down
     ;;
 
@@ -60,12 +60,17 @@ case "$option" in
         cleanup
     ;;
 
+    ps)
+        echo  "${green}  $DESC Status" >&2
+        docker-compose -f $composer ps
+    ;;
+
     logs)
         docker-compose -f $composer logs -f
     ;;
     *)
         script=$(basename $0)
-        echo  "${gray} Usage: $script {setup|start|stop|teardown|logs}" >&2
+        echo  "${gray} Usage: $script {setup|start|stop|teardown|ps|logs}" >&2
         exit 1
     ;;
 esac
