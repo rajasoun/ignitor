@@ -53,7 +53,7 @@ services:
       - nginx-proxy
 
   whoami:
-    image: whoami/
+    build: whoami/
     container_name: whoami
     networks:
       - nginx-proxy
