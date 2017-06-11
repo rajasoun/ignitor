@@ -1,4 +1,4 @@
-location ^~ /.well-known {
+location ^~ /.well-known/ {
     allow all;
     default_type "text/plain";
     root  /usr/share/nginx/html;
