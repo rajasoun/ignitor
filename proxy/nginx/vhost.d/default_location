@@ -1,16 +1,7 @@
-location ^~ /.well-known/ {
-    allow all;
-    default_type "text/plain";
-    root  /usr/share/nginx/html;
-    try_files $uri =404;
-    break;
-}
-
 location ^~ /.well-known/acme-challenge/ {
     allow all;
     default_type "text/plain";
     root /usr/share/nginx/html;
-    try_files $uri =404;
+    try_files $uri $uri/ /index.html =404;
     break;
 }
-
