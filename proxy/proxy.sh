@@ -5,7 +5,7 @@ DESC="Nginx Proxy -Autopilot"
 WORKSPACE="$HOME/Workspace/ck/ignitor/"
 
 composer="proxy.yml"
-export WHOAMI_HOST=whoami.$(hostname)
+export WHOAMI_HOST=web.$(hostname)
 
 controller="ignitor.sh"
 getControllerPath() {

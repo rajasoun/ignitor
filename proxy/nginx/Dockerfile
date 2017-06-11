@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
-ADD vhost.d/default_location /etc/nginx/vhost.d/default_location
+ADD vhost.d/default /etc/nginx/vhost.d/default
 
 #VOLUME ["/etc/nginx/conf.d"]
 #VOLUME ["/etc/nginx/vhost.d"]
