@@ -58,7 +58,9 @@ services:
     networks:
       - nginx-proxy
     environment:
-      - VIRTUAL_HOST=whoami.local
+      - VIRTUAL_HOST: whoami.local,whomai.myck.io
+      - LETSENCRYPT_HOST: whoami.local,whomai.myck.io
+      - LETSENCRYPT_EMAIL: rajasoun@icloud.com
 
 volumes:
   nginx-conf:
