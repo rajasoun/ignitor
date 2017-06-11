@@ -2,8 +2,8 @@ FROM nginx:alpine
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
-ADD vhost.d/default /etc/nginx/vhost.d/default
+RUN mkdir -p /etc/nginx/html/.well-known/acme-challenge/
 
-# Inject files in container file system
-COPY rootfs /
+ADD vhost.d/default /etc/nginx/vhost.d/default
+ADD html/index.html /etc/nginx/html/.well-known/acme-challenge/index.html
 
