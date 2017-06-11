@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+# Prepare output colors
+red=`tput setaf 1`
+green=`tput setaf 10`
+blue=`tput setaf 4`
+gray=`tput setaf 8`
+reset=`tput sgr0`
+
 NGINX_PROXY_NET="nginx-proxy"
 
 createNginxProxyNetwork() {
@@ -25,29 +32,30 @@ setup_hostlocal(){
     docker run --rm --privileged --net=host gliderlabs/hostlocal
 }
 
+
 set -e
 getPath $composer scratchpad
 
 case "$option" in
     setup)
-       echo -n "Setup $DESC "
+       echo  "${blue}  Setup $DESC " >&2
        createNginxProxyNetwork
        setup_hostlocal #To Enable hostlocal.io
     ;;
 
     start)
-        echo -n "Starting $DESC: "
+        echo  "${green}  Start $DESC " >&2
         createNginxProxyNetwork
         docker-compose -f $composer up -d  --build
     ;;
 
     stop)
-        echo -n "Stopping $DESC: "
+        echo  "${red}  Stop $DESC " >&2
         docker-compose -f $composer down
     ;;
 
     teardown)
-        echo -n "TearDown $DESC: "
+        echo  "${red}  Teardown $DESC " >&2
         docker-compose -f $composer down
         cleanup
     ;;
@@ -57,7 +65,7 @@ case "$option" in
     ;;
     *)
         script=$(basename $0)
-        echo "Usage: $script {setup|start|stop|teardown|logs}" >&2
+        echo  "${gray} Usage: $script {setup|start|stop|teardown|logs}" >&2
         exit 1
     ;;
 esac
