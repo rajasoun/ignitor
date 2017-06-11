@@ -4,24 +4,24 @@ services:
     base:
         build: base/
         image: "rajasoun/base:0.1"
+    ansible:
+        build: ansible/
+        image: "rajasoun/ansible:0.1"
     java:
         build: java/
         image: "rajasoun/java:0.1"
-    java:
+    nginx-static:
+        build: nginx-static
+        image: "rajasoun/nginx-static:0.1"
+    node.js:
         build: nodejs/
         image: "rajasoun/nodejs:0.1"
+    php:
+        build: php
+        image: "rajasoun/php:0.1"
     python:
         build: python/
         image: "rajasoun/python:0.1"
     wait-for-it:
         build: wait-for-it/
         image: "rajasoun/wait-for-it:0.1"
-    ansible:
-        build: ansible/
-        image: "rajasoun/ansible:0.1"
-    nginx-static:
-        build: nginx-static
-        image: "rajasoun/nginx-static:0.1"
-    php:
-        build: php
-        image: "rajasoun/php:0.1"
