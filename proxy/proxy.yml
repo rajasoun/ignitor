@@ -52,6 +52,14 @@ services:
     networks:
       - nginx-proxy
 
+  whoami:
+    image: whoami/
+    container_name: whoami
+    networks:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_HOST=whoami.local
+
 volumes:
   nginx-conf:
   nginx-vhost:

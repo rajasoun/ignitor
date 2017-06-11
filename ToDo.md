@@ -1,7 +1,7 @@
 # ToDo
 
+[ ] Make Nginx Proxy Work with Let's Encrypt
 [ ] Docker Dynamic Inventory Not Working
-[ ] Replacing make Files with docker-compose
 [ ] Folder Refactor resulting in docker-compose Changes. Fix It 
 
 # Encrypt/Decrypt Certificates
