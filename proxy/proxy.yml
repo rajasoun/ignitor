@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   nginx-proxy:
-    image: nginx
+    build: nginx/
     container_name: nginx-proxy
     ports:
       - "80:80"
@@ -58,7 +58,9 @@ services:
     networks:
       - nginx-proxy
     environment:
-      - VIRTUAL_HOST=whoami.local
+      - VIRTUAL_HOST=$WHOAMI_HOST
+      - LETSENCRYPT_HOST=$WHOAMI_HOST
+      - LETSENCRYPT_EMAIL=rajasoun@icloud.com
 
 volumes:
   nginx-conf:
