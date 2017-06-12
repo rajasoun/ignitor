@@ -6,6 +6,7 @@ WORKSPACE="$HOME/Workspace/ck/ignitor/"
 
 composer="proxy.yml"
 export WHOAMI_HOST=whoami.$(hostname)
+#export WHOAMI_HOST=whoami.local
 
 controller="ignitor.sh"
 getControllerPath() {

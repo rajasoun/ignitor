@@ -100,3 +100,19 @@ and the config generated:
 docker exec -it nginx-proxy cat /etc/nginx/conf.d/default.conf
 ```
 
+### To Test Locally
+
+In proxy.sh  change line 
+```
+    export WHOAMI_HOST=whoami.$(hostname) to 
+    export WHOAMI_HOST=whoami.local
+```
+In Command Window 
+```
+    curl  -L  -H "Host: whoami.local" localhost
+```
+
+### To Test Cloud Host with Proper DNS Entries
+```
+    curl -svo /dev/null -L  "HOST: whoami.myck.io" http://whoami.myck.io
+```
