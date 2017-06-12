@@ -12,19 +12,15 @@ services:
 
   orientdb:
      #build: orientdb/
-     image: orientdb
+     image: orientdb:3.0.0m1
      ports:
         - "2424:2424"
         - "2480:2480"
      environment:
-        ORIENTDB_DB: authorization
-        ORIENTDB_DB_USER: admin
-        ORIENTDB_DB_USER_PASSWORD: admin
-        ORIENTDB_ROOT_USER: root
         ORIENTDB_ROOT_PASSWORD: admin
      networks:
         - net
-
+#
 #  scanner:
 #     build: scanner/
 #     depends_on:
