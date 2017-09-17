@@ -21,7 +21,8 @@
       <link rel="prefetch" href="/icon-512x512.png">
       <link rel="manifest" href="/manifest.json">
       <link rel="stylesheet" href="{{rootURL}}app.css" media="none" onload="if(media!='all')media='all'">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-minimal.min.css" media="none" onload="if(media!='all')media='all'">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-minimal.min.css" media="none" onload="if(media!='all')media='all'">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" async></script>
       {{content-for "head"}}
       {{content-for 'critical-css'}}
       {{content-for "head-footer"}}
@@ -58,7 +59,6 @@
           ul.innerHTML += el;
         }
       </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" async></script>
       <script src="{{rootURL}}app.js" async></script>
       {{content-for "body-footer"}}
    </body>
