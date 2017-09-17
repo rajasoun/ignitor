@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build -e production --output-path=~Workspace/ck/ignitor/tools/site/web/rootfs/usr/share/nginx/html",
+    "build": "ember build -e production ",
     "start": "ember server",
     "start:prod": "ember server --environment production --live-reload false --port 4201",
     "test": "ember test"
