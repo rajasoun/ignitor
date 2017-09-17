@@ -2,3 +2,6 @@
 	path = docs/tracker/themes/hugo-theme-learn
 	url = https://github.com/matcornic/hugo-theme-learn
 
+[submodule "tools/site/rapid-stack"]
+	path = tools/site/rapid-stack
+	url = https://github.com/rajasoun/rapid-stack
