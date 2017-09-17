@@ -9,6 +9,7 @@
   "scripts": {
     "build": "ember build -e production ",
     "start": "ember server",
+    "docker": "yarn build;cp -R  dist/* ../web/rootfs/usr/share/nginx/html/;cd ../web;make;git clean -fd",
     "start:prod": "ember server --environment production --live-reload false --port 4201",
     "test": "ember test"
   },
