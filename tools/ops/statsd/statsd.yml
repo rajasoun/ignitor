@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   app:
-    image: hopsoft/graphite-statsd
+    image: graphiteapp/graphite-statsd
     ports:
       - "9101:9101"
       - "2003-2004:2003-2004"
