@@ -17,7 +17,7 @@ services:
     environment:
        VIRTUAL_HOST: $STATSD_HOST
        LETSENCRYPT_EMAIL: rajasoun@icloud.com
-       LETSENCRYPT_HOST: $PORTAINER_HOST
+       LETSENCRYPT_HOST: $STATSD_HOST
 
 networks:
   net:
