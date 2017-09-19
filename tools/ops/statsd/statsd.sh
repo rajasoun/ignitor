@@ -2,11 +2,11 @@
 
 option=$1
 DESC="StatsD Docker "
-WORKSPACE="$HOME/Workspace/ck/ignitor/"
+WORKSPACE="$HOME/Workspace/ck/ignitor"
 
 
 composer="statsd.yml"
-export PORTAINER_HOST=statsd.$(hostname)
+export STATSD_HOST=statsd.$(hostname)
 
 controller="ignitor.sh"
 getControllerPath() {
