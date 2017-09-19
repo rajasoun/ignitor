@@ -11,8 +11,8 @@ services:
       - "8126:8126"
 
     networks:
-      - net
       - nginx-proxy
+      - net
 
     environment:
        VIRTUAL_HOST: $STATSD_HOST
