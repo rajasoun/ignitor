@@ -42,10 +42,6 @@ services:
         /bin/containerpilot
         -config file:///etc/containerpilot/containerpilot.json
         nginx -g "daemon off;"
-    environment:
-        VIRTUAL_HOST: $KONG_HOST
-    networks:
-       - nginx-proxy
 
   kong-database:
     image: postgres:9.4
@@ -88,8 +84,3 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
-
-networks:
-  nginx-proxy:
-    external: true
-
