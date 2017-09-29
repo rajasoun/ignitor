@@ -91,5 +91,7 @@ services:
       interval: 5s
       retries: 10
 
-nginx-proxy:
+networks:
+  nginx-proxy:
     external: true
+
