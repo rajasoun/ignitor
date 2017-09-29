@@ -100,6 +100,19 @@ services:
     networks:
       - net
 
+  kong-dashboard:
+    image: pgbi/kong-dashboard
+    container_name: kong-dashboard
+    ports:
+      - "9100:8080"
+    environment:
+        VIRTUAL_HOST: $KONG_MGR_HOST
+        LETSENCRYPT_EMAIL: rajasoun@icloud.com
+        LETSENCRYPT_HOST: $KONG_MGR_HOST
+    networks:
+      - net
+      - nginx-proxy
+
 networks:
   net:
     driver: bridge

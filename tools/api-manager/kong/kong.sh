@@ -7,6 +7,7 @@ WORKSPACE="$HOME/Workspace/ck/ignitor/"
 
 composer="kong.yml"
 export KONG_HOST=api.$(hostname)
+export KONG_MGR_HOST=apim.$(hostname)
 
 controller="ignitor.sh"
 getControllerPath() {
