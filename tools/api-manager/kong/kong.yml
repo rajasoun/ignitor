@@ -44,8 +44,6 @@ services:
         nginx -g "daemon off;"
     environment:
         VIRTUAL_HOST: $KONG_HOST
-        LETSENCRYPT_EMAIL: rajasoun@icloud.com
-        LETSENCRYPT_HOST: $KONG_HOST
     networks:
        - nginx-proxy
 
