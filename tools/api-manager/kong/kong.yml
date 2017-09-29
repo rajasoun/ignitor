@@ -42,6 +42,12 @@ services:
         /bin/containerpilot
         -config file:///etc/containerpilot/containerpilot.json
         nginx -g "daemon off;"
+    environment:
+        VIRTUAL_HOST: $KONG_HOST
+        LETSENCRYPT_EMAIL: rajasoun@icloud.com
+        LETSENCRYPT_HOST: $KONG_HOST
+    networks:
+       - nginx-proxy
 
   kong-database:
     image: postgres:9.4
@@ -71,16 +77,10 @@ services:
         condition: service_healthy
       kong-migration:
         condition: service_started
-    networks:
-       - nginx-proxy
     environment:
         KONG_DATABASE: postgres
         KONG_PG_HOST: kong-database
         KONG_PG_DATABASE: kong
-        VIRTUAL_HOST: $KONG_HOST
-        LETSENCRYPT_EMAIL: rajasoun@icloud.com
-        LETSENCRYPT_HOST: $KONG_HOST
-
     expose:
       - 8000
       - 8001
