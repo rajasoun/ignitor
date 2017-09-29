@@ -71,10 +71,16 @@ services:
         condition: service_healthy
       kong-migration:
         condition: service_started
+    networks:
+       - nginx-proxy
     environment:
-      - KONG_DATABASE=postgres
-      - KONG_PG_HOST=kong-database
-      - KONG_PG_DATABASE=kong
+        KONG_DATABASE: postgres
+        KONG_PG_HOST: kong-database
+        KONG_PG_DATABASE: kong
+        VIRTUAL_HOST: $KONG_HOST
+        LETSENCRYPT_EMAIL: rajasoun@icloud.com
+        LETSENCRYPT_HOST: $KONG_HOST
+
     expose:
       - 8000
       - 8001
@@ -84,3 +90,6 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
+
+nginx-proxy:
+    external: true
