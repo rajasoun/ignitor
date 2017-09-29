@@ -20,6 +20,8 @@ services:
       - 8500
     dns:
       - 127.0.0.1
+    networks:
+      - net
 
   nginx-lb:
     build: nginx/
@@ -42,6 +44,9 @@ services:
         /bin/containerpilot
         -config file:///etc/containerpilot/containerpilot.json
         nginx -g "daemon off;"
+    VIRTUAL_HOST: $KONG_HOST
+    networks:
+      - net
 
   kong-database:
     image: postgres:9.4
@@ -53,6 +58,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - net
 
   kong-migration:
     image: kong
@@ -63,6 +70,8 @@ services:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong-database
     command: kong migrations up
+    networks:
+      - net
 
   kong:
     build: kong/
@@ -84,3 +93,11 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
+  nginx-proxy:
+    external: true
