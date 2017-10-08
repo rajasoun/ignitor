@@ -1,5 +1,6 @@
 # a minimal Nginx container including ContainerPilot and a simple virtulhost config
-FROM nginx:latest
+# FROM nginx:latest
+FROM nginx:1.13
 
 RUN apt-get update && apt-get install -y curl unzip
 
