@@ -1,11 +1,7 @@
-FROM nginx:alpine
-LABEL Vendor="Raja.S"
+# a minimal Nginx container including ContainerPilot and a simple virtulhost config
+FROM nginx:latest
 
-MAINTAINER Raja. S <rajasoun@icloud.com>
-
-RUN set -x \
-    && apk add --no-cache nginx curl unzip\
-    && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y curl unzip
 
 # we use consul-template to re-write our Nginx virtualhost config
 RUN curl -Lo /tmp/consul_template_0.14.0_linux_amd64.zip https://releases.hashicorp.com/consul-template/0.14.0/consul-template_0.14.0_linux_amd64.zip && \
@@ -32,8 +28,3 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.conf.ctmpl /etc/containerpilot/nginx.conf.ctmpl
 
 EXPOSE 8000 8443 8001 8444
-
-RUN set -x \
-    && rm -rf /etc/nginx/conf.d/default.conf \
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
