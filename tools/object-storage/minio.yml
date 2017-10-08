@@ -1,0 +1,29 @@
+version: '3.2'
+
+services:
+
+    s3minio:
+        image: minio/minio
+        ports:
+          - "9500:9000"
+        volumes:
+          - "minio-data:/export"
+        environment:
+            MINIO_ACCESS_KEY: "AKIAIOSFODNN7EXAMPLE"
+            MINIO_SECRET_KEY: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+            VIRTUAL_HOST: $MINIO_HOST
+            LETSENCRYPT_EMAIL: rajasoun@icloud.com
+            LETSENCRYPT_HOST: $MINIO_HOST
+            LOGSPOUT: ignore
+        command: server /export
+        networks:
+          - net
+          - nginx-proxy
+volumes:
+  minio-data:
+
+networks:
+  net:
+    driver: bridge
+  nginx-proxy:
+    external: true
