@@ -2,7 +2,7 @@
 
 option=$1
 DESC="Nginx Proxy -Autopilot"
-WORKSPACE="$HOME/Workspace/ck/ignitor/"
+WORKSPACE="$HOME/workspace/ignitor/"
 
 composer="proxy.yml"
 export WHOAMI_HOST=whoami.$(hostname)

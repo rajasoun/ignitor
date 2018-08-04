@@ -2,7 +2,7 @@
 
 option=$1
 DESC="Portainer Docker Monitor"
-WORKSPACE="$HOME/Workspace/ck/ignitor/"
+WORKSPACE="$HOME/workspace/ignitor/"
 
 
 composer="portainer.yml"
