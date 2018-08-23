@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.8
 LABEL Vendor="Raja.S"
 
 MAINTAINER Raja. S <rajasoun@icloud.com>
